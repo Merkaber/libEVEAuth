@@ -5,3 +5,7 @@
  */
 
 #pragma once
+
+/* Global includes */
+#include <string>
+#include <array>
