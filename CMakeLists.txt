@@ -12,7 +12,7 @@ find_package(OpenSSL REQUIRED)
 include_directories(${OPENSSL_INCLUDE_DIR})
 link_directories(${OPENSSL_LIBRARIES})
 
-set(SRC_FILES library.cpp library.h)
+set(SRC_FILES library.cpp library.h Encoding.cpp Encoding.h)
 
 add_library(${CMAKE_PROJECT_NAME} ${SRC_FILES})
 
