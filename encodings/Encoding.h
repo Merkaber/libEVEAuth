@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "../shared.h"
+
 namespace EVEAuth {
     class Encoding {
 
