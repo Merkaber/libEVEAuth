@@ -26,6 +26,6 @@ namespace EVEAuth {
 
         static constexpr std::array<char, 2> base64UrlSafeChars = {'-', '_'};
 
-        static const std::string base64UrlSafeFill;
+        const std::string base64UrlSafeFill = "%3d";
     };
 }
