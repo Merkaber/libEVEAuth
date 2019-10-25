@@ -13,6 +13,11 @@ EVEAuth::Base64::Base64(const std::string &str)
 
 std::string EVEAuth::Base64::encode()
 {
+
+}
+
+std::string EVEAuth::Base64::decode()
+{
     
 }
 
