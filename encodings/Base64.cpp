@@ -11,4 +11,9 @@ EVEAuth::Base64::Base64(const std::string &str)
 
 }
 
+std::string EVEAuth::Base64::encode()
+{
+    
+}
+
 EVEAuth::Base64::~Base64() = default;

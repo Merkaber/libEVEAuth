@@ -14,6 +14,8 @@ namespace EVEAuth {
         explicit Base64(const std::string &str);
         ~Base64();
 
+        std::string encode();
+
     private:
         static constexpr std::array<char, 64> base64Chars = {
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/',
