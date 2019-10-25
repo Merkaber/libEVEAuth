@@ -10,6 +10,9 @@
 
 namespace EVEAuth {
     class Base64 {
+    public:
+        explicit Base64(const std::string &str);
+        ~Base64();
 
     private:
         static constexpr std::array<char, 64> base64Chars = {
