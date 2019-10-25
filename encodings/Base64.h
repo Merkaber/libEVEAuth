@@ -9,7 +9,7 @@
 #include "../shared.h"
 
 namespace EVEAuth {
-    class Encoding {
+    class Base64 {
 
     private:
         static constexpr std::array<char, 64> base64Chars = {
