@@ -11,8 +11,8 @@
 namespace EVEAuth {
     class Base64 {
     public:
-        explicit Base64(const std::string &str);
-        ~Base64();
+        explicit Base64(std::string inputStr) noexcept;
+        ~Base64() noexcept;
 
         std::string encode();
         std::string decode();
@@ -30,5 +30,7 @@ namespace EVEAuth {
         static constexpr std::array<char, 2> base64UrlSafeChars = {'-', '_'};
 
         const std::string base64UrlSafeFill = "%3d";
+
+        const std::string inputStr;
     };
 }
