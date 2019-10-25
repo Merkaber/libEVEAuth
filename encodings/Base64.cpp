@@ -13,7 +13,11 @@ EVEAuth::Base64::Base64(std::string inputStr) noexcept : inputStr(std::move(inpu
 
 std::string EVEAuth::Base64::encode()
 {
+    std::size_t inputSize = inputStr.size();
+    u_int8_t rest = inputSize % 3;
+    if (rest == 0) {
 
+    }
 }
 
 std::string EVEAuth::Base64::decode()
