@@ -80,12 +80,15 @@ std::string EVEAuth::Base64::decode() noexcept
 
 std::string EVEAuth::Base64::decode(std::string &str) noexcept
 {
-
+    return "";
 }
 
 std::string EVEAuth::Base64::decodeUrlSafe() noexcept
 {
-    return "";
+    std::string str = inputStr;
+    std::replace(str.begin(), str.end(), "+", "-");
+    std::replace(str.begin(), str.end(), "/", "_");
+    return decode(str);
 }
 
 EVEAuth::Base64::~Base64() noexcept = default;
