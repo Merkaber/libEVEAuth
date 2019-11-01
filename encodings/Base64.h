@@ -15,7 +15,10 @@ namespace EVEAuth {
         ~Base64() noexcept;
 
         std::string encode() noexcept;
+        std::string encodeUrlSafe() noexcept;
+
         std::string decode() noexcept;
+        std::string decodeUrlSafe() noexcept;
 
     private:
         static constexpr std::array<char, 64> base64Chars = {

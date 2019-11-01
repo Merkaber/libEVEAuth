@@ -65,7 +65,17 @@ std::string EVEAuth::Base64::encode() noexcept
     return ss.str();
 }
 
+std::string EVEAuth::Base64::encodeUrlSafe() noexcept
+{
+    
+}
+
 std::string EVEAuth::Base64::decode() noexcept
+{
+    return "";
+}
+
+std::string EVEAuth::Base64::decodeUrlSafe() noexcept
 {
     return "";
 }
