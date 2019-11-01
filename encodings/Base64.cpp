@@ -87,8 +87,8 @@ std::string EVEAuth::Base64::decode(std::string &str) noexcept
 std::string EVEAuth::Base64::decodeUrlSafe() noexcept
 {
     std::string str = inputStr;
-    std::replace(str.begin(), str.end(), "+", "-");
-    std::replace(str.begin(), str.end(), "/", "_");
+    std::replace(str.begin(), str.end(), "-", "+");
+    std::replace(str.begin(), str.end(), "_", "/");
     std::replace(str.begin(), str.end(), base64UrlSafeFill, std::string(1, base64Fill));
     return decode(str);
 }
