@@ -78,6 +78,11 @@ std::string EVEAuth::Base64::decode() noexcept
     return "";
 }
 
+std::string EVEAuth::Base64::decode(std::string &str) noexcept
+{
+
+}
+
 std::string EVEAuth::Base64::decodeUrlSafe() noexcept
 {
     return "";

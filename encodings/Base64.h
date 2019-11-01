@@ -18,6 +18,7 @@ namespace EVEAuth {
         std::string encodeUrlSafe() noexcept;
 
         std::string decode() noexcept;
+        std::string decode(std::string &str) noexcept;
         std::string decodeUrlSafe() noexcept;
 
     private:
