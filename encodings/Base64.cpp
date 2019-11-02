@@ -76,7 +76,7 @@ std::string EVEAuth::Base64::encodeUrlSafe() noexcept
 
 std::string EVEAuth::Base64::decode() noexcept
 {
-    return "";
+    return decode(inputStr);
 }
 
 std::string EVEAuth::Base64::decode(const std::string str) noexcept
