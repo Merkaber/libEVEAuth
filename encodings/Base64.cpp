@@ -15,9 +15,10 @@ std::string EVEAuth::Base64::encode() noexcept
 {
     std::size_t inputSize = inputStr.size();
     uint8_t remainder = inputSize % 3u;
+    size_t diff_size = inputSize - remainder;
     std::stringstream ss;
 
-    for (std::size_t i = 0; i < inputSize;) {
+    for (std::size_t i = 0; i < diff_size;) {
         uint32_t b_1 = inputStr[i];
         uint32_t b_2 = inputStr[i + 1];
         uint32_t b_3 = inputStr[i + 2];
@@ -35,8 +36,6 @@ std::string EVEAuth::Base64::encode() noexcept
     if (remainder == 0u) {
         return ss.str();
     }
-
-    size_t diff_size = inputSize - remainder;
 
     std::vector<uint32_t> paddingArray;
     for (uint8_t i = 0u; i < 3u; ++i) {
