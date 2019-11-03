@@ -86,13 +86,13 @@ std::string EVEAuth::Base64::decode(const std::string &str) noexcept
 {
     std::size_t strSize = str.size();
     std::size_t fillSize = base64Fill.size();
-    unsigned char fillCount = 0u;
+    char fillCount = 0;
 
     while (strSize > fillSize) {
         if (str.substr(strSize - fillSize, fillSize) == base64Fill) {
             fillCount++;
             strSize -= fillSize;
-            if (fillCount > 2u) {
+            if (fillCount > 2) {
                 return "";
             }
         } else {
@@ -100,7 +100,7 @@ std::string EVEAuth::Base64::decode(const std::string &str) noexcept
         }
     }
 
-    if (((strSize + fillCount) % 4u) != 0u) {
+    if (((strSize + fillCount) % 4) != 0) {
         return "";
     }
 
@@ -108,9 +108,9 @@ std::string EVEAuth::Base64::decode(const std::string &str) noexcept
     std::string result;
     result.reserve(outSize);
 
-    std::size_t sizeWithoutFill = strSize - strSize % 4u;
+    std::size_t sizeWithoutFill = strSize - strSize % 4;
     std::array<uint32_t, 4> nums = {0u, 0u, 0u, 0u};
-    std::size_t l = 0u;
+    std::size_t l = 0;
     while (l < sizeWithoutFill) {
         for (std::size_t k = 0; k < nums.size(); k++) {
             for (std::size_t j = 0; j < base64Chars.size(); j++) {
@@ -126,30 +126,30 @@ std::string EVEAuth::Base64::decode(const std::string &str) noexcept
         result += ((combined >> 8u) & 255u);
         result += (combined & 255u);
 
-        l += 4u;
+        l += 4;
     }
 
     if (fillCount == 0) {
         return result;
     }
 
-    uint32_t fill_1 = 0u;
-    for (std::size_t i = 0u; i < base64Chars.size(); i++) {
+    uint32_t fill_1 = 0;
+    for (std::size_t i = 0; i < base64Chars.size(); i++) {
         if (base64Chars[i] == str[sizeWithoutFill]) {
             fill_1 = i;
         }
     }
 
-    uint32_t fill_2 = 0u;
-    for (std::size_t i = 0u; i < base64Chars.size(); i++) {
-        if (base64Chars[i] == str[sizeWithoutFill + 1u]) {
+    uint32_t fill_2 = 0;
+    for (std::size_t i = 0; i < base64Chars.size(); i++) {
+        if (base64Chars[i] == str[sizeWithoutFill + 1]) {
             fill_2 = i;
         }
     }
 
-    uint32_t check = 0u;
-    for (std::size_t i = 0u; i < base64Chars.size(); i++) {
-        if (base64Chars[i] == str[sizeWithoutFill + 2u]) {
+    uint32_t check = 0;
+    for (std::size_t i = 0; i < base64Chars.size(); i++) {
+        if (base64Chars[i] == str[sizeWithoutFill + 2]) {
             check = i;
         }
     }
