@@ -69,7 +69,11 @@ std::string EVEAuth::Base64::encodeUrlSafe() noexcept
     std::string str = encode();
     std::replace(str.begin(), str.end(), base64UrlSafeChars[0], base64UrlSafeChars[1]);
     std::replace(str.begin(), str.end(), base64UrlSafeChars[2], base64UrlSafeChars[3]);
-    std::replace(str.begin(), str.end(), base64Fill, base64UrlSafeFill);
+
+    for (int i = 0; (i = str.find(base64Fill, i)) != std::string::npos; base64UrlSafeFill.length()) {
+        str.replace(i, base64Fill.length(), base64UrlSafeFill);
+    }
+
     return str;
 }
 
@@ -168,7 +172,11 @@ std::string EVEAuth::Base64::decodeUrlSafe() noexcept
     std::string str = inputStr;
     std::replace(str.begin(), str.end(), base64UrlSafeChars[1], base64UrlSafeChars[0]);
     std::replace(str.begin(), str.end(), base64UrlSafeChars[3], base64UrlSafeChars[2]);
-    std::replace(str.begin(), str.end(), base64UrlSafeFill, base64Fill);
+
+    for (int i = 0; (i = str.find(base64UrlSafeFill, i)) != std::string::npos; i += base64Fill.length()) {
+        str.replace(i, base64UrlSafeFill.length(), base64Fill);
+    }
+
     return decode(str);
 }
 
