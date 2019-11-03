@@ -81,7 +81,7 @@ std::string EVEAuth::Base64::decode() noexcept
 std::string EVEAuth::Base64::decode(const std::string str) noexcept
 {
     std::size_t strSize = str.size();
-    std::size_t fillSize = 8u;
+    std::size_t fillSize = base64Fill.size();
     unsigned char fillCount = 0u;
 
     while (strSize > fillSize) {
@@ -100,7 +100,9 @@ std::string EVEAuth::Base64::decode(const std::string str) noexcept
         return "";
     }
 
-    std::stringstream ss;
+    std::size_t outSize = (strSize / 4) * 3;
+    std::string result;
+    result.reserve(outSize);
 
     std::size_t sizeWithoutFill = strSize - strSize % 4u;
     std::array<uint32_t, 4> nums = {0u, 0u, 0u, 0u};
@@ -108,7 +110,7 @@ std::string EVEAuth::Base64::decode(const std::string str) noexcept
     while (l < sizeWithoutFill) {
         for (std::size_t k = 0; k < nums.size(); k++) {
             for (std::size_t j = 0; j < base64Chars.size(); j++) {
-                if (base64Chars[j] == str[k]) {
+                if (base64Chars[j] == str[k + l]) {
                     nums[k] = j;
                 }
             }
@@ -116,15 +118,15 @@ std::string EVEAuth::Base64::decode(const std::string str) noexcept
 
         uint32_t combined = (nums[0] << 3u * 6u) + (nums[1] << 2u * 6u) + (nums[2] << 6u) + nums[3];
 
-        ss << ((combined >> 2u * 8u) & 255u);
-        ss << ((combined >> 8u) & 255u);
-        ss << (combined & 255u);
+        result += ((combined >> 2u * 8u) & 255u);
+        result += ((combined >> 8u) & 255u);
+        result += (combined & 255u);
 
         l += 4u;
     }
 
     if (fillCount == 0) {
-        return ss.str();
+        return result;
     }
 
     uint32_t fill_1 = 0u;
@@ -152,13 +154,13 @@ std::string EVEAuth::Base64::decode(const std::string str) noexcept
 
     if (fillCount == 1) {
         combined_2 |= check << 6u;
-        ss << ((combined_2 >> 2u * 8u) & 255u);
-        ss << ((combined_2 >> 8u) & 255u);
+        result += ((combined_2 >> 2u * 8u) & 255u);
+        result += ((combined_2 >> 8u) & 255u);
     } else if (fillCount == 2) {
-        ss << ((combined_2 >> 2u * 8u) & 255u);
+        result += ((combined_2 >> 2u * 8u) & 255u);
     }
 
-    return ss.str();
+    return result;
 }
 
 std::string EVEAuth::Base64::decodeUrlSafe() noexcept
