@@ -12,7 +12,7 @@ find_package(OpenSSL REQUIRED)
 include_directories(${OPENSSL_INCLUDE_DIR})
 link_directories(${OPENSSL_LIBRARIES})
 
-set(SRC_FILES encodings/Base64.cpp encodings/Base64.h shared.h)
+set(SRC_FILES encodings/Base64.cpp encodings/Base64.h shared.h hashings/SHA256.cpp hashings/SHA256.h)
 
 add_library(${CMAKE_PROJECT_NAME} ${SRC_FILES})
 
