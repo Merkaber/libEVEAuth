@@ -82,7 +82,7 @@ std::string EVEAuth::Base64::decode() noexcept
     return decode(inputStr);
 }
 
-std::string EVEAuth::Base64::decode(const std::string str) noexcept
+std::string EVEAuth::Base64::decode(const std::string &str) noexcept
 {
     std::size_t strSize = str.size();
     std::size_t fillSize = base64Fill.size();
