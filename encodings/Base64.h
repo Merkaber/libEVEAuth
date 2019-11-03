@@ -31,11 +31,11 @@ namespace EVEAuth {
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/'
         };
 
-        inline static const std::string base64Fill = "=";
+        const std::string base64Fill = "=";
 
         static constexpr std::array<char, 4> base64UrlSafeChars = {'+', '-', '/', '_'};
 
-        inline static const std::string base64UrlSafeFill = "%3d";
+        const std::string base64UrlSafeFill = "%3d";
 
         const std::string inputStr;
     };
