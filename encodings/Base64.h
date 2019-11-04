@@ -22,7 +22,7 @@ namespace EVEAuth {
 
     private:
         std::string decode(const std::string &str) noexcept;
-        std::size_t findBaseChar(const char &c) noexcept;
+        static std::size_t findBaseChar(const char &c) noexcept;
 
     private:
         static constexpr std::array<char, 64> base64Chars = {
