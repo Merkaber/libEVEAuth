@@ -93,6 +93,8 @@ std::string EVEAuth::Base64::decode(const std::string &str) noexcept
             fillCount++;
             strSize -= fillSize;
             if (fillCount > 2) {
+
+                /* TODO: Add exception handling */
                 return "";
             }
         } else {
@@ -101,6 +103,8 @@ std::string EVEAuth::Base64::decode(const std::string &str) noexcept
     }
 
     if (((strSize + fillCount) % 4) != 0) {
+
+        /* TODO: Add exception handling */
         return "";
     }
 
@@ -166,6 +170,9 @@ std::size_t EVEAuth::Base64::findBaseChar(const char &c) noexcept
             return i;
         }
     }
+
+    /* TODO: Add exception handling */
+    return (-1);
 }
 
 EVEAuth::Base64::~Base64() noexcept = default;
