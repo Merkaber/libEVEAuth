@@ -117,7 +117,7 @@ std::string EVEAuth::Base64::decode(const std::string &str) noexcept
     std::size_t l = 0;
     while (l < sizeWithoutFill) {
         for (std::size_t k = 0; k < nums.size(); k++) {
-            nums[k] = findBaseChar(str[k+1]);
+            nums[k] = findBaseChar(str[k+l]);
         }
 
         uint32_t combined = (nums[0] << 3u * 6u) + (nums[1] << 2u * 6u) + (nums[2] << 6u) + nums[3];
