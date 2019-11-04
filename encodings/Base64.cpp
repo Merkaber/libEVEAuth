@@ -113,11 +113,7 @@ std::string EVEAuth::Base64::decode(const std::string &str) noexcept
     std::size_t l = 0;
     while (l < sizeWithoutFill) {
         for (std::size_t k = 0; k < nums.size(); k++) {
-            for (std::size_t j = 0; j < base64Chars.size(); j++) {
-                if (base64Chars[j] == str[k + l]) {
-                    nums[k] = j;
-                }
-            }
+            nums[k] = findBaseChar(str[k+1]);
         }
 
         uint32_t combined = (nums[0] << 3u * 6u) + (nums[1] << 2u * 6u) + (nums[2] << 6u) + nums[3];
@@ -133,26 +129,9 @@ std::string EVEAuth::Base64::decode(const std::string &str) noexcept
         return result;
     }
 
-    uint32_t fill_1 = 0;
-    for (std::size_t i = 0; i < base64Chars.size(); i++) {
-        if (base64Chars[i] == str[sizeWithoutFill]) {
-            fill_1 = i;
-        }
-    }
-
-    uint32_t fill_2 = 0;
-    for (std::size_t i = 0; i < base64Chars.size(); i++) {
-        if (base64Chars[i] == str[sizeWithoutFill + 1]) {
-            fill_2 = i;
-        }
-    }
-
-    uint32_t check = 0;
-    for (std::size_t i = 0; i < base64Chars.size(); i++) {
-        if (base64Chars[i] == str[sizeWithoutFill + 2]) {
-            check = i;
-        }
-    }
+    uint32_t fill_1 = findBaseChar(str[sizeWithoutFill]);
+    uint32_t fill_2 = findBaseChar(str[sizeWithoutFill + 1]);
+    uint32_t check = findBaseChar(str[sizeWithoutFill + 2]);
 
     uint32_t combined_2 = (fill_1 << 3u * 6u) + (fill_2 << 2u * 6u);
 
@@ -180,7 +159,7 @@ std::string EVEAuth::Base64::decodeUrlSafe() noexcept
     return decode(str);
 }
 
-std::size_t EVEAuth::Base64::findBaseChar(const char &c)
+std::size_t EVEAuth::Base64::findBaseChar(const char &c) noexcept
 {
     for (std::size_t i = 0; i < base64Chars.size(); i++) {
         if (base64Chars[i] == c) {
