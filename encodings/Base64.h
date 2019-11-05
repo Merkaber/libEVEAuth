@@ -9,6 +9,18 @@
 #include "../shared.h"
 
 namespace EVEAuth {
+    class Base64Exception : public std::exception {
+    public:
+        Base64Exception(std::string message, int errorCode);
+        const char* what() const noexcept override;
+        int getErrorCode() const noexcept;
+
+    private:
+        const std::string message;
+        const int errorCode;
+
+    };
+
     class Base64 {
     public:
         explicit Base64(std::string inputStr) noexcept;

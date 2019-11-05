@@ -5,6 +5,22 @@
  */
 
 #include "Base64.h"
+#include <algorithm>
+
+EVEAuth::Base64Exception::Base64Exception(std::string message, const int errorCode) : message(std::move(message)), errorCode(errorCode)
+{
+
+}
+
+const char* EVEAuth::Base64Exception::what() const noexcept
+{
+    return message.c_str();
+}
+
+int EVEAuth::Base64Exception::getErrorCode() const noexcept
+{
+    return errorCode;
+}
 
 EVEAuth::Base64::Base64(std::string inputStr) noexcept : inputStr(std::move(inputStr))
 {
