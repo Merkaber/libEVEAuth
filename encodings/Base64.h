@@ -8,6 +8,12 @@
 
 #include "../shared.h"
 
+/* Base64 Exception Range from 00010 - 00099 */
+#define ERR_TOO_MANY_FILLS "The given string has to many fills!"
+#define ERR_TOO_MANY_FILLS_CODE 00010
+#define ERR_WRONG_LENGTH "The given string has a wrong length\nMaybe not Base64?"
+#define ERR_WRONG_LENGTH_CODE 00011
+
 namespace EVEAuth {
     class Base64Exception : public std::exception {
     public:
@@ -33,7 +39,7 @@ namespace EVEAuth {
         std::string decodeUrlSafe() noexcept;
 
     private:
-        std::string decode(const std::string &str) noexcept;
+        std::string decode(const std::string &str) noexcept(false);
         static std::size_t findBaseChar(const char &c) noexcept;
 
     private:

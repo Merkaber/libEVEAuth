@@ -98,7 +98,7 @@ std::string EVEAuth::Base64::decode() noexcept
     return decode(inputStr);
 }
 
-std::string EVEAuth::Base64::decode(const std::string &str) noexcept
+std::string EVEAuth::Base64::decode(const std::string &str) noexcept(false)
 {
     std::size_t strSize = str.size();
     std::size_t fillSize = base64Fill.size();
@@ -110,8 +110,7 @@ std::string EVEAuth::Base64::decode(const std::string &str) noexcept
             strSize -= fillSize;
             if (fillCount > 2) {
 
-                /* TODO: Add exception handling */
-                return "";
+                throw Base64Exception(ERR_TOO_MANY_FILLS, ERR_TOO_MANY_FILLS_CODE);
             }
         } else {
             break;
@@ -120,8 +119,7 @@ std::string EVEAuth::Base64::decode(const std::string &str) noexcept
 
     if (((strSize + fillCount) % 4) != 0) {
 
-        /* TODO: Add exception handling */
-        return "";
+        throw Base64Exception(ERR_WRONG_LENGTH, ERR_WRONG_LENGTH_CODE);
     }
 
     std::size_t outSize = (strSize / 4) * 3;
