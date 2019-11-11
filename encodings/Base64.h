@@ -11,8 +11,10 @@
 /* Base64 Exception Range from 00010 - 00099 */
 #define ERR_TOO_MANY_FILLS "The given string has to many fills!"
 #define ERR_TOO_MANY_FILLS_CODE 00010
-#define ERR_WRONG_LENGTH "The given string has a wrong length\nMaybe not Base64?"
+#define ERR_WRONG_LENGTH "The given string has a wrong length! Maybe not Base64?"
 #define ERR_WRONG_LENGTH_CODE 00011
+#define ERR_NO_BASE_CHAR_FOUND "No Base64 char for the given char found!"
+#define ERR_NO_BASE_CHAR_FOUND_CODE 00012
 
 namespace EVEAuth {
     class Base64Exception : public std::exception {
@@ -40,7 +42,7 @@ namespace EVEAuth {
 
     private:
         std::string decode(const std::string &str) noexcept(false);
-        static std::size_t findBaseChar(const char &c) noexcept;
+        static std::size_t findBaseChar(const char &c) noexcept(false);
 
     private:
         static constexpr std::array<char, 64> base64Chars = {

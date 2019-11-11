@@ -177,7 +177,7 @@ std::string EVEAuth::Base64::decodeUrlSafe() noexcept
     return decode(str);
 }
 
-std::size_t EVEAuth::Base64::findBaseChar(const char &c) noexcept
+std::size_t EVEAuth::Base64::findBaseChar(const char &c) noexcept(false)
 {
     for (std::size_t i = 0; i < base64Chars.size(); i++) {
         if (base64Chars[i] == c) {
@@ -185,8 +185,7 @@ std::size_t EVEAuth::Base64::findBaseChar(const char &c) noexcept
         }
     }
 
-    /* TODO: Add exception handling */
-    return (-1);
+    throw Base64Exception(ERR_NO_BASE_CHAR_FOUND, ERR_NO_BASE_CHAR_FOUND_CODE);
 }
 
 EVEAuth::Base64::~Base64() noexcept = default;
