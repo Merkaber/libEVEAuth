@@ -17,16 +17,41 @@
 #define ERR_NO_BASE_CHAR_FOUND_CODE 00012
 
 namespace EVEAuth {
+
+    /**
+     * Exception class for decoding and encoding Base64
+     *
+     * The exception thrown will always have an unique exception code
+     */
     class Base64Exception : public std::exception {
     public:
+
+        /**
+         * This constructor expects the error message and the related error code
+         * @param message The message which will be available when calling what()
+         * @param errorCode The unique error code which will be available when calling getErrorCode()
+         */
         Base64Exception(std::string message, int errorCode);
+
+        /**
+         * Returns the error message as c-string which has been set when the exception was thrown
+         * @return The error message which specifies what kind of exception has been thrown
+         */
         const char* what() const noexcept override;
+
+        /**
+         * Returns the error code which has been set when the exception was thrown
+         * @return The unique error code which specifies what kind of exception has been thrown
+         */
         int getErrorCode() const noexcept;
 
     private:
-        const std::string message;
-        const int errorCode;
 
+        /* The error message which will be set when the Base64Exception is thrown */
+        const std::string message;
+
+        /* The unique error code which will be set when the Base64Exception is thrown */
+        const int errorCode;
     };
 
     class Base64 {
