@@ -149,12 +149,11 @@ std::string EVEAuth::Base64::decode(const std::string &str) noexcept(false)
 
     uint32_t fill_1 = findBaseChar(str[sizeWithoutFill]);
     uint32_t fill_2 = findBaseChar(str[sizeWithoutFill + 1]);
-    uint32_t check = findBaseChar(str[sizeWithoutFill + 2]);
 
     uint32_t combined_2 = (fill_1 << 3u * 6u) + (fill_2 << 2u * 6u);
 
     if (fillCount == 1) {
-        combined_2 |= check << 6u;
+        combined_2 |= findBaseChar(str[sizeWithoutFill + 2]) << 6u;
         result += ((combined_2 >> 2u * 8u) & 255u);
         result += ((combined_2 >> 8u) & 255u);
     } else if (fillCount == 2) {
