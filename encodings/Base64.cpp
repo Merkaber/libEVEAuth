@@ -126,12 +126,13 @@ std::string EVEAuth::Base64::decode(const std::string &str) noexcept(false)
     std::size_t fillSize = base64Fill.size();
     char fillCount = 0;
 
+    /* Count the number of fills at the end of the inputString */
     while (strSize > fillSize) {
         if (str.substr(strSize - fillSize, fillSize) == base64Fill) {
             fillCount++;
             strSize -= fillSize;
             if (fillCount > 2) {
-
+                /* Throw an Exception if more than 2 fills have been found */
                 throw Base64Exception(ERR_TOO_MANY_FILLS, ERR_TOO_MANY_FILLS_CODE);
             }
         } else {
@@ -139,46 +140,66 @@ std::string EVEAuth::Base64::decode(const std::string &str) noexcept(false)
         }
     }
 
+    /* Check if the number of characters is a dividable by 4, since 4 characters become 3 */
     if (((strSize + fillCount) % 4) != 0) {
-
+        /* Throw an Exception if the length is not dividable by 4 */
         throw Base64Exception(ERR_WRONG_LENGTH, ERR_WRONG_LENGTH_CODE);
     }
 
+    /* Calculate the final size of the result string */
     std::size_t outSize = (strSize / 4) * 3;
     std::string result;
+
+    /* Set the size of the result string to the calculated final size */
     result.reserve(outSize);
 
     std::size_t sizeWithoutFill = strSize - strSize % 4;
     std::array<uint32_t, 4> nums = {0u, 0u, 0u, 0u};
     std::size_t l = 0;
+
+    /* Do for the string without fills */
     while (l < sizeWithoutFill) {
+
+        /* Get the first 4 bytes of the related first 4 character and save them into 32 bit */
         for (std::size_t k = 0; k < nums.size(); k++) {
-            nums[k] = findBaseChar(str[k+l]);
+            nums[k] = findBaseChar(str[k + l]);
         }
 
+        /* Combine them, starting from the 24th bit, e.g. 00000000 xxxxxxyy yyyyzzzz zzqqqqqq */
         uint32_t combined = (nums[0] << 3u * 6u) + (nums[1] << 2u * 6u) + (nums[2] << 6u) + nums[3];
 
-        result += ((combined >> 2u * 8u) & 255u);
+        /* Shift the x for 18 spots to the right, e.g. 00000000 00000000 00000000 xxxxxxyy */
+        result += (combined >> 2u * 8u);
+        /* Shift the x for 18 spots to the right, e.g. 00000000 00000000 00000000 yyyyzzzz */
         result += ((combined >> 8u) & 255u);
+        /* Shift the x for 18 spots to the right, e.g. 00000000 00000000 00000000 zzqqqqqq */
         result += (combined & 255u);
 
         l += 4;
     }
 
+    /* Return the string if the there was no fill */
     if (fillCount == 0) {
         return result;
     }
 
-    uint32_t fill_1 = findBaseChar(str[sizeWithoutFill]);
-    uint32_t fill_2 = findBaseChar(str[sizeWithoutFill + 1]);
+    /* Get first of 4 characters */
+    uint32_t first = findBaseChar(str[sizeWithoutFill]);
+    /* Get second of 4 characters */
+    uint32_t second = findBaseChar(str[sizeWithoutFill + 1]);
 
-    uint32_t combined_2 = (fill_1 << 3u * 6u) + (fill_2 << 2u * 6u);
+    /* Combine them, starting from the 24th bit, e.g. 00000000 xxxxxxyy yyyy0000 00000000 */
+    uint32_t combined_2 = (first << 3u * 6u) + (second << 2u * 6u);
 
     if (fillCount == 1) {
-        combined_2 |= findBaseChar(str[sizeWithoutFill + 2]) << 6u;
+        /* Get third of 4 characters and combine, e.g. 00000000 xxxxxxyy yyyyzzzz zz000000 */
+        combined_2 = combined_2 + (findBaseChar(str[sizeWithoutFill + 2]) << 6u);
+        /* Shift the x for 16 spots to the right, e.g. 00000000 00000000 00000000 xxxxxxyy */
         result += ((combined_2 >> 2u * 8u) & 255u);
+        /* Shift the x for 16 spots to the right, e.g. 00000000 00000000 00000000 yyyyyyzz */
         result += ((combined_2 >> 8u) & 255u);
     } else if (fillCount == 2) {
+        /* Shift the x for 16 spots to the right, e.g. 00000000 00000000 00000000 xxxxxxyy */
         result += ((combined_2 >> 2u * 8u) & 255u);
     }
 
