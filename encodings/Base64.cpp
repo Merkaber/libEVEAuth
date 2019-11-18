@@ -30,49 +30,70 @@ EVEAuth::Base64::Base64(std::string inputStr) noexcept : inputStr(std::move(inpu
 std::string EVEAuth::Base64::encode() noexcept
 {
     std::size_t inputSize = inputStr.size();
+
+    /* InputSize mod 3, since 3 characters (byte) becoming 4 characters */
     uint8_t remainder = inputSize % 3u;
+
+    /* Get the inputSize without remainder */
     size_t diff_size = inputSize - remainder;
     std::stringstream ss;
 
+    /* Do for the first 3*n characters */
     for (std::size_t i = 0; i < diff_size;) {
+
+        /* Get the 3 bytes and save each of them into 32 bit */
         uint32_t b_1 = inputStr[i];
         uint32_t b_2 = inputStr[i + 1];
         uint32_t b_3 = inputStr[i + 2];
 
+        /* Combine them, starting from the 24th bit, e.g. 00000000 xxxxxxxx yyyyyyyy zzzzzzzz */
         uint32_t combined = (b_1 << 16u) + (b_2 << 8u) + b_3;
 
-        ss << base64Chars[(combined >> 3u * 6u) & 63u];
+        /* Shift the x for 18 spots to the right, e.g. 00000000 00000000 00000000 00xxxxxx */
+        ss << base64Chars[combined >> 3u * 6u];
+        /* Shift the y for 12 spots to the right, e.g. 00000000 00000000 00000000 00xxyyyy */
         ss << base64Chars[(combined >> 2u * 6u) & 63u];
-        ss << base64Chars[(combined >> 1u * 6u) & 63u];
+        /* Shift the z for 6 spots to the right, e.g. 00000000 00000000 00000000 00yyyyzz*/
+        ss << base64Chars[(combined >> 6u) & 63u];
+        /* Get the last z's, e.g. 00000000 00000000 00000000 00zzzzzz */
         ss << base64Chars[(combined) & 63u];
 
         i += 3;
     }
 
+    /* Return the string if there was no remainder */
     if (remainder == 0u) {
         return ss.str();
     }
 
     std::vector<uint32_t> paddingArray;
-    for (uint8_t i = 0u; i < 3u; ++i) {
+    /* Save the remaining characters into paddingArray */
+    for (uint8_t i = 0u; i < 2u; ++i) {
         if (diff_size < inputSize) {
             paddingArray.push_back(inputStr[diff_size]);
             diff_size++;
         } else {
+            /* Save 0 if there was only one remaining character */
             paddingArray.push_back(0u);
         }
     }
 
-    uint32_t combined = (paddingArray.at(0) << 16u) + (paddingArray.at(1) << 8u) + paddingArray.at(2);
+    /* Combine them, starting from the 24th bit, e.g. 00000000 xxxxxxxx yyyyyyyy 00000000 */
+    uint32_t combined = (paddingArray.at(0) << 16u) + (paddingArray.at(1) << 8u);
 
     if (remainder == 1u) {
-        ss << base64Chars[(combined >> 3u * 6u) & 63u];
+        /* Shift the x for 18 spots to the right, e.g. 00000000 00000000 00000000 00xxxxxx */
+        ss << base64Chars[combined >> 3u * 6u];
+        /* Shift the y for 12 spots to the right, e.g. 00000000 00000000 00000000 00xxyyyy */
         ss << base64Chars[(combined >> 2u * 6u) & 63u];
         ss << base64Fill;
         ss << base64Fill;
     } else if (remainder == 2u) {
-        ss << base64Chars[(combined >> 3u * 6u) & 63u];
+        /* Shift the x for 18 spots to the right, e.g. 00000000 00000000 00000000 00xxxxxx */
+        ss << base64Chars[combined >> 3u * 6u];
+        /* Shift the y for 12 spots to the right, e.g. 00000000 00000000 00000000 00xxyyyy */
         ss << base64Chars[(combined >> 2u * 6u) & 63u];
+        /* Shift the z for 6 spots to the right, e.g. 00000000 00000000 00000000 00yyyyzz */
         ss << base64Chars[(combined >> 1u * 6u) & 63u];
         ss << base64Fill;
     }
