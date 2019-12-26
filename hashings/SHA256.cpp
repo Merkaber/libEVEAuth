@@ -1,5 +1,7 @@
-//
-// Created by Simon on 03.11.2019.
-//
+/*
+ * EVEAuth
+ *
+ * Copyright (c) 2019 Simon Piorecki
+ */
 
 #include "SHA256.h"

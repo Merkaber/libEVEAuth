@@ -1,14 +1,12 @@
-//
-// Created by Simon on 03.11.2019.
-//
+/*
+ * EVEAuth
+ *
+ * Copyright (c) 2019 Simon Piorecki
+ */
 
-#ifndef EVEAUTH_SHA256_H
-#define EVEAUTH_SHA256_H
+#pragma once
 
 
 class SHA256 {
 
 };
-
-
-#endif //EVEAUTH_SHA256_H
