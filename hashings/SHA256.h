@@ -9,6 +9,10 @@
 #include "../shared.h"
 
 class SHA256 {
+public:
+    static std::string hash(const std::string &s) noexcept(false);
+    static void prepare(const std::string &s) noexcept(false);
+
 private:
 
     /* Initial hash constants */
