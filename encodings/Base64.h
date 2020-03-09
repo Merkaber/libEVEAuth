@@ -56,6 +56,7 @@ namespace EVEAuth {
 
     /**
      * Base64 class for encoding and decoding Base64
+     * Specification: https://tools.ietf.org/html/rfc4648
      *
      * In order to encode or decode strings, create and Base64 object and call the
      * corresponding functions on this object

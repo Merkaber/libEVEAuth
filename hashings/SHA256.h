@@ -10,10 +10,10 @@
 
 namespace EVEAuth {
 
-/**
- * Class for SHA256 implementation
- * Specification: https://csrc.nist.gov/publications/detail/fips/180/4/final
- */
+    /**
+     * SHA256 class for hashing a given string
+     * Specification: https://csrc.nist.gov/publications/detail/fips/180/4/final
+     */
     class SHA256 {
     public:
         static std::string hash(const std::string &s) noexcept(false);
