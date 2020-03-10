@@ -3,7 +3,7 @@ project(EVEAuth)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SRC_FILES encodings/Base64.cpp encodings/Base64.h shared.h hashings/SHA256.cpp hashings/SHA256.h)
+set(SRC_FILES encodings/Base64.cpp encodings/Base64.h shared.h)
 
 add_library(${CMAKE_PROJECT_NAME} ${SRC_FILES})
 
