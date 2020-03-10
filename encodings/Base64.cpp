@@ -7,6 +7,9 @@
 #include "Base64.h"
 #include <algorithm>
 
+constexpr std::array<char, 64> EVEAuth::Base64::base64Chars;
+constexpr std::array<char, 4> EVEAuth::Base64::base64UrlSafeChars;
+
 EVEAuth::Base64Exception::Base64Exception(std::string message, const int errorCode) : message(std::move(message)), errorCode(errorCode)
 {
 
