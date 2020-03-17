@@ -3,7 +3,7 @@ project(EVEAuth)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SRC_FILES encodings/Base64.cpp encodings/Base64.h shared.h)
+set(SRC_FILES encodings/Base64.cpp encodings/Base64.h shared.h Auth.cpp Auth.h)
 
 set(OPENSSL_USE_STATIC_LIBS TRUE)
 find_package(OpenSSL REQUIRED)
