@@ -11,7 +11,7 @@
 namespace EVEAuth {
     class Auth {
     public:
-        Auth(std::string& client_id);
+        explicit Auth(std::string& client_id) noexcept;
 
     private:
         const std::string client_id;

@@ -10,7 +10,7 @@
 #include "iomanip"
 #include "openssl/evp.h"
 
-EVEAuth::Auth::Auth(std::string &client_id) : client_id(std::move(client_id)) {
+EVEAuth::Auth::Auth(std::string &client_id) noexcept : client_id(std::move(client_id)) {
 
 }
 
@@ -18,7 +18,7 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept
 {
     /* Allocates and returns a digest context */
     EVP_MD_CTX* context = EVP_MD_CTX_new();
-    
+
     if (context == nullptr) return "";
 
     /* Sets up digest context ctx to use a digest type and its standard implementation (nullptr) */
