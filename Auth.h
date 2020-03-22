@@ -19,6 +19,9 @@ namespace EVEAuth {
     public:
         explicit Auth(std::string& client_id) noexcept;
 
+        /**
+         * Handles the first connection to the login web page
+         */
         void connect() noexcept;
 
         const std::string& get_scope_val() const noexcept;
@@ -28,8 +31,15 @@ namespace EVEAuth {
         void set_authentication_url(const std::string& authentication_url) noexcept;
 
     private:
+
+        /**
+         * Generates the code challenge and code verifier
+         */
         void generate_code_challenge() noexcept;
 
+        /**
+         * Generates the authentication url if none is given
+         */
         void generate_authentication_url() noexcept;
 
     private:
@@ -41,6 +51,7 @@ namespace EVEAuth {
 
         std::string authentication_url = "";
 
+        /* The scope defines which data can be accessed through authentication */
         std::string scope_val = "";
 
         /* Getter and setter for predefined query parameters and values */
