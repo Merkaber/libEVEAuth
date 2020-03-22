@@ -27,6 +27,10 @@ namespace EVEAuth {
 
     private:
         const std::string client_id;
+
+        std::string code_challenge = "";
+
+        std::string code_verifier = "";
     };
 
     /**

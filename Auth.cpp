@@ -13,6 +13,7 @@
 
 /* Include for generating code challenge */
 #include <random>
+#include <algorithm>
 
 EVEAuth::Auth::Auth(std::string &client_id) noexcept : client_id(std::move(client_id)) {
 
@@ -39,6 +40,21 @@ void EVEAuth::Auth::generate_code_challenge() noexcept
 
     // Hash the given code challenge with sha256
     std::string hashed_enc_rand_bytes = EVEAuth::generate_hash(encoded_random_bytes);
+
+    // Encode hashed code challenge
+    EVEAuth::Base64 hashed_bade64(hashed_enc_rand_bytes);
+    std::string enc_hashed_bytes = hashed_bade64.encode_url_safe();
+
+    enc_hashed_bytes.erase(std::remove(enc_hashed_bytes.begin(),enc_hashed_bytes.end(), '='), enc_hashed_bytes.end());
+    code_challenge = enc_hashed_bytes;
+
+    // Encode random again
+    EVEAuth::Base64 enc_base64(encoded_random_bytes);
+    std::string code_verifier_tmp = enc_base64.encode_url_safe();
+
+    // Replace all occurrences of '=' with ''
+    code_verifier_tmp.erase(std::remove(code_verifier_tmp.begin(), code_verifier_tmp.end(), '='), code_verifier_tmp.end());
+    code_verifier = code_verifier_tmp;
 }
 
 std::string EVEAuth::generate_hash(const std::string& s) noexcept
