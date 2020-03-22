@@ -51,7 +51,7 @@ namespace EVEAuth {
         const std::string message;
 
         /* The unique error code which will be set when the Base64Exception is thrown */
-        const int errorCode;
+        const int error_code;
     };
 
     /**
