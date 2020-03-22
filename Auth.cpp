@@ -134,146 +134,182 @@ void EVEAuth::Auth::set_authentication_url(const std::string& m_authentication_u
     authentication_url = m_authentication_url;
 }
 
-const std::string& EVEAuth::Auth::getBaseUrl() const noexcept {
+const std::string& EVEAuth::Auth::get_base_url() const noexcept
+{
     return base_url;
 }
 
-void EVEAuth::Auth::setBaseUrl(const std::string& baseUrl) noexcept {
-    base_url = baseUrl;
+void EVEAuth::Auth::set_base_url(const std::string& m_base_url) noexcept
+{
+    base_url = m_base_url;
 }
 
-const std::string& EVEAuth::Auth::getRequestUrl() const noexcept {
+const std::string& EVEAuth::Auth::get_request_url() const noexcept
+{
     return request_url;
 }
 
-void EVEAuth::Auth::setRequestUrl(const std::string& requestUrl) noexcept {
-    request_url = requestUrl;
+void EVEAuth::Auth::set_request_url(const std::string& m_request_url) noexcept
+{
+    request_url = m_request_url;
 }
 
-const std::string& EVEAuth::Auth::getJwtKeysUrl() const noexcept {
+const std::string& EVEAuth::Auth::get_jwt_keys_url() const noexcept
+{
     return jwt_keys_url;
 }
 
-void EVEAuth::Auth::setJwtKeysUrl(const std::string& jwtKeysUrl) noexcept {
-    jwt_keys_url = jwtKeysUrl;
+void EVEAuth::Auth::set_jwt_keys_url(const std::string& m_jwt_keys_url) noexcept
+{
+    jwt_keys_url = m_jwt_keys_url;
 }
 
-const std::string& EVEAuth::Auth::getResponseTypeParam() const noexcept {
+const std::string& EVEAuth::Auth::get_response_type_param() const noexcept
+{
     return response_type_param;
 }
 
-void EVEAuth::Auth::setResponseTypeParam(const std::string& responseTypeParam) noexcept {
-    response_type_param = responseTypeParam;
+void EVEAuth::Auth::set_response_type_param(const std::string& m_response_type_param) noexcept
+{
+    response_type_param = m_response_type_param;
 }
 
-const std::string& EVEAuth::Auth::getRedirectUrlParam() const noexcept {
+const std::string& EVEAuth::Auth::get_redirect_url_param() const noexcept
+{
     return redirect_url_param;
 }
 
-void EVEAuth::Auth::setRedirectUrlParam(const std::string& redirectUrlParam) noexcept {
-    redirect_url_param = redirectUrlParam;
+void EVEAuth::Auth::set_redirect_url_param(const std::string& m_redirect_url_param) noexcept
+{
+    redirect_url_param = m_redirect_url_param;
 }
 
-const std::string& EVEAuth::Auth::getClientIdParam() const noexcept {
+const std::string& EVEAuth::Auth::get_client_id_param() const noexcept
+{
     return client_id_param;
 }
 
-void EVEAuth::Auth::setClientIdParam(const std::string& clientIdParam) noexcept {
-    client_id_param = clientIdParam;
+void EVEAuth::Auth::set_client_id_param(const std::string& m_client_id_param) noexcept
+{
+    client_id_param = m_client_id_param;
 }
 
-const std::string& EVEAuth::Auth::getScopeParam() const noexcept {
+const std::string& EVEAuth::Auth::get_scope_param() const noexcept
+{
     return scope_param;
 }
 
-void EVEAuth::Auth::setScopeParam(const std::string& scopeParam) noexcept {
-    scope_param = scopeParam;
+void EVEAuth::Auth::set_scope_param(const std::string& m_scope_param) noexcept
+{
+    scope_param = m_scope_param;
 }
 
-const std::string& EVEAuth::Auth::getStateParam() const noexcept {
+const std::string& EVEAuth::Auth::get_state_param() const noexcept
+{
     return state_param;
 }
 
-void EVEAuth::Auth::setStateParam(const std::string& stateParam) noexcept {
-    state_param = stateParam;
+void EVEAuth::Auth::set_state_param(const std::string& m_state_param) noexcept
+{
+    state_param = m_state_param;
 }
 
-const std::string& EVEAuth::Auth::getCodeChallengeParam() const noexcept {
+const std::string& EVEAuth::Auth::get_code_challenge_param() const noexcept
+{
     return code_challenge_param;
 }
 
-void EVEAuth::Auth::setCodeChallengeParam(const std::string& codeChallengeParam) noexcept {
-    code_challenge_param = codeChallengeParam;
+void EVEAuth::Auth::set_code_challenge_param(const std::string& m_code_challenge_param) noexcept
+{
+    code_challenge_param = m_code_challenge_param;
 }
 
-const std::string& EVEAuth::Auth::getCodeChallengeMethodParam() const noexcept {
+const std::string& EVEAuth::Auth::get_code_challenge_method_param() const noexcept
+{
     return code_challenge_method_param;
 }
 
-void EVEAuth::Auth::setCodeChallengeMethodParam(const std::string& codeChallengeMethodParam) noexcept {
-    code_challenge_method_param = codeChallengeMethodParam;
+void EVEAuth::Auth::set_code_challenge_method_param(const std::string& m_code_challenge_method_param) noexcept
+{
+    code_challenge_method_param = m_code_challenge_method_param;
 }
 
-const std::string& EVEAuth::Auth::getGrantTypeParam() const noexcept {
+const std::string& EVEAuth::Auth::get_grant_type_param() const noexcept
+{
     return grant_type_param;
 }
 
-void EVEAuth::Auth::setGrantTypeParam(const std::string& grantTypeParam) noexcept {
-    grant_type_param = grantTypeParam;
+void EVEAuth::Auth::set_grant_type_param(const std::string& m_grant_type_param) noexcept
+{
+    grant_type_param = m_grant_type_param;
 }
 
-const std::string& EVEAuth::Auth::getCodeParam() const noexcept {
+const std::string& EVEAuth::Auth::get_code_param() const noexcept
+{
     return code_param;
 }
 
-void EVEAuth::Auth::setCodeParam(const std::string& codeParam) noexcept {
-    code_param = codeParam;
+void EVEAuth::Auth::set_code_param(const std::string& m_code_param) noexcept
+{
+    code_param = m_code_param;
 }
 
-const std::string& EVEAuth::Auth::getCodeVerifierParam() const noexcept {
+const std::string& EVEAuth::Auth::get_code_verifier_param() const noexcept
+{
     return code_verifier_param;
 }
 
-void EVEAuth::Auth::setCodeVerifierParam(const std::string& codeVerifierParam) noexcept {
-    code_verifier_param = codeVerifierParam;
+void EVEAuth::Auth::set_code_verifier_param(const std::string& m_code_verifier_param) noexcept
+{
+    code_verifier_param = m_code_verifier_param;
 }
 
-const std::string& EVEAuth::Auth::getStateVal() const noexcept {
+const std::string& EVEAuth::Auth::get_state_val() const noexcept
+{
     return state_val;
 }
 
-void EVEAuth::Auth::setStateVal(const std::string& stateVal) noexcept {
-    state_val = stateVal;
+void EVEAuth::Auth::set_state_val(const std::string& m_state_val) noexcept
+{
+    state_val = m_state_val;
 }
 
-const std::string& EVEAuth::Auth::getCodeChallengeMethodVal() const noexcept {
+const std::string& EVEAuth::Auth::get_code_challenge_method_val() const noexcept
+{
     return code_challenge_method_val;
 }
 
-void EVEAuth::Auth::setCodeChallengeMethodVal(const std::string& codeChallengeMethodVal) noexcept {
-    code_challenge_method_val = codeChallengeMethodVal;
+void EVEAuth::Auth::set_code_challenge_method_val(const std::string& m_code_challenge_method_val) noexcept
+{
+    code_challenge_method_val = m_code_challenge_method_val;
 }
 
-const std::string& EVEAuth::Auth::getRedirectUrlVal() const noexcept {
+const std::string& EVEAuth::Auth::get_redirect_url_val() const noexcept
+{
     return redirect_url_val;
 }
 
-void EVEAuth::Auth::setRedirectUrlVal(const std::string& redirectUrlVal) noexcept {
-    redirect_url_val = redirectUrlVal;
+void EVEAuth::Auth::set_redirect_url_val(const std::string& m_redirect_url_val) noexcept
+{
+    redirect_url_val = m_redirect_url_val;
 }
 
-const std::string& EVEAuth::Auth::getResponseTypeVal() const noexcept {
+const std::string& EVEAuth::Auth::get_response_type_val() const noexcept
+{
     return response_type_val;
 }
 
-void EVEAuth::Auth::setResponseTypeVal(const std::string& responseTypeVal) noexcept {
-    response_type_val = responseTypeVal;
+void EVEAuth::Auth::set_response_type_val(const std::string& m_response_type_val) noexcept
+{
+    response_type_val = m_response_type_val;
 }
 
-const std::string& EVEAuth::Auth::getGrantTypeVal() const noexcept {
+const std::string& EVEAuth::Auth::get_grant_type_val() const noexcept
+{
     return grant_type_val;
 }
 
-void EVEAuth::Auth::setGrantTypeVal(const std::string& grantTypeVal) noexcept {
-    grant_type_val = grantTypeVal;
+void EVEAuth::Auth::set_grant_type_val(const std::string& m_grant_type_val) noexcept
+{
+    grant_type_val = m_grant_type_val;
 }
