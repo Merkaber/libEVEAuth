@@ -21,6 +21,12 @@ namespace EVEAuth {
 
         void connect() noexcept;
 
+        const std::string& get_scope_val() const noexcept;
+        void set_scope_val(const std::string& scope_val) noexcept;
+
+        const std::string& get_authentication_url() const noexcept;
+        void set_authentication_url(const std::string& authentication_url) noexcept;
+
     private:
         void generate_code_challenge() noexcept;
 
@@ -37,7 +43,7 @@ namespace EVEAuth {
 
         std::string scope_val = "";
 
-        /* Getter and setter for query parameters and values */
+        /* Getter and setter for predefined query parameters and values */
     public:
         const std::string& getBaseUrl() const noexcept;
         void setBaseUrl(const std::string& baseUrl) noexcept;
@@ -93,7 +99,7 @@ namespace EVEAuth {
         const std::string& getGrantTypeVal() const noexcept;
         void setGrantTypeVal(const std::string& grantTypeVal) noexcept;
 
-        /* Query parameter and values for login */
+        /* Predefined query parameter and values for login */
     private:
         std::string base_url = "https://login.eveonline.com/v2/oauth/authorize/";
         std::string request_url = "https://login.eveonline.com/v2/oauth/token";

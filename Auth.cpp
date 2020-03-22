@@ -114,6 +114,26 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept
     return ss.str();
 }
 
+const std::string& EVEAuth::Auth::get_scope_val() const noexcept
+{
+    return scope_val;
+}
+
+void EVEAuth::Auth::set_scope_val(const std::string& m_scope_val) noexcept
+{
+    scope_val = m_scope_val;
+}
+
+const std::string& EVEAuth::Auth::get_authentication_url() const noexcept
+{
+    return authentication_url;
+}
+
+void EVEAuth::Auth::set_authentication_url(const std::string& m_authentication_url) noexcept
+{
+    authentication_url = m_authentication_url;
+}
+
 const std::string& EVEAuth::Auth::getBaseUrl() const noexcept {
     return base_url;
 }
