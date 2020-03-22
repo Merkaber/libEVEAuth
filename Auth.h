@@ -34,59 +34,59 @@ namespace EVEAuth {
 
         /* Getter and setter for query parameters and values */
     public:
-        const std::string& getBaseUrl() const;
-        void setBaseUrl(const std::string& baseUrl);
+        const std::string& getBaseUrl() const noexcept;
+        void setBaseUrl(const std::string& baseUrl) noexcept;
 
-        const std::string& getRequestUrl() const;
-        void setRequestUrl(const std::string& requestUrl);
+        const std::string& getRequestUrl() const noexcept;
+        void setRequestUrl(const std::string& requestUrl) noexcept;
 
-        const std::string& getJwtKeysUrl() const;
-        void setJwtKeysUrl(const std::string& jwtKeysUrl);
+        const std::string& getJwtKeysUrl() const noexcept;
+        void setJwtKeysUrl(const std::string& jwtKeysUrl) noexcept;
 
-        const std::string& getResponseTypeParam() const;
-        void setResponseTypeParam(const std::string& responseTypeParam);
+        const std::string& getResponseTypeParam() const noexcept;
+        void setResponseTypeParam(const std::string& responseTypeParam) noexcept;
 
-        const std::string& getRedirectUrlParam() const;
-        void setRedirectUrlParam(const std::string& redirectUrlParam);
+        const std::string& getRedirectUrlParam() const noexcept;
+        void setRedirectUrlParam(const std::string& redirectUrlParam) noexcept;
 
-        const std::string& getClientIdParam() const;
-        void setClientIdParam(const std::string& clientIdParam);
+        const std::string& getClientIdParam() const noexcept;
+        void setClientIdParam(const std::string& clientIdParam) noexcept;
 
-        const std::string& getScopeParam() const;
-        void setScopeParam(const std::string& scopeParam);
+        const std::string& getScopeParam() const noexcept;
+        void setScopeParam(const std::string& scopeParam) noexcept;
 
-        const std::string& getStateParam() const;
-        void setStateParam(const std::string& stateParam);
+        const std::string& getStateParam() const noexcept;
+        void setStateParam(const std::string& stateParam) noexcept;
 
-        const std::string& getCodeChallengeParam() const;
-        void setCodeChallengeParam(const std::string& codeChallengeParam);
+        const std::string& getCodeChallengeParam() const noexcept;
+        void setCodeChallengeParam(const std::string& codeChallengeParam) noexcept;
 
-        const std::string& getCodeChallengeMethodParam() const;
-        void setCodeChallengeMethodParam(const std::string& codeChallengeMethodParam);
+        const std::string& getCodeChallengeMethodParam() const noexcept;
+        void setCodeChallengeMethodParam(const std::string& codeChallengeMethodParam) noexcept;
 
-        const std::string& getGrantTypeParam() const;
-        void setGrantTypeParam(const std::string& grantTypeParam);
+        const std::string& getGrantTypeParam() const noexcept;
+        void setGrantTypeParam(const std::string& grantTypeParam) noexcept;
 
-        const std::string& getCodeParam() const;
-        void setCodeParam(const std::string& codeParam);
+        const std::string& getCodeParam() const noexcept;
+        void setCodeParam(const std::string& codeParam) noexcept;
 
-        const std::string& getCodeVerifierParam() const;
-        void setCodeVerifierParam(const std::string& codeVerifierParam);
+        const std::string& getCodeVerifierParam() const noexcept;
+        void setCodeVerifierParam(const std::string& codeVerifierParam) noexcept;
 
-        const std::string& getStateVal() const;
-        void setStateVal(const std::string& stateVal);
+        const std::string& getStateVal() const noexcept;
+        void setStateVal(const std::string& stateVal) noexcept;
 
-        const std::string& getCodeChallengeMethodVal() const;
-        void setCodeChallengeMethodVal(const std::string& codeChallengeMethodVal);
+        const std::string& getCodeChallengeMethodVal() const noexcept;
+        void setCodeChallengeMethodVal(const std::string& codeChallengeMethodVal) noexcept;
 
-        const std::string& getRedirectUrlVal() const;
-        void setRedirectUrlVal(const std::string& redirectUrlVal);
+        const std::string& getRedirectUrlVal() const noexcept;
+        void setRedirectUrlVal(const std::string& redirectUrlVal) noexcept;
 
-        const std::string& getResponseTypeVal() const;
-        void setResponseTypeVal(const std::string& responseTypeVal);
+        const std::string& getResponseTypeVal() const noexcept;
+        void setResponseTypeVal(const std::string& responseTypeVal) noexcept;
 
-        const std::string& getGrantTypeVal() const;
-        void setGrantTypeVal(const std::string& grantTypeVal);
+        const std::string& getGrantTypeVal() const noexcept;
+        void setGrantTypeVal(const std::string& grantTypeVal) noexcept;
 
         /* Query parameter and values for login */
     private:
