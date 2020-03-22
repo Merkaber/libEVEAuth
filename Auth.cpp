@@ -93,3 +93,147 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept
 
     return ss.str();
 }
+
+const std::string& EVEAuth::Auth::getBaseUrl() const {
+    return base_url;
+}
+
+void EVEAuth::Auth::setBaseUrl(const std::string& baseUrl) {
+    base_url = baseUrl;
+}
+
+const std::string& EVEAuth::Auth::getRequestUrl() const {
+    return request_url;
+}
+
+void EVEAuth::Auth::setRequestUrl(const std::string& requestUrl) {
+    request_url = requestUrl;
+}
+
+const std::string& EVEAuth::Auth::getJwtKeysUrl() const {
+    return jwt_keys_url;
+}
+
+void EVEAuth::Auth::setJwtKeysUrl(const std::string& jwtKeysUrl) {
+    jwt_keys_url = jwtKeysUrl;
+}
+
+const std::string& EVEAuth::Auth::getResponseTypeParam() const {
+    return response_type_param;
+}
+
+void EVEAuth::Auth::setResponseTypeParam(const std::string& responseTypeParam) {
+    response_type_param = responseTypeParam;
+}
+
+const std::string& EVEAuth::Auth::getRedirectUrlParam() const {
+    return redirect_url_param;
+}
+
+void EVEAuth::Auth::setRedirectUrlParam(const std::string& redirectUrlParam) {
+    redirect_url_param = redirectUrlParam;
+}
+
+const std::string& EVEAuth::Auth::getClientIdParam() const {
+    return client_id_param;
+}
+
+void EVEAuth::Auth::setClientIdParam(const std::string& clientIdParam) {
+    client_id_param = clientIdParam;
+}
+
+const std::string& EVEAuth::Auth::getScopeParam() const {
+    return scope_param;
+}
+
+void EVEAuth::Auth::setScopeParam(const std::string& scopeParam) {
+    scope_param = scopeParam;
+}
+
+const std::string& EVEAuth::Auth::getStateParam() const {
+    return state_param;
+}
+
+void EVEAuth::Auth::setStateParam(const std::string& stateParam) {
+    state_param = stateParam;
+}
+
+const std::string& EVEAuth::Auth::getCodeChallengeParam() const {
+    return code_challenge_param;
+}
+
+void EVEAuth::Auth::setCodeChallengeParam(const std::string& codeChallengeParam) {
+    code_challenge_param = codeChallengeParam;
+}
+
+const std::string& EVEAuth::Auth::getCodeChallengeMethodParam() const {
+    return code_challenge_method_param;
+}
+
+void EVEAuth::Auth::setCodeChallengeMethodParam(const std::string& codeChallengeMethodParam) {
+    code_challenge_method_param = codeChallengeMethodParam;
+}
+
+const std::string& EVEAuth::Auth::getGrantTypeParam() const {
+    return grant_type_param;
+}
+
+void EVEAuth::Auth::setGrantTypeParam(const std::string& grantTypeParam) {
+    grant_type_param = grantTypeParam;
+}
+
+const std::string& EVEAuth::Auth::getCodeParam() const {
+    return code_param;
+}
+
+void EVEAuth::Auth::setCodeParam(const std::string& codeParam) {
+    code_param = codeParam;
+}
+
+const std::string& EVEAuth::Auth::getCodeVerifierParam() const {
+    return code_verifier_param;
+}
+
+void EVEAuth::Auth::setCodeVerifierParam(const std::string& codeVerifierParam) {
+    code_verifier_param = codeVerifierParam;
+}
+
+const std::string& EVEAuth::Auth::getStateVal() const {
+    return state_val;
+}
+
+void EVEAuth::Auth::setStateVal(const std::string& stateVal) {
+    state_val = stateVal;
+}
+
+const std::string& EVEAuth::Auth::getCodeChallengeMethodVal() const {
+    return code_challenge_method_val;
+}
+
+void EVEAuth::Auth::setCodeChallengeMethodVal(const std::string& codeChallengeMethodVal) {
+    code_challenge_method_val = codeChallengeMethodVal;
+}
+
+const std::string& EVEAuth::Auth::getRedirectUrlVal() const {
+    return redirect_url_val;
+}
+
+void EVEAuth::Auth::setRedirectUrlVal(const std::string& redirectUrlVal) {
+    redirect_url_val = redirectUrlVal;
+}
+
+const std::string& EVEAuth::Auth::getResponseTypeVal() const {
+    return response_type_val;
+}
+
+void EVEAuth::Auth::setResponseTypeVal(const std::string& responseTypeVal) {
+    response_type_val = responseTypeVal;
+}
+
+const std::string& EVEAuth::Auth::getGrantTypeVal() const {
+    return grant_type_val;
+}
+
+void EVEAuth::Auth::setGrantTypeVal(const std::string& grantTypeVal) {
+    grant_type_val = grantTypeVal;
+}
