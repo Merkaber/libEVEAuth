@@ -22,8 +22,9 @@ namespace EVEAuth {
         void connect() noexcept;
 
     private:
-
         void generate_code_challenge() noexcept;
+
+        void generate_authentication_url() noexcept;
 
     private:
         const std::string client_id;
@@ -31,6 +32,10 @@ namespace EVEAuth {
         std::string code_challenge = "";
 
         std::string code_verifier = "";
+
+        std::string authentication_url = "";
+
+        std::string scope_val = "";
 
         /* Getter and setter for query parameters and values */
     public:

@@ -22,6 +22,26 @@ EVEAuth::Auth::Auth(std::string &client_id) noexcept : client_id(std::move(clien
 void EVEAuth::Auth::connect() noexcept
 {
     generate_code_challenge();
+
+    if (authentication_url.empty()) {
+        generate_authentication_url();
+    }
+}
+
+void EVEAuth::Auth::generate_authentication_url() noexcept
+{
+    std::stringstream ss;
+
+    ss << base_url;
+    ss << "?" << response_type_param << response_type_val;
+    ss << "&" << redirect_url_param << redirect_url_val;
+    ss << "&" << client_id_param << client_id;
+    ss << "&" << scope_param << scope_val;
+    ss << "&" << state_param << state_val;
+    ss << "&" << code_challenge_param << code_challenge;
+    ss << "&" << code_challenge_method_param << code_challenge_method_val;
+
+    authentication_url = ss.str();
 }
 
 void EVEAuth::Auth::generate_code_challenge() noexcept
