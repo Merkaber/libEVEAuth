@@ -43,7 +43,7 @@ namespace EVEAuth {
          * Returns the error code which has been set when the exception was thrown
          * @return The unique error code which specifies what kind of exception has been thrown
          */
-        int getErrorCode() const noexcept;
+        int get_error_code() const noexcept;
 
     private:
 
@@ -85,7 +85,7 @@ namespace EVEAuth {
          * Encodes the input string which has been set when the Base64 object was created into Base64Url
          * @return The Base64Url encoded input string
          */
-        std::string encodeUrlSafe() noexcept;
+        std::string encode_url_safe() noexcept;
 
         /**
          * Decodes the Base64 input string which has been set when the Base64 object was created back into a string
@@ -97,7 +97,7 @@ namespace EVEAuth {
          * Decodes the Base64Url input string which has been set when the Base64 object was created back into a string
          * @return The decoded Base64Url input string
          */
-        std::string decodeUrlSafe() noexcept;
+        std::string decode_url_safe() noexcept;
 
     private:
 
@@ -106,7 +106,7 @@ namespace EVEAuth {
          *
          * The decode function one is calling on this object will call this function
          *
-         * If decodeBase64UrlSafe has been called, the base64UrlSafeFill will be replaced by the standard Base64Fill
+         * If decodeBase64UrlSafe has been called, the base64_url_safe_fill will be replaced by the standard Base64Fill
          *
          * May throws a Base64Exception if the input string has too many fills or the wrong length
          *
@@ -123,28 +123,28 @@ namespace EVEAuth {
          * @param c The Base64 character we are looking for
          * @return The corresponding integer value of the given Base64 character
          */
-        static std::size_t findBaseChar(const char &c) noexcept(false);
+        static std::size_t find_base_char(const char &c) noexcept(false);
 
     private:
 
         /* The standard Base64 characters */
-        static constexpr std::array<char, 64> base64Chars = {
+        static constexpr std::array<char, 64> base64_chars = {
                 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
                 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
                 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/'
         };
 
-        /* The standard base64Fill */
-        const std::string base64Fill = "=";
+        /* The standard base64_fill */
+        const std::string base64_fill = "=";
 
         /* Array for converting standard Base64 into Base64Url */
-        static constexpr std::array<char, 4> base64UrlSafeChars = {'+', '-', '/', '_'};
+        static constexpr std::array<char, 4> base64_url_safe_chars = {'+', '-', '/', '_'};
 
         /* The standard base64UrlFill */
-        const std::string base64UrlSafeFill = "%3d";
+        const std::string base64_url_safe_fill = "%3d";
 
         /* The input string which has been set when the Base64 object was created */
-        const std::string inputStr;
+        const std::string input_str;
     };
 }
