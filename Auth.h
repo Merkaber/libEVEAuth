@@ -22,7 +22,7 @@ namespace EVEAuth {
         /**
          * Handles the first connection to the login web page
          */
-        void connect() noexcept;
+        void generate_auth_url() noexcept;
 
         const std::string& get_scope_val() const noexcept;
         void set_scope_val(const std::string& scope_val) noexcept;
@@ -40,7 +40,7 @@ namespace EVEAuth {
         /**
          * Generates the authentication url if none is given
          */
-        void generate_authentication_url() noexcept;
+        void put_url_together() noexcept;
 
     private:
         const std::string client_id;

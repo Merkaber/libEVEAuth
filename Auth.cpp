@@ -19,16 +19,16 @@ EVEAuth::Auth::Auth(std::string &client_id) noexcept : client_id(std::move(clien
 
 }
 
-void EVEAuth::Auth::connect() noexcept
+void EVEAuth::Auth::generate_auth_url() noexcept
 {
     generate_code_challenge();
 
     if (authentication_url.empty()) {
-        generate_authentication_url();
+        put_url_together();
     }
 }
 
-void EVEAuth::Auth::generate_authentication_url() noexcept
+void EVEAuth::Auth::put_url_together() noexcept
 {
     std::stringstream ss;
 
