@@ -20,7 +20,7 @@ namespace EVEAuth {
         explicit Auth(std::string& client_id) noexcept;
 
         /**
-         * Handles the first connection to the login web page
+         * Generates the authentication url which is needed to retrieve the code value
          */
         void generate_auth_url() noexcept;
 
