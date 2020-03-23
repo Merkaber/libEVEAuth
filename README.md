@@ -22,3 +22,4 @@ The next step is then to implement the handling of the refresh token and targeti
 For now:
 - OpenSSL
 - libcurl
+- picojson

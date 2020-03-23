@@ -178,8 +178,7 @@ static size_t EVEAuth::write_memory_callback(void *contents, size_t size, size_t
     struct MemoryStruct* mem = (struct MemoryStruct*) userp;
 
     char* ptr = (char*) realloc(mem->memory, mem->size + real_size + 1);
-    if(ptr == nullptr)
-    {
+    if(ptr == nullptr) {
         printf("not enough memory\n");
         return 0;
     }
