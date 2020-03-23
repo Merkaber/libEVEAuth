@@ -114,6 +114,16 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept
     return ss.str();
 }
 
+const std::string& EVEAuth::Auth::get_code_val() const noexcept
+{
+    return code_val;
+}
+
+void EVEAuth::Auth::set_code_val(const std::string& m_code_val) noexcept
+{
+    code_val = m_code_val;
+}
+
 const std::string& EVEAuth::Auth::get_scope_val() const noexcept
 {
     return scope_val;

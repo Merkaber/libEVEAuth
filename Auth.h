@@ -25,10 +25,13 @@ namespace EVEAuth {
         void generate_auth_url() noexcept;
 
         const std::string& get_scope_val() const noexcept;
-        void set_scope_val(const std::string& scope_val) noexcept;
+        void set_scope_val(const std::string& m_scope_val) noexcept;
 
         const std::string& get_authentication_url() const noexcept;
-        void set_authentication_url(const std::string& authentication_url) noexcept;
+        void set_authentication_url(const std::string& m_authentication_url) noexcept;
+
+        const std::string& get_code_val() const noexcept;
+        void set_code_val(const std::string& m_code_val) noexcept;
 
     private:
 
@@ -50,6 +53,8 @@ namespace EVEAuth {
         std::string code_verifier = "";
 
         std::string authentication_url = "";
+
+        std::string code_val = "";
 
         /* The scope defines which data can be accessed through authentication */
         std::string scope_val = "";
