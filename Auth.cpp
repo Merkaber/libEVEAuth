@@ -118,6 +118,11 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept
     return ss.str();
 }
 
+void EVEAuth::Auth::verify_token() noexcept
+{
+
+}
+
 void EVEAuth::Auth::send_token_request() noexcept
 {
     CURL* curl;
