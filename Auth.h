@@ -45,6 +45,8 @@ namespace EVEAuth {
          */
         void put_url_together() noexcept;
 
+        void send_token_request() noexcept;
+
     private:
         const std::string client_id;
 
@@ -59,8 +61,20 @@ namespace EVEAuth {
         /* The scope defines which data can be accessed through authentication */
         std::string scope_val = "";
 
+        /* The current curl response */
+        bool curl_response = false;
+
+        /* The current download response */
+        std::string download_response = "";
+
         /* Getter and setter for predefined query parameters and values */
     public:
+        const std::string& get_host() const noexcept;
+        void set_host(const std::string& m_host) noexcept;
+
+        const std::string& get_content_type() const noexcept;
+        void set_content_type(const std::string& m_content_type) noexcept;
+
         const std::string& get_base_url() const noexcept;
         void set_base_url(const std::string& m_base_url) noexcept;
 
@@ -69,6 +83,9 @@ namespace EVEAuth {
 
         const std::string& get_jwt_keys_url() const noexcept;
         void set_jwt_keys_url(const std::string& m_jwt_keys_url) noexcept;
+
+        const std::string& get_curl_agent() const noexcept;
+        void set_curl_agent(const std::string& m_curl_agent) noexcept;
 
         const std::string& get_response_type_param() const noexcept;
         void set_response_type_param(const std::string& m_response_type_param) noexcept;
@@ -117,9 +134,12 @@ namespace EVEAuth {
 
         /* Predefined query parameter and values for login */
     private:
+        std::string host = "login.eveonline.com";
+        std::string content_type = "application/x-www-form-urlencoded";
         std::string base_url = "https://login.eveonline.com/v2/oauth/authorize/";
         std::string request_url = "https://login.eveonline.com/v2/oauth/token";
         std::string jwt_keys_url = "https://login.eveonline.com/oauth/jwks";
+        std::string curl_agent = "libcurl-agent/1.0";
 
         std::string response_type_param = "response_type=";
         std::string redirect_url_param = "redirect_uri=";
@@ -139,6 +159,13 @@ namespace EVEAuth {
         std::string grant_type_val = "authorization_code";
 
     };
+
+    struct MemoryStruct {
+        char* memory;
+        size_t size;
+    };
+
+    static size_t write_memory_callback(void* contents, size_t size, size_t nmemb, void* userp);
 
     /**
      * Generates the hash value of the given std::string s
