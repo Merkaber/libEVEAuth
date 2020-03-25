@@ -17,6 +17,7 @@
 
 /* Includes for token handling */
 #include "curl/curl.h"
+#include "utils/picojson.h"
 #include <cstring>
 
 EVEAuth::Auth::Auth(std::string &client_id) noexcept : client_id(std::move(client_id)) {
@@ -120,6 +121,19 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept
 
 void EVEAuth::Auth::verify_token() noexcept
 {
+    token_response = download_response;
+    picojson::value val;
+    std::string parse_error = picojson::parse(val, token_response);
+
+    std::string access_token = val.get("access_token").get<std::string>();
+    double expire_time = val.get("expires_in").get<double>();
+    std::string token_type = val.get("token_type").get<std::string>();
+    std::string refresh_token = val.get("refresh_token").get<std::string>();
+
+    std::cout << "access_token: " << access_token;
+    std::cout << "expires_in" << expire_time;
+    std::cout << "token_type" << token_type;
+    std::cout << "refresh_token" << refresh_token;
 
 }
 

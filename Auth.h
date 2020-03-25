@@ -69,6 +69,8 @@ namespace EVEAuth {
         /* The current download response */
         std::string download_response = "";
 
+        std::string token_response = "";
+
         /* Getter and setter for predefined query parameters and values */
     public:
         const std::string& get_host() const noexcept;
