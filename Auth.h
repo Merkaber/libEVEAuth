@@ -174,7 +174,7 @@ namespace EVEAuth {
     /**
      * Generates the hash value of the given std::string s
      * @param s The given string
-     * @return The hash value if successfully hashed, otherwise an empty std::string
+     * @return The hash value if successfully hashed, otherwise an empty std::vector<unsigned char>
      */
-    std::string generate_hash(const std::string& s) noexcept;
+    std::vector<unsigned char> generate_hash(const std::string& s) noexcept;
 }
