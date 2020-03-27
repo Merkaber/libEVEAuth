@@ -60,14 +60,14 @@ void EVEAuth::Auth::generate_code_challenge() noexcept
     }
 
     // Encode the raw random bytes to base64-url-safe
-    EVEAuth::Base64 base64(std::string ((char*) (random_data.data())));
+    EVEAuth::Base64 base64(reinterpret_cast<char*> (random_data.data()));
     std::string encoded_random_bytes = base64.encode_url_safe();
 
     // Hash the given code challenge with sha256
     std::vector<unsigned char> hashed_enc_rand_bytes = EVEAuth::generate_hash(encoded_random_bytes);
 
     // Encode hashed code challenge
-    EVEAuth::Base64 hashed_bade64(std::string ((char*) (hashed_enc_rand_bytes.data())));
+    EVEAuth::Base64 hashed_bade64(reinterpret_cast<char*> (hashed_enc_rand_bytes.data()));
     std::string enc_hashed_bytes = hashed_bade64.encode_url_safe();
 
     enc_hashed_bytes.erase(std::remove(enc_hashed_bytes.begin(),enc_hashed_bytes.end(), '='), enc_hashed_bytes.end());

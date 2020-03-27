@@ -45,9 +45,9 @@ std::string EVEAuth::Base64::encode() noexcept
     for (std::size_t i = 0; i < diff_size;) {
 
         /* Get the 3 bytes and save each of them into 32 bit */
-        uint32_t b_1 = input_str[i];
-        uint32_t b_2 = input_str[i + 1];
-        uint32_t b_3 = input_str[i + 2];
+        uint32_t b_1 = (unsigned char) input_str[i];
+        uint32_t b_2 = (unsigned char) input_str[i + 1];
+        uint32_t b_3 = (unsigned char) input_str[i + 2];
 
         /* Combine them, starting from the 24th bit, e.g. 00000000 xxxxxxxx yyyyyyyy zzzzzzzz */
         uint32_t combined = (b_1 << 16u) + (b_2 << 8u) + b_3;
@@ -73,7 +73,7 @@ std::string EVEAuth::Base64::encode() noexcept
     /* Save the remaining characters into padding_array */
     for (uint8_t i = 0u; i < 2u; ++i) {
         if (diff_size < input_size) {
-            padding_array.push_back(input_str[diff_size]);
+            padding_array.push_back((unsigned char) input_str[diff_size]);
             diff_size++;
         } else {
             /* Save 0 if there was only one remaining character */
