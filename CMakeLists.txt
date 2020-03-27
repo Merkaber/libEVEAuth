@@ -3,7 +3,7 @@ project(EVEAuth)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SRC_FILES encodings/Base64.cpp encodings/Base64.h shared.h Auth.cpp Auth.h utils/picojson.h)
+set(SRC_FILES encodings/Base64.cpp encodings/Base64.h shared.h Auth.cpp Auth.h utils/picojson.h Token.cpp Token.h)
 
 find_package(CURL REQUIRED)
 include_directories(${CURL_INCLUDE_DIRS})
