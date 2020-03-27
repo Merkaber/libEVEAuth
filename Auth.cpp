@@ -72,14 +72,7 @@ void EVEAuth::Auth::generate_code_challenge() noexcept
 
     enc_hashed_bytes.erase(std::remove(enc_hashed_bytes.begin(),enc_hashed_bytes.end(), '='), enc_hashed_bytes.end());
     code_challenge = enc_hashed_bytes;
-
-    // Encode random again
-    EVEAuth::Base64 enc_base64(encoded_random_bytes);
-    std::string code_verifier_tmp = enc_base64.encode_url_safe();
-
-    // Replace all occurrences of '=' with ''
-    code_verifier_tmp.erase(std::remove(code_verifier_tmp.begin(), code_verifier_tmp.end(), '='), code_verifier_tmp.end());
-    code_verifier = code_verifier_tmp;
+    code_verifier = encoded_random_bytes;
 }
 
 std::string EVEAuth::generate_hash(const std::string& s) noexcept
@@ -124,20 +117,7 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept
 
 void EVEAuth::Auth::verify_token() noexcept
 {
-    token_response = download_response;
-    picojson::value val;
-    std::string parse_error = picojson::parse(val, token_response);
-
-    std::string access_token = val.get("access_token").get<std::string>();
-    double expire_time = val.get("expires_in").get<double>();
-    std::string token_type = val.get("token_type").get<std::string>();
-    std::string refresh_token = val.get("refresh_token").get<std::string>();
-
-    std::cout << "access_token: " << access_token;
-    std::cout << "expires_in" << expire_time;
-    std::cout << "token_type" << token_type;
-    std::cout << "refresh_token" << refresh_token;
-
+    
 }
 
 void EVEAuth::Auth::send_token_request() noexcept
@@ -163,7 +143,7 @@ void EVEAuth::Auth::send_token_request() noexcept
     curl = curl_easy_init();
     if (curl) {
         struct curl_slist* chunk = nullptr;
-        std::string h_str = "Host :" + host;
+        std::string h_str = "Host: " + host;
         std::string c_type_str = "Content-Type: " + content_type;
         chunk = curl_slist_append(chunk, c_type_str.c_str());
         chunk = curl_slist_append(chunk, h_str.c_str());
@@ -192,6 +172,21 @@ void EVEAuth::Auth::send_token_request() noexcept
         curl_slist_free_all(chunk);
     }
     curl_global_cleanup();
+}
+
+void EVEAuth::Auth::parse_token_request() noexcept {
+    token_response = download_response;
+    picojson::value val;
+    std::string parse_error = picojson::parse(val, token_response);
+    if (!parse_error.empty()) {
+        return;
+    }
+
+    std::string access_token = val.get("access_token").get<std::string>();
+    int expires_in = val.get("expires_in").get<double>();
+    std::string token_type = val.get("token_type").get<std::string>();
+    std::string refresh_token = val.get("refresh_token").get<std::string>();
+
 }
 
 static size_t EVEAuth::write_memory_callback(void *contents, size_t size, size_t nmemb, void *userp)

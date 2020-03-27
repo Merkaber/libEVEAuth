@@ -49,6 +49,8 @@ namespace EVEAuth {
 
         void verify_token() noexcept;
 
+        void parse_token_request() noexcept;
+
     private:
         const std::string client_id;
 
