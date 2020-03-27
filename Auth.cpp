@@ -64,10 +64,10 @@ void EVEAuth::Auth::generate_code_challenge() noexcept
     std::string encoded_random_bytes = base64.encode_url_safe();
 
     // Hash the given code challenge with sha256
-    std::vector<unsigned char> hashed_enc_rand_bytes = EVEAuth::generate_hash(encoded_random_bytes);
+    std::string hashed_enc_rand_bytes = EVEAuth::generate_hash(encoded_random_bytes);
 
     // Encode hashed code challenge
-    EVEAuth::Base64 hashed_bade64(reinterpret_cast<char*> (hashed_enc_rand_bytes.data()));
+    EVEAuth::Base64 hashed_bade64(hashed_enc_rand_bytes);
     std::string enc_hashed_bytes = hashed_bade64.encode_url_safe();
 
     enc_hashed_bytes.erase(std::remove(enc_hashed_bytes.begin(),enc_hashed_bytes.end(), '='), enc_hashed_bytes.end());
@@ -82,26 +82,26 @@ void EVEAuth::Auth::generate_code_challenge() noexcept
     code_verifier = code_verifier_tmp;
 }
 
-std::vector<unsigned char> EVEAuth::generate_hash(const std::string& s) noexcept
+std::string EVEAuth::generate_hash(const std::string& s) noexcept
 {
     std::vector<unsigned char> hashed{};
 
     /* Allocates and returns a digest context */
     EVP_MD_CTX* context = EVP_MD_CTX_new();
 
-    if (context == nullptr) return hashed;
+    if (context == nullptr) return "";
 
     /* Sets up digest context ctx to use a digest type and its standard implementation (nullptr) */
     int check_init = EVP_DigestInit_ex(context, EVP_sha256(), nullptr);
 
     /* check_init 1 is success, 0 is failure */
-    if (check_init == 0) return hashed;
+    if (check_init == 0) return "";
 
     /* Hashes s.length() bytes of data at s.c_str() into the digest context */
     int check_update = EVP_DigestUpdate(context, s.c_str(), s.length());
 
     /* check_update 1 is success, 0 is failure */
-    if (check_update == 0) return hashed;
+    if (check_update == 0) return "";
 
     unsigned char hash[EVP_MAX_MD_SIZE];
     unsigned int length_of_hash = 0;
@@ -111,13 +111,15 @@ std::vector<unsigned char> EVEAuth::generate_hash(const std::string& s) noexcept
     int check_final = EVP_DigestFinal_ex(context, hash, &length_of_hash);
 
     /* check_final 1 is success, 0 is failure */
-    if (check_final == 0) return hashed;
+    if (check_final == 0) return "";
 
-    for (unsigned char& i : hash) {
-        hashed.push_back(i);
+    std::stringstream ss;
+    for(unsigned int i = 0; i < length_of_hash; ++i)
+    {
+        ss << hash[i];
     }
 
-    return hashed;
+    return ss.str();
 }
 
 void EVEAuth::Auth::verify_token() noexcept
