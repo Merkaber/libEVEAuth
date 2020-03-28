@@ -20,7 +20,7 @@
 #include "utils/picojson.h"
 #include <cstring>
 
-EVEAuth::Auth::Auth(std::string &client_id) noexcept : client_id(std::move(client_id))
+EVEAuth::Auth::Auth(std::string &client_id, std::string& scope_val) noexcept : client_id(std::move(client_id)), scope_val(std::move(scope_val))
 {
     token = new EVEAuth::Token();
 }
@@ -208,7 +208,15 @@ void EVEAuth::Auth::parse_token_request() noexcept
 
 EVEAuth::Token* EVEAuth::Auth::start() noexcept
 {
-    
+    /* If there is not code value set, return nullptr */
+    if (code_val.empty()) {
+        return nullptr;
+    }
+
+    send_token_request();
+    parse_token_request();
+    verify_token();
+    return token;
 }
 
 static size_t EVEAuth::write_memory_callback(void *contents, size_t size, size_t nmemb, void *userp)
@@ -230,6 +238,16 @@ static size_t EVEAuth::write_memory_callback(void *contents, size_t size, size_t
     return real_size;
 }
 
+const std::string& EVEAuth::Auth::get_scope_val() const noexcept
+{
+    return scope_val;
+}
+
+const std::string& EVEAuth::Auth::get_client_id() const noexcept
+{
+    return client_id;
+}
+
 const std::string& EVEAuth::Auth::get_code_val() const noexcept
 {
     return code_val;
@@ -238,16 +256,6 @@ const std::string& EVEAuth::Auth::get_code_val() const noexcept
 void EVEAuth::Auth::set_code_val(const std::string& m_code_val) noexcept
 {
     code_val = m_code_val;
-}
-
-const std::string& EVEAuth::Auth::get_scope_val() const noexcept
-{
-    return scope_val;
-}
-
-void EVEAuth::Auth::set_scope_val(const std::string& m_scope_val) noexcept
-{
-    scope_val = m_scope_val;
 }
 
 const std::string& EVEAuth::Auth::get_authentication_url() const noexcept

@@ -18,11 +18,11 @@
 namespace EVEAuth {
     class Auth {
     public:
-        explicit Auth(std::string& client_id) noexcept;
+        Auth(std::string& client_id, std::string& scope_val) noexcept;
         ~Auth() noexcept;
 
+        const std::string& get_client_id() const noexcept;
         const std::string& get_scope_val() const noexcept;
-        void set_scope_val(const std::string& m_scope_val) noexcept;
 
         const std::string& get_authentication_url() const noexcept;
         void set_authentication_url(const std::string& m_authentication_url) noexcept;
@@ -55,6 +55,9 @@ namespace EVEAuth {
          */
         void send_token_request() noexcept;
 
+        /**
+         * Verifies the current token
+         */
         void verify_token() noexcept;
 
         /**
@@ -74,7 +77,7 @@ namespace EVEAuth {
         std::string code_val = "";
 
         /* The scope defines which data can be accessed through authentication */
-        std::string scope_val = "";
+        const std::string scope_val;
 
         /* The current curl response */
         bool curl_response = false;
