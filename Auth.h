@@ -62,10 +62,9 @@ namespace EVEAuth {
         void verify_token() noexcept;
 
         /**
-         * Parse the last download_response and generate a EVEAuth::Token from this data
-         * @return The EVEAuth::Token which holds the parsed data
+         * Parse the last download_response and set the data to the token object
          */
-        EVEAuth::Token parse_token_request() noexcept;
+        void parse_token_request() noexcept;
 
     private:
         const std::string client_id;

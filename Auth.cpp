@@ -182,7 +182,7 @@ void EVEAuth::Auth::send_token_request() noexcept
     curl_global_cleanup();
 }
 
-EVEAuth::Token EVEAuth::Auth::parse_token_request() noexcept
+void EVEAuth::Auth::parse_token_request() noexcept
 {
     token_response = download_response;
     picojson::value val;
@@ -190,7 +190,7 @@ EVEAuth::Token EVEAuth::Auth::parse_token_request() noexcept
 
     std::string access_token;
     if (!parse_error.empty()) {
-        return EVEAuth::Token(access_token) ;
+        return;
     }
 
     access_token = val.get("access_token").get<std::string>();
@@ -199,15 +199,11 @@ EVEAuth::Token EVEAuth::Auth::parse_token_request() noexcept
     std::string refresh_token = val.get("refresh_token").get<std::string>();
 
     if (!access_token.empty() && !token_type.empty() && !refresh_token.empty() && expires_in > 0) {
-        EVEAuth::Token token(access_token);
-        token.set_token_type(token_type);
-        token.set_refresh_token(refresh_token);
-        token.set_expires_in(expires_in);
-        return token;
-    } else {
-        return EVEAuth::Token(access_token);
+        token->set_access_token(access_token);
+        token->set_token_type(token_type);
+        token->set_refresh_token(refresh_token);
+        token->set_expires_in(expires_in);
     }
-
 }
 
 const EVEAuth::Token& EVEAuth::Auth::get_token() noexcept
