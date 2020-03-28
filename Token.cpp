@@ -6,14 +6,16 @@
 
 #include "Token.h"
 
-EVEAuth::Token::Token(std::string& access_token) noexcept : access_token(std::move(access_token))
-{
-
-}
+EVEAuth::Token::Token() noexcept = default;
 
 const std::string& EVEAuth::Token::get_access_token() const noexcept
 {
     return access_token;
+}
+
+void EVEAuth::Token::set_access_token(const std::string& m_access_token) noexcept
+{
+    access_token = m_access_token;
 }
 
 const std::string& EVEAuth::Token::get_token_type() const noexcept
