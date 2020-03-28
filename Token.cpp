@@ -6,7 +6,7 @@
 
 #include "Token.h"
 
-EVEAuth::Token::Token() noexcept = default;
+EVEAuth::Token::Token() noexcept(false) = default;
 
 const std::string& EVEAuth::Token::get_access_token() const noexcept
 {

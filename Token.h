@@ -11,7 +11,7 @@
 namespace EVEAuth {
     class Token {
     public:
-        Token() noexcept;
+        Token() noexcept(false);
 
     /* Getter and setter for private fields */
     public:
