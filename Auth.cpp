@@ -193,7 +193,13 @@ EVEAuth::Token EVEAuth::Auth::parse_token_request() noexcept
     std::string token_type = val.get("token_type").get<std::string>();
     std::string refresh_token = val.get("refresh_token").get<std::string>();
 
-    if (!access_token.empty()) {
+    if (!access_token.empty() && !token_type.empty() && !refresh_token.empty() && expires_in > 0) {
+        EVEAuth::Token token(access_token);
+        token.set_token_type(token_type);
+        token.set_refresh_token(refresh_token);
+        token.set_expires_in(expires_in);
+        return token;
+    } else {
         return EVEAuth::Token(access_token);
     }
 

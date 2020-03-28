@@ -60,6 +60,10 @@ namespace EVEAuth {
 
         void verify_token() noexcept;
 
+        /**
+         * Parse the last download_response and generate a EVEAuth::Token from this data
+         * @return The EVEAuth::Token which holds the parsed data
+         */
         EVEAuth::Token parse_token_request() noexcept;
 
     private:
