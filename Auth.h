@@ -37,10 +37,10 @@ namespace EVEAuth {
         std::string& generate_auth_url() noexcept;
 
         /**
-         *
-         * @return
+         * Get the current authentication token
+         * @return The current authentication token
          */
-        const EVEAuth::Token& get_token() noexcept;
+        Token *getToken() const noexcept;
 
     private:
 

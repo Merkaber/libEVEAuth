@@ -206,10 +206,8 @@ void EVEAuth::Auth::parse_token_request() noexcept
     }
 }
 
-const EVEAuth::Token& EVEAuth::Auth::get_token() noexcept
-{
-    send_token_request();
-    parse_token_request();
+EVEAuth::Token* EVEAuth::Auth::getToken() const noexcept {
+    return token;
 }
 
 static size_t EVEAuth::write_memory_callback(void *contents, size_t size, size_t nmemb, void *userp)
