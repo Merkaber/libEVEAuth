@@ -7,6 +7,7 @@
 #pragma once
 
 #include "shared.h"
+#include "Token.h"
 
 /*
  * The number of bytes which is necessary for the PKCE protocol
@@ -19,11 +20,6 @@ namespace EVEAuth {
     public:
         explicit Auth(std::string& client_id) noexcept;
 
-        /**
-         * Generates the authentication url which is needed to retrieve the code value
-         */
-        void generate_auth_url() noexcept;
-
         const std::string& get_scope_val() const noexcept;
         void set_scope_val(const std::string& m_scope_val) noexcept;
 
@@ -32,6 +28,18 @@ namespace EVEAuth {
 
         const std::string& get_code_val() const noexcept;
         void set_code_val(const std::string& m_code_val) noexcept;
+
+        /**
+         * Generates the authentication url for the web-login
+         * @return The authentication url
+         */
+        std::string& generate_auth_url() noexcept;
+
+        /**
+         *
+         * @return
+         */
+        const EVEAuth::Token& get_token() noexcept;
 
     private:
 
@@ -45,11 +53,14 @@ namespace EVEAuth {
          */
         void put_url_together() noexcept;
 
+        /**
+         * Sends the token request
+         */
         void send_token_request() noexcept;
 
         void verify_token() noexcept;
 
-        void parse_token_request() noexcept;
+        EVEAuth::Token parse_token_request() noexcept;
 
     private:
         const std::string client_id;

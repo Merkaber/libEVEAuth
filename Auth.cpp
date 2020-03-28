@@ -20,17 +20,20 @@
 #include "utils/picojson.h"
 #include <cstring>
 
-EVEAuth::Auth::Auth(std::string &client_id) noexcept : client_id(std::move(client_id)) {
+EVEAuth::Auth::Auth(std::string &client_id) noexcept : client_id(std::move(client_id))
+{
 
 }
 
-void EVEAuth::Auth::generate_auth_url() noexcept
+std::string& EVEAuth::Auth::generate_auth_url() noexcept
 {
     generate_code_challenge();
 
     if (authentication_url.empty()) {
         put_url_together();
     }
+
+    return authentication_url;
 }
 
 void EVEAuth::Auth::put_url_together() noexcept
@@ -117,7 +120,7 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept
 
 void EVEAuth::Auth::verify_token() noexcept
 {
-    
+
 }
 
 void EVEAuth::Auth::send_token_request() noexcept
@@ -174,19 +177,32 @@ void EVEAuth::Auth::send_token_request() noexcept
     curl_global_cleanup();
 }
 
-void EVEAuth::Auth::parse_token_request() noexcept {
+EVEAuth::Token EVEAuth::Auth::parse_token_request() noexcept
+{
     token_response = download_response;
     picojson::value val;
     std::string parse_error = picojson::parse(val, token_response);
+
+    std::string access_token;
     if (!parse_error.empty()) {
-        return;
+        return EVEAuth::Token(access_token) ;
     }
 
-    std::string access_token = val.get("access_token").get<std::string>();
+    access_token = val.get("access_token").get<std::string>();
     int expires_in = val.get("expires_in").get<double>();
     std::string token_type = val.get("token_type").get<std::string>();
     std::string refresh_token = val.get("refresh_token").get<std::string>();
 
+    if (!access_token.empty()) {
+        return EVEAuth::Token(access_token);
+    }
+
+}
+
+const EVEAuth::Token& EVEAuth::Auth::get_token() noexcept
+{
+    send_token_request();
+    parse_token_request();
 }
 
 static size_t EVEAuth::write_memory_callback(void *contents, size_t size, size_t nmemb, void *userp)
