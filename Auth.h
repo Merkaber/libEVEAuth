@@ -19,6 +19,7 @@ namespace EVEAuth {
     class Auth {
     public:
         explicit Auth(std::string& client_id) noexcept;
+        ~Auth() noexcept;
 
         const std::string& get_scope_val() const noexcept;
         void set_scope_val(const std::string& m_scope_val) noexcept;
@@ -87,6 +88,8 @@ namespace EVEAuth {
         std::string download_response = "";
 
         std::string token_response = "";
+
+        EVEAuth::Token* token;
 
         /* Getter and setter for predefined query parameters and values */
     public:

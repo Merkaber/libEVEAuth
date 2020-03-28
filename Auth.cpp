@@ -22,7 +22,12 @@
 
 EVEAuth::Auth::Auth(std::string &client_id) noexcept : client_id(std::move(client_id))
 {
+    token = new EVEAuth::Token();
+}
 
+EVEAuth::Auth::~Auth() noexcept
+{
+    delete token;
 }
 
 std::string& EVEAuth::Auth::generate_auth_url() noexcept
