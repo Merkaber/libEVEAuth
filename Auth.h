@@ -65,6 +65,11 @@ namespace EVEAuth {
          */
         void parse_token_request() noexcept;
 
+        /**
+         * Sends the jwt request
+         */
+        void send_jwt_request() noexcept;
+
     private:
         const std::string client_id;
 

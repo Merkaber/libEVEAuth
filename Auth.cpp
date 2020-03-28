@@ -128,6 +128,41 @@ void EVEAuth::Auth::verify_token() noexcept
 
 }
 
+void EVEAuth::Auth::send_jwt_request() noexcept
+{
+    CURL* curl;
+    CURLcode res;
+
+    struct MemoryStruct chu;
+    chu.memory = (char*) malloc(1);
+    chu.size = 0;
+
+    /* Handle winsock stuff */
+    curl_global_init(CURL_GLOBAL_ALL);
+
+    curl = curl_easy_init();
+    if (curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, jwt_keys_url.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_memory_callback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*) &chu);
+
+        res = curl_easy_perform(curl);
+        if (res != CURLE_OK) {
+            curl_response = false;
+            fprintf(stderr, "curl_easy_perform() failed: %s \n", curl_easy_strerror(res));
+        } else {
+            long responseCode;
+            curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
+            if (responseCode == 200) {
+                curl_response = true;
+                download_response = std::string(chu.memory);
+            }
+        }
+        curl_easy_cleanup(curl);
+    }
+    curl_global_cleanup();
+}
+
 void EVEAuth::Auth::send_token_request() noexcept
 {
     CURL* curl;
