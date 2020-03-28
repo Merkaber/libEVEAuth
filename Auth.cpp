@@ -206,6 +206,11 @@ void EVEAuth::Auth::parse_token_request() noexcept
     }
 }
 
+EVEAuth::Token* EVEAuth::Auth::start() noexcept
+{
+    
+}
+
 static size_t EVEAuth::write_memory_callback(void *contents, size_t size, size_t nmemb, void *userp)
 {
     size_t real_size = size * nmemb;

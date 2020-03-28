@@ -36,6 +36,8 @@ namespace EVEAuth {
          */
         std::string& generate_auth_url() noexcept;
 
+        EVEAuth::Token* start() noexcept;
+
     private:
 
         /**
