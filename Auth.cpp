@@ -20,7 +20,7 @@
 #include "utils/picojson.h"
 #include <cstring>
 
-/* Include for creating public pem key */
+/* Includes for creating public pem key */
 #include "openssl/pem.h"
 #include "openssl/bio.h"
 
@@ -202,11 +202,6 @@ void EVEAuth::Auth::verify_token() noexcept
     if (header_val.get("alg").get<std::string>() != EVEAuth::Token::algorithm) {
         return;
     }
-
-    std::string combined_header_payload = token->get_base64_header() + "." + token->get_base64_payload();
-
-    /* Hash the combination */
-    std::string hashed_combination = EVEAuth::generate_hash(combined_header_payload);
 
     /* Generate public key in pem format */
     std::string pem_key = EVEAuth::generate_pem_key(n, e);
