@@ -4,6 +4,7 @@
  * Copyright (c) 2019 Simon Piorecki
  */
 
+#include <iostream>
 #include "Token.h"
 #include "encodings/Base64.h"
 
@@ -21,18 +22,45 @@ void EVEAuth::Token::decode_access_token() noexcept
         return;
     }
 
-    int signature_end = access_token.find('.', payload_end + 1);
-    if (signature_end == std::string::npos) {
-        return;
-    }
-
     std::string header_enc = access_token.substr(0, header_end);
     std::string payload_enc = access_token.substr(header_end + 1, payload_end - header_end - 1);
     std::string signature_enc = access_token.substr(payload_end + 1);
 
+    auto fix_padding = [] (std::string& s) {
+        std::cout << s.size() << std::endl;
+        switch (s.size() % 4u) {
+            case 1:
+                s += EVEAuth::Base64::base64_url_safe_fill;
+            case 2:
+                s += EVEAuth::Base64::base64_url_safe_fill;
+            case 3:
+                s += EVEAuth::Base64::base64_url_safe_fill;
+            default:
+                break;
+        }
+    };
+    fix_padding(header_enc);
+    fix_padding(payload_enc);
+    fix_padding(signature_enc);
+
     header = EVEAuth::Base64(header_enc).decode_url_safe();
     payload = EVEAuth::Base64(payload_enc).decode_url_safe();
     signature = EVEAuth::Base64(signature_enc).decode_url_safe();
+}
+
+const std::string& EVEAuth::Token::get_header() const noexcept
+{
+    return header;
+}
+
+const std::string& EVEAuth::Token::get_payload() const noexcept
+{
+    return payload;
+}
+
+const std::string& EVEAuth::Token::get_signature() const noexcept
+{
+    return signature;
 }
 
 const std::string& EVEAuth::Token::get_access_token() const noexcept

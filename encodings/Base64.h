@@ -125,6 +125,11 @@ namespace EVEAuth {
          */
         static std::size_t find_base_char(const char &c) noexcept(false);
 
+    public:
+
+        /* The standard base64UrlFill */
+        static const std::string base64_url_safe_fill;
+
     private:
 
         /* The standard Base64 characters */
@@ -140,9 +145,6 @@ namespace EVEAuth {
 
         /* Array for converting standard Base64 into Base64Url */
         static constexpr std::array<char, 4> base64_url_safe_chars = {'+', '-', '/', '_'};
-
-        /* The standard base64UrlFill */
-        const std::string base64_url_safe_fill = "%3d";
 
         /* The input string which has been set when the Base64 object was created */
         const std::string input_str;

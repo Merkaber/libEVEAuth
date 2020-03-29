@@ -13,11 +13,14 @@ namespace EVEAuth {
     public:
         Token() noexcept(false);
 
-    private:
         void decode_access_token() noexcept;
 
     /* Getter and setter for private fields */
     public:
+        const std::string& get_header() const noexcept;
+        const std::string& get_payload() const noexcept;
+        const std::string& get_signature() const noexcept;
+
         const std::string& get_access_token() const noexcept;
         void set_access_token(const std::string& m_access_token) noexcept;
 
