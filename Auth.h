@@ -15,6 +15,13 @@
  */
 #define PKCE_BYTE_NUM 32
 
+/*
+ * Buffer size for the generate_pem_key function
+ * This size is used to convert the BIO* into std::string
+ * The actual size of the data might be less
+ */
+#define PEM_BUFF_SIZE 4096
+
 namespace EVEAuth {
     class Auth {
     public:
@@ -200,4 +207,6 @@ namespace EVEAuth {
      * @return The hash value if successfully hashed, otherwise an empty std::string
      */
     std::string generate_hash(const std::string& s) noexcept;
+
+    std::string generate_pem_key(const std::string& n, const std::string& e) noexcept;
 }

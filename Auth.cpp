@@ -20,6 +20,10 @@
 #include "utils/picojson.h"
 #include <cstring>
 
+/* Include for creating public pem key */
+#include "openssl/pem.h"
+#include "openssl/bio.h"
+
 EVEAuth::Auth::Auth(std::string &client_id, std::string& scope_val) noexcept : client_id(std::move(client_id)), scope_val(std::move(scope_val))
 {
     token = new EVEAuth::Token();
@@ -123,6 +127,43 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept
     return ss.str();
 }
 
+std::string EVEAuth::generate_pem_key(const std::string &n, const std::string &e) noexcept
+{
+    auto fix_padding = [] (std::string& s) {
+        switch (s.size() % 4u) {
+            case 1:
+                s += EVEAuth::Base64::base64_url_safe_fill;
+            case 2:
+                s += EVEAuth::Base64::base64_url_safe_fill;
+            case 3:
+                s += EVEAuth::Base64::base64_url_safe_fill;
+            default:
+                break;
+        }
+    };
+    std::string tmp_n = n;
+    std::string tmp_e = e;
+    fix_padding(tmp_n);
+    fix_padding(tmp_e);
+
+    std::string dec_modulus = EVEAuth::Base64(tmp_n).decode_url_safe();
+    std::string dec_exponent = EVEAuth::Base64(tmp_e).decode_url_safe();
+
+    BIGNUM* modulus = BN_bin2bn(reinterpret_cast<const unsigned char*>(dec_modulus.data()), dec_modulus.size(), nullptr);
+    BIGNUM* exponent = BN_bin2bn(reinterpret_cast<const unsigned char*>(dec_exponent.data()), dec_exponent.size(), nullptr);
+    RSA* rr = RSA_new();
+    RSA_set0_key(rr, modulus, exponent, nullptr);
+    BIO* mem = BIO_new(BIO_s_mem());
+    PEM_write_bio_RSA_PUBKEY(mem, rr);
+
+    char buffer[PEM_BUFF_SIZE];
+    memset(buffer, 0, PEM_BUFF_SIZE);
+    BIO_read(mem, buffer, PEM_BUFF_SIZE - 1);
+
+    BIO_free(mem);
+    return std::string(buffer);
+}
+
 void EVEAuth::Auth::verify_token() noexcept
 {
     send_jwt_request();
@@ -165,9 +206,10 @@ void EVEAuth::Auth::verify_token() noexcept
     std::string combined_header_payload = token->get_base64_header() + "." + token->get_base64_payload();
 
     /* Hash the combination */
-    std::string hashed_combination = generate_hash(combined_header_payload);
+    std::string hashed_combination = EVEAuth::generate_hash(combined_header_payload);
 
-
+    /* Generate public key in pem format */
+    std::string pem_key = EVEAuth::generate_pem_key(n, e);
 }
 
 void EVEAuth::Auth::send_jwt_request() noexcept
