@@ -18,8 +18,11 @@ namespace EVEAuth {
     /* Getter and setter for private fields */
     public:
         const std::string& get_header() const noexcept;
+        const std::string& get_base64_header() const noexcept;
         const std::string& get_payload() const noexcept;
+        const std::string& get_base64_payload() const noexcept;
         const std::string& get_signature() const noexcept;
+        const std::string& get_base64_signature() const noexcept;
         const std::string& get_access_token() const noexcept;
 
         void set_access_token(const std::string& m_access_token) noexcept;
@@ -39,8 +42,11 @@ namespace EVEAuth {
 
     private:
         std::string header = "";
+        std::string base64_header = "";
         std::string payload = "";
+        std::string base64_payload = "";
         std::string signature = "";
+        std::string base64_signature = "";
 
         std::string access_token = "";
         std::string token_type = "";

@@ -54,9 +54,19 @@ const std::string& EVEAuth::Token::get_header() const noexcept
     return header;
 }
 
+const std::string& EVEAuth::Token::get_base64_header() const noexcept
+{
+    return base64_header;
+}
+
 const std::string& EVEAuth::Token::get_payload() const noexcept
 {
     return payload;
+}
+
+const std::string& EVEAuth::Token::get_base64_payload() const noexcept
+{
+    return base64_payload;
 }
 
 const std::string& EVEAuth::Token::get_signature() const noexcept
@@ -64,9 +74,9 @@ const std::string& EVEAuth::Token::get_signature() const noexcept
     return signature;
 }
 
-const std::string& EVEAuth::Token::get_algorithm() const noexcept
+const std::string& EVEAuth::Token::get_base64_signature() const noexcept
 {
-    return algorithm;
+    return base64_signature;
 }
 
 const std::string& EVEAuth::Token::get_access_token() const noexcept
