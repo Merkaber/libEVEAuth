@@ -62,6 +62,11 @@ const std::string& EVEAuth::Token::get_signature() const noexcept
     return signature;
 }
 
+const std::string& EVEAuth::Token::get_algorithm() const noexcept
+{
+    return algorithm;
+}
+
 const std::string& EVEAuth::Token::get_access_token() const noexcept
 {
     return access_token;
