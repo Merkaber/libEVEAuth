@@ -21,8 +21,8 @@ namespace EVEAuth {
         const std::string& get_payload() const noexcept;
         const std::string& get_signature() const noexcept;
         const std::string& get_algorithm() const noexcept;
-
         const std::string& get_access_token() const noexcept;
+
         void set_access_token(const std::string& m_access_token) noexcept;
 
         const std::string& get_token_type() const noexcept;
@@ -34,6 +34,10 @@ namespace EVEAuth {
         const int& get_expires_in() const noexcept;
         void set_expires_in(const int& m_expires_in) noexcept;
 
+    public:
+        /* By default, we use RS256 as signature algorithm */
+        static const std::string algorithm;
+
     private:
         std::string header = "";
         std::string payload = "";
@@ -43,8 +47,5 @@ namespace EVEAuth {
         std::string token_type = "";
         std::string refresh_token = "";
         int expires_in = 0;
-
-        /* By default, we use RS256 as signature algorithm */
-        const std::string algorithm = "RS256";
     };
 }

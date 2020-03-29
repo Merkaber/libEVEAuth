@@ -8,6 +8,8 @@
 #include "Token.h"
 #include "encodings/Base64.h"
 
+const std::string EVEAuth::Token::algorithm = "RS256";
+
 EVEAuth::Token::Token() noexcept(false) = default;
 
 void EVEAuth::Token::decode_access_token() noexcept
