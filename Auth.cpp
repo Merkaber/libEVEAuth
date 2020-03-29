@@ -20,9 +20,10 @@
 #include "utils/picojson.h"
 #include <cstring>
 
-/* Includes for creating public pem key */
+/* Includes for creating public pem key and token verification */
 #include "openssl/pem.h"
 #include "openssl/bio.h"
+#include "utils/jwt.h"
 
 EVEAuth::Auth::Auth(std::string &client_id, std::string& scope_val) noexcept : client_id(std::move(client_id)), scope_val(std::move(scope_val))
 {
@@ -205,6 +206,10 @@ void EVEAuth::Auth::verify_token() noexcept
 
     /* Generate public key in pem format */
     std::string pem_key = EVEAuth::generate_pem_key(n, e);
+
+    auto jwt_decoded = jwt::decode(token->get_access_token());
+    auto verifier = jwt::verify().allow_algorithm(jwt::algorithm::rs256(pem_key, "", "", "")).with_issuer(host);
+    verifier.verify(jwt_decoded);
 }
 
 void EVEAuth::Auth::send_jwt_request() noexcept
