@@ -125,6 +125,30 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept
 
 void EVEAuth::Auth::verify_token() noexcept
 {
+    send_jwt_request();
+    std::string jwt_keys_response = download_response;
+    picojson::value val;
+    std::string parse_error = picojson::parse(val, jwt_keys_response);
+
+    if (!parse_error.empty()) {
+        return;
+    }
+
+    picojson::array list = val.get("keys").get<picojson::array>();
+    std::string algorithm;
+    std::string e;
+    std::string kid;
+    std::string kty;
+    std::string n;
+    for (picojson::array::iterator iter = list.begin(); iter != list.end(); ++iter) {
+        if ((*iter).get("alg").get<std::string>() == "RS256") {
+            algorithm = (*iter).get("alg").get<std::string>();
+            e = (*iter).get("e").get<std::string>();
+            kty = (*iter).get("kty").get<std::string>();
+            kid = (*iter).get("kid").get<std::string>();
+            n = (*iter).get("n").get<std::string>();
+        }
+    }
 
 }
 
