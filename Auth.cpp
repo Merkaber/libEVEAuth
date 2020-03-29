@@ -129,11 +129,11 @@ void EVEAuth::Auth::verify_token() noexcept
     std::string jwt_keys_response = download_response;
     picojson::value val;
     std::string parse_error = picojson::parse(val, jwt_keys_response);
-
     if (!parse_error.empty()) {
         return;
     }
 
+    /* We want the EVEAuth::Token::algorithm and its related values */
     picojson::array list = val.get("keys").get<picojson::array>();
     std::string algorithm;
     std::string e;
@@ -141,7 +141,7 @@ void EVEAuth::Auth::verify_token() noexcept
     std::string kty;
     std::string n;
     for (picojson::array::iterator iter = list.begin(); iter != list.end(); ++iter) {
-        if ((*iter).get("alg").get<std::string>() == "RS256") {
+        if ((*iter).get("alg").get<std::string>() == EVEAuth::Token::algorithm) {
             algorithm = (*iter).get("alg").get<std::string>();
             e = (*iter).get("e").get<std::string>();
             kty = (*iter).get("kty").get<std::string>();
@@ -150,6 +150,17 @@ void EVEAuth::Auth::verify_token() noexcept
         }
     }
 
+    /* Parse tokens decoded header */
+    picojson::value header_val;
+    std::string header_parse_error = picojson::parse(header_val, token->get_header());
+    if (!header_parse_error.empty()) {
+        return;
+    }
+
+    /* Check if the decoded token header algorithm matches EVEAuth::Token::algorithm */
+    if (header_val.get("alg").get<std::string>() != EVEAuth::Token::algorithm) {
+        return;
+    }
 }
 
 void EVEAuth::Auth::send_jwt_request() noexcept
