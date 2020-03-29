@@ -161,6 +161,13 @@ void EVEAuth::Auth::verify_token() noexcept
     if (header_val.get("alg").get<std::string>() != EVEAuth::Token::algorithm) {
         return;
     }
+
+    std::string combined_header_payload = token->get_base64_header() + "." + token->get_base64_payload();
+
+    /* Hash the combination */
+    std::string hashed_combination = generate_hash(combined_header_payload);
+
+
 }
 
 void EVEAuth::Auth::send_jwt_request() noexcept
