@@ -274,6 +274,7 @@ EVEAuth::Token* EVEAuth::Auth::start() noexcept
 
     send_token_request();
     parse_token_request();
+    token->decode_access_token();
     verify_token();
     return token;
 }

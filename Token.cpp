@@ -27,7 +27,6 @@ void EVEAuth::Token::decode_access_token() noexcept
     std::string signature_enc = access_token.substr(payload_end + 1);
 
     auto fix_padding = [] (std::string& s) {
-        std::cout << s.size() << std::endl;
         switch (s.size() % 4u) {
             case 1:
                 s += EVEAuth::Base64::base64_url_safe_fill;
