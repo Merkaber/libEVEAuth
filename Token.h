@@ -13,6 +13,9 @@ namespace EVEAuth {
     public:
         Token() noexcept(false);
 
+    private:
+        void decode_access_token() noexcept;
+
     /* Getter and setter for private fields */
     public:
         const std::string& get_access_token() const noexcept;
@@ -28,6 +31,10 @@ namespace EVEAuth {
         void set_expires_in(const int& m_expires_in) noexcept;
 
     private:
+        std::string header = "";
+        std::string payload = "";
+        std::string signature = "";
+
         std::string access_token = "";
         std::string token_type = "";
         std::string refresh_token = "";
