@@ -24,6 +24,8 @@ namespace EVEAuth {
         const std::string& get_signature() const noexcept;
         const std::string& get_base64_signature() const noexcept;
         const std::string& get_access_token() const noexcept;
+        const std::string& get_character_id() const noexcept;
+        const std::string& get_character_name() const noexcept;
 
         void set_access_token(const std::string& m_access_token) noexcept;
 
@@ -52,5 +54,8 @@ namespace EVEAuth {
         std::string token_type = "";
         std::string refresh_token = "";
         int expires_in = 0;
+
+        std::string character_id = "";
+        std::string character_name = "";
     };
 }

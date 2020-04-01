@@ -118,3 +118,13 @@ void EVEAuth::Token::set_expires_in(const int &m_expires_in) noexcept
 {
     expires_in = m_expires_in;
 }
+
+const std::string& EVEAuth::Token::get_character_id() const noexcept
+{
+    return character_id;
+}
+
+const std::string& EVEAuth::Token::get_character_name() const noexcept
+{
+    return character_name;
+}
