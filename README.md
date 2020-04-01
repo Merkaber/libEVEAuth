@@ -33,10 +33,11 @@ Checking for proper third party library insertion.
 Checking for windows support.
 
 #### Dependencies:
+- c++11<
 - [OpenSSL](https://www.openssl.org/)
 - [libcurl](https://curl.haxx.se/libcurl/)
 
 #### Third party libraries used:
-- [picojson](https://github.com/kazuho/picojson) by Kazuho
+- [picojson](https://github.com/kazuho/picojson) by Cybozu Labs, Inc. / Kazuho Oku
 - [jwt-cpp](https://github.com/Thalhammer/jwt-cpp) by Thalhammer
 
