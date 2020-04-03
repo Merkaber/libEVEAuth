@@ -47,10 +47,10 @@ namespace EVEAuth {
 
     private:
 
-        /* The error message which will be set when the Base64Exception is thrown */
+        /// The error message which will be set when the Base64Exception is thrown
         const std::string message;
 
-        /* The unique error code which will be set when the Base64Exception is thrown */
+        /// The unique error code which will be set when the Base64Exception is thrown
         const int error_code;
     };
 
@@ -127,12 +127,12 @@ namespace EVEAuth {
 
     public:
 
-        /* The standard base64UrlFill */
+        /// The standard base64UrlFill
         static const std::string base64_url_safe_fill;
 
     private:
 
-        /* The standard Base64 characters */
+        /// The standard Base64 characters
         static constexpr std::array<char, 64> base64_chars = {
                 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
                 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
@@ -140,13 +140,13 @@ namespace EVEAuth {
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/'
         };
 
-        /* The standard base64_fill */
+        /// The standard base64_fill
         const std::string base64_fill = "=";
 
-        /* Array for converting standard Base64 into Base64Url */
+        /// Array for converting standard Base64 into Base64Url
         static constexpr std::array<char, 4> base64_url_safe_chars = {'+', '-', '/', '_'};
 
-        /* The input string which has been set when the Base64 object was created */
+        /// The input string which has been set when the Base64 object was created
         const std::string input_str;
     };
 }
