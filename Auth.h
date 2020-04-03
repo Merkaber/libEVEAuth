@@ -43,6 +43,10 @@ namespace EVEAuth {
          */
         std::string& generate_auth_url() noexcept;
 
+        /**
+         * Starts the token request and validation
+         * @return If successful, returns the token for authentication
+         */
         EVEAuth::Token* start() noexcept;
 
     private:
@@ -78,27 +82,34 @@ namespace EVEAuth {
         void send_jwt_request() noexcept;
 
     private:
+
+        /// The client_id which is necessary for identifying the application
         const std::string client_id;
 
+        /// The code challenge which is necessary for requesting the token
         std::string code_challenge = "";
 
+        /// The verifier which is necessary for requesting the token
         std::string code_verifier = "";
 
+        /// The whole authentication for requesting the user login
         std::string authentication_url = "";
 
+        /// The code value which needs to be set after user login
         std::string code_val = "";
 
-        /* The scope defines which data can be accessed through authentication */
+        /// The scope defines which data can be accessed through authentication
         const std::string scope_val;
 
-        /* The current curl response */
+        /// Specifies if the last curl execution was successful or not
         bool curl_response = false;
 
-        /* The current download response */
+        /// The last download response
         std::string download_response = "";
 
         std::string token_response = "";
 
+        /// The token which will hold the information for authentication
         EVEAuth::Token* token;
 
         /* Getter and setter for predefined query parameters and values */
@@ -194,11 +205,17 @@ namespace EVEAuth {
 
     };
 
+    /**
+     * Simple struct for curl write function write_memory_callback
+     */
     struct MemoryStruct {
         char* memory;
         size_t size;
     };
 
+    /**
+     * Curl write function
+     */
     static size_t write_memory_callback(void* contents, size_t size, size_t nmemb, void* userp);
 
     /**
@@ -208,5 +225,11 @@ namespace EVEAuth {
      */
     std::string generate_hash(const std::string& s) noexcept;
 
+    /**
+     * Generates a public RSA key in pem format and returns it as std::string
+     * @param n The base64 encoded modulus
+     * @param e The base64 encoded exponent
+     * @return The public RSA key in pem format as std::string if successful
+     */
     std::string generate_pem_key(const std::string& n, const std::string& e) noexcept;
 }

@@ -92,21 +92,21 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept
 {
     std::vector<unsigned char> hashed{};
 
-    /* Allocates and returns a digest context */
+    // Allocates and returns a digest context
     EVP_MD_CTX* context = EVP_MD_CTX_new();
 
     if (context == nullptr) return "";
 
-    /* Sets up digest context ctx to use a digest type and its standard implementation (nullptr) */
+    // Sets up digest context ctx to use a digest type and its standard implementation (nullptr)
     int check_init = EVP_DigestInit_ex(context, EVP_sha256(), nullptr);
 
-    /* check_init 1 is success, 0 is failure */
+    // check_init 1 is success, 0 is failure
     if (check_init == 0) return "";
 
-    /* Hashes s.length() bytes of data at s.c_str() into the digest context */
+    // Hashes s.length() bytes of data at s.c_str() into the digest context
     int check_update = EVP_DigestUpdate(context, s.c_str(), s.length());
 
-    /* check_update 1 is success, 0 is failure */
+    // check_update 1 is success, 0 is failure
     if (check_update == 0) return "";
 
     unsigned char hash[EVP_MAX_MD_SIZE];
@@ -116,7 +116,7 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept
      * Writes the number of bytes written into length_of_hash */
     int check_final = EVP_DigestFinal_ex(context, hash, &length_of_hash);
 
-    /* check_final 1 is success, 0 is failure */
+    // check_final 1 is success, 0 is failure
     if (check_final == 0) return "";
 
     std::stringstream ss;
@@ -175,7 +175,7 @@ void EVEAuth::Auth::verify_token() noexcept
         return;
     }
 
-    /* We want the EVEAuth::Token::algorithm and its related values */
+    // We want the EVEAuth::Token::algorithm and its related values
     picojson::array list = val.get("keys").get<picojson::array>();
     std::string algorithm;
     std::string e;
@@ -192,19 +192,19 @@ void EVEAuth::Auth::verify_token() noexcept
         }
     }
 
-    /* Parse tokens decoded header */
+    // Parse tokens decoded header
     picojson::value header_val;
     std::string header_parse_error = picojson::parse(header_val, token->get_header());
     if (!header_parse_error.empty()) {
         return;
     }
 
-    /* Check if the decoded token header algorithm matches EVEAuth::Token::algorithm */
+    // Check if the decoded token header algorithm matches EVEAuth::Token::algorithm
     if (header_val.get("alg").get<std::string>() != EVEAuth::Token::algorithm) {
         return;
     }
 
-    /* Generate public key in pem format */
+    // Generate public key in pem format
     std::string pem_key = EVEAuth::generate_pem_key(n, e);
 
     auto jwt_decoded = jwt::decode(token->get_access_token());
@@ -221,7 +221,7 @@ void EVEAuth::Auth::send_jwt_request() noexcept
     chu.memory = (char*) malloc(1);
     chu.size = 0;
 
-    /* Handle winsock stuff */
+    // Handle winsock stuff
     curl_global_init(CURL_GLOBAL_ALL);
 
     curl = curl_easy_init();
@@ -327,7 +327,7 @@ void EVEAuth::Auth::parse_token_request() noexcept
 
 EVEAuth::Token* EVEAuth::Auth::start() noexcept
 {
-    /* If there is not code value set, return nullptr */
+    // If there is not code value set, return nullptr
     if (code_val.empty()) {
         return nullptr;
     }
