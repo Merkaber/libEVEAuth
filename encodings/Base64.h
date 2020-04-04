@@ -25,13 +25,12 @@ namespace EVEAuth {
      */
     class Base64Exception : public std::exception {
     public:
-
         /**
          * This constructor expects the error message and the related error code
          * @param message The message which will be available when calling what()
-         * @param errorCode The unique error code which will be available when calling getErrorCode()
+         * @param error_code The unique error code which will be available when calling get_error_code()
          */
-        Base64Exception(std::string message, int errorCode);
+        Base64Exception(std::string message, int error_code) noexcept;
 
         /**
          * Returns the error message as c-string which has been set when the exception was thrown
@@ -43,10 +42,9 @@ namespace EVEAuth {
          * Returns the error code which has been set when the exception was thrown
          * @return The unique error code which specifies what kind of exception has been thrown
          */
-        int get_error_code() const noexcept;
+        const int& get_error_code() const noexcept;
 
     private:
-
         /// The error message which will be set when the Base64Exception is thrown
         const std::string message;
 
@@ -63,7 +61,6 @@ namespace EVEAuth {
      */
     class Base64 {
     public:
-
         /**
          * This constructor expects the input string which then will be encoded or decoded
          * @param inputStr The input string which then will be encoded or decoded
@@ -100,17 +97,16 @@ namespace EVEAuth {
         std::string decode_url_safe() noexcept;
 
     private:
-
         /**
          * This function does the actual decoding
          *
          * The decode function one is calling on this object will call this function
          *
-         * If decodeBase64UrlSafe has been called, the base64_url_safe_fill will be replaced by the standard Base64Fill
+         * If decode_base_64_url_safe has been called, the base64_url_safe_fill will be replaced by the standard base_64_fill
          *
          * May throws a Base64Exception if the input string has too many fills or the wrong length
          *
-         * @param str The input string of this object or a copy with replaced Base64UrlSafeFill
+         * @param str The input string of this object or a copy with replaced base_64_url_safe_fill
          * @return The decoded input string
          */
         std::string decode(const std::string &str) noexcept(false);
@@ -126,12 +122,10 @@ namespace EVEAuth {
         static std::size_t find_base_char(const char &c) noexcept(false);
 
     public:
-
-        /// The standard base64UrlFill
+        /// The standard base_64_url_fill
         static const std::string base64_url_safe_fill;
 
     private:
-
         /// The standard Base64 characters
         static constexpr std::array<char, 64> base64_chars = {
                 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
@@ -143,7 +137,7 @@ namespace EVEAuth {
         /// The standard base64_fill
         const std::string base64_fill = "=";
 
-        /// Array for converting standard Base64 into Base64Url
+        /// Array for converting standard Base64 into base_64_url
         static constexpr std::array<char, 4> base64_url_safe_chars = {'+', '-', '/', '_'};
 
         /// The input string which has been set when the Base64 object was created

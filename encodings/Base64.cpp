@@ -11,7 +11,7 @@ constexpr std::array<char, 64> EVEAuth::Base64::base64_chars;
 constexpr std::array<char, 4> EVEAuth::Base64::base64_url_safe_chars;
 const std::string EVEAuth::Base64::base64_url_safe_fill = "%3d";
 
-EVEAuth::Base64Exception::Base64Exception(std::string message, const int errorCode) : message(std::move(message)), error_code(errorCode)
+EVEAuth::Base64Exception::Base64Exception(std::string message, const int error_code) noexcept : message(std::move(message)), error_code(error_code)
 {
 
 }
@@ -21,7 +21,7 @@ const char* EVEAuth::Base64Exception::what() const noexcept
     return message.c_str();
 }
 
-int EVEAuth::Base64Exception::get_error_code() const noexcept
+const int& EVEAuth::Base64Exception::get_error_code() const noexcept
 {
     return error_code;
 }
