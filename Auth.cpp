@@ -25,6 +25,21 @@
 #include "openssl/bio.h"
 #include "utils/jwt.h"
 
+EVEAuth::AuthException::AuthException(std::string message, int error_code) noexcept : message(std::move(message)), error_code(error_code)
+{
+
+}
+
+const char* EVEAuth::AuthException::what() const noexcept
+{
+    return message.c_str();
+}
+
+const int& EVEAuth::AuthException::get_error_code() const noexcept
+{
+    return error_code;
+}
+
 EVEAuth::Auth::Auth(std::string &client_id, std::string& scope_val) noexcept : client_id(std::move(client_id)), scope_val(std::move(scope_val))
 {
     token = new EVEAuth::Token();
