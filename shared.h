@@ -7,6 +7,7 @@
 #pragma once
 
 #define WIN
+#undef WIN
 
 /* Global includes */
 #include <string>

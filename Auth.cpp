@@ -98,7 +98,7 @@ void EVEAuth::Auth::generate_code_challenge() noexcept(false)
     } catch (AuthException& e) {
         throw AuthException(e.what(), e.get_error_code());
     }
-    
+
     // Encode hashed code challenge
     EVEAuth::Base64 hashed_bade64(hashed_enc_rand_bytes);
     std::string enc_hashed_bytes = hashed_bade64.encode_url_safe();
