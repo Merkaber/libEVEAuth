@@ -22,6 +22,16 @@
  */
 #define PEM_BUFF_SIZE 4096
 
+/* Base64 Exception Range from 00100 - 00199 */
+#define ERR_HASH_CTX "Could not create hash context!"
+#define ERR_HASH_CTX_CODE 00100
+#define ERR_HASH_INIT "Could not initialize hash!"
+#define ERR_HASH_INIT_CODE 00101
+#define ERR_HASH_UPDATE "Could not update hash!"
+#define ERR_HASH_UPDATE_CODE 00102
+#define ERR_HASH_FINAL "Final hash failed!"
+#define ERR_HASH_FINAL_CODE 00103
+
 namespace EVEAuth {
 
     /**
@@ -90,7 +100,7 @@ namespace EVEAuth {
         /**
          * Generates the code challenge and code verifier
          */
-        void generate_code_challenge() noexcept;
+        void generate_code_challenge() noexcept(false);
 
         /**
          * Generates the authentication url if none is given
@@ -146,7 +156,7 @@ namespace EVEAuth {
         std::string token_response = "";
 
         /// The token which will hold the information for authentication
-        EVEAuth::Token* token;
+        EVEAuth::Token* token = nullptr;
 
         /* Getter and setter for predefined query parameters and values */
     public:
@@ -259,7 +269,7 @@ namespace EVEAuth {
      * @param s The given string
      * @return The hash value if successfully hashed, otherwise an empty std::string
      */
-    std::string generate_hash(const std::string& s) noexcept;
+    std::string generate_hash(const std::string& s) noexcept(false);
 
     /**
      * Generates a public RSA key in pem format and returns it as std::string

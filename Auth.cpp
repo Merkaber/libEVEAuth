@@ -77,7 +77,7 @@ void EVEAuth::Auth::put_url_together() noexcept
     authentication_url = ss.str();
 }
 
-void EVEAuth::Auth::generate_code_challenge() noexcept
+void EVEAuth::Auth::generate_code_challenge() noexcept(false)
 {
     // Generate PKCE_BYTE_NUM of random bytes
     std::random_device random_device;
@@ -92,8 +92,13 @@ void EVEAuth::Auth::generate_code_challenge() noexcept
     std::string encoded_random_bytes = base64.encode_url_safe();
 
     // Hash the given code challenge with sha256
-    std::string hashed_enc_rand_bytes = EVEAuth::generate_hash(encoded_random_bytes);
-
+    std::string hashed_enc_rand_bytes;
+    try {
+        hashed_enc_rand_bytes = EVEAuth::generate_hash(encoded_random_bytes);
+    } catch (AuthException& e) {
+        throw AuthException(e.what(), e.get_error_code());
+    }
+    
     // Encode hashed code challenge
     EVEAuth::Base64 hashed_bade64(hashed_enc_rand_bytes);
     std::string enc_hashed_bytes = hashed_bade64.encode_url_safe();
@@ -103,26 +108,26 @@ void EVEAuth::Auth::generate_code_challenge() noexcept
     code_verifier = encoded_random_bytes;
 }
 
-std::string EVEAuth::generate_hash(const std::string& s) noexcept
+std::string EVEAuth::generate_hash(const std::string& s) noexcept(false)
 {
     std::vector<unsigned char> hashed{};
 
     // Allocates and returns a digest context
     EVP_MD_CTX* context = EVP_MD_CTX_new();
 
-    if (context == nullptr) return "";
+    if (context == nullptr) throw AuthException(ERR_HASH_CTX, ERR_HASH_CTX_CODE);
 
     // Sets up digest context ctx to use a digest type and its standard implementation (nullptr)
     int check_init = EVP_DigestInit_ex(context, EVP_sha256(), nullptr);
 
     // check_init 1 is success, 0 is failure
-    if (check_init == 0) return "";
+    if (check_init == 0) throw AuthException(ERR_HASH_INIT, ERR_HASH_INIT_CODE);
 
     // Hashes s.length() bytes of data at s.c_str() into the digest context
     int check_update = EVP_DigestUpdate(context, s.c_str(), s.length());
 
     // check_update 1 is success, 0 is failure
-    if (check_update == 0) return "";
+    if (check_update == 0) throw AuthException(ERR_HASH_UPDATE, ERR_HASH_UPDATE_CODE);
 
     unsigned char hash[EVP_MAX_MD_SIZE];
     unsigned int length_of_hash = 0;
@@ -132,7 +137,7 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept
     int check_final = EVP_DigestFinal_ex(context, hash, &length_of_hash);
 
     // check_final 1 is success, 0 is failure
-    if (check_final == 0) return "";
+    if (check_final == 0) throw AuthException(ERR_HASH_FINAL, ERR_HASH_FINAL_CODE);
 
     std::stringstream ss;
     for(unsigned int i = 0; i < length_of_hash; ++i)
