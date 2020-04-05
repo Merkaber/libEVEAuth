@@ -87,7 +87,7 @@ namespace EVEAuth {
          * Generates the authentication url for the web-login
          * @return The authentication url
          */
-        std::string& generate_auth_url() noexcept;
+        std::string& generate_auth_url() noexcept(false);
 
         /**
          * Starts the token request and validation

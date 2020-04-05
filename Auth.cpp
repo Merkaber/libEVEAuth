@@ -50,9 +50,13 @@ EVEAuth::Auth::~Auth() noexcept
     delete token;
 }
 
-std::string& EVEAuth::Auth::generate_auth_url() noexcept
+std::string& EVEAuth::Auth::generate_auth_url() noexcept (false)
 {
-    generate_code_challenge();
+    try {
+        generate_code_challenge();
+    } catch (AuthException& e) {
+        throw AuthException(e.what(), e.get_error_code());
+    }
 
     if (authentication_url.empty()) {
         put_url_together();
