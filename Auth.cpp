@@ -308,7 +308,7 @@ void EVEAuth::Auth::send_token_request() noexcept(false)
 
         res = curl_easy_perform(curl);
         if (res != CURLE_OK) {
-            std::string tmp = std::string(ERR_CEP_TOKEN_REQ) + curl_easy_strerror(res);
+            std::string tmp = std::string(ERR_CEP_TOKEN_REQ) + " " + curl_easy_strerror(res);
             throw AuthException(tmp, ERR_CEP_TOKEN_REQ_CODE);
         } else {
             long responseCode;
@@ -364,8 +364,12 @@ EVEAuth::Token* EVEAuth::Auth::start() noexcept
         return nullptr;
     }
 
-    send_token_request();
-    parse_token_request();
+    try {
+        send_token_request();
+        parse_token_request();
+    } catch (AuthException& e) {
+        throw AuthException(e.what(), e.get_error_code());
+    }
     token->decode_access_token();
     verify_token();
     return token;
