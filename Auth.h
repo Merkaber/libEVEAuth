@@ -32,6 +32,11 @@
 #define ERR_HASH_FINAL "Final hash failed!"
 #define ERR_HASH_FINAL_CODE 00103
 
+#define ERR_CEP_TOKEN_REQ "curl_easy_perform() failed!"
+#define ERR_CEP_TOKEN_REQ_CODE 00104
+#define ERR_CEP_TOKEN_REQ_RSP "curl response was not 200!"
+#define ERR_CEP_TOKEN_REQ_RSP_CODE 00105
+
 namespace EVEAuth {
 
     /**
@@ -110,7 +115,7 @@ namespace EVEAuth {
         /**
          * Sends the token request
          */
-        void send_token_request() noexcept;
+        void send_token_request() noexcept(false);
 
         /**
          * Verifies the current token

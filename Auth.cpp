@@ -271,7 +271,7 @@ void EVEAuth::Auth::send_jwt_request() noexcept
     curl_global_cleanup();
 }
 
-void EVEAuth::Auth::send_token_request() noexcept
+void EVEAuth::Auth::send_token_request() noexcept(false)
 {
     CURL* curl;
     CURLcode res;
@@ -308,14 +308,16 @@ void EVEAuth::Auth::send_token_request() noexcept
 
         res = curl_easy_perform(curl);
         if (res != CURLE_OK) {
-            curl_response = false;
-            fprintf(stderr, "curl_easy_perform() failed: %s \n", curl_easy_strerror(res));
+            std::string tmp = std::string(ERR_CEP_TOKEN_REQ) + curl_easy_strerror(res);
+            throw AuthException(tmp, ERR_CEP_TOKEN_REQ_CODE);
         } else {
             long responseCode;
             curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
             if (responseCode == 200) {
                 curl_response = true;
                 download_response = std::string(chu.memory);
+            } else {
+                throw AuthException(ERR_CEP_TOKEN_REQ_RSP, ERR_CEP_TOKEN_REQ_RSP_CODE);
             }
         }
 
