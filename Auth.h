@@ -37,6 +37,11 @@
 #define ERR_CEP_TOKEN_REQ_RSP "curl response was not 200!"
 #define ERR_CEP_TOKEN_REQ_RSP_CODE 00105
 
+#define ERR_PICOJSON "picojson:"
+#define ERR_PICOJSON_CODE 00106
+#define ERR_PICOJSON_PARSE "picojson: parse error!"
+#define ERR_PICOJSON_PARSE_CODE 00107
+
 namespace EVEAuth {
 
     /**
@@ -125,7 +130,7 @@ namespace EVEAuth {
         /**
          * Parse the last download_response and set the data to the token object
          */
-        void parse_token_request() noexcept;
+        void parse_token_request() noexcept(false);
 
         /**
          * Sends the jwt request

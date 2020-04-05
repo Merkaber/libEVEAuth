@@ -327,15 +327,21 @@ void EVEAuth::Auth::send_token_request() noexcept(false)
     curl_global_cleanup();
 }
 
-void EVEAuth::Auth::parse_token_request() noexcept
+void EVEAuth::Auth::parse_token_request() noexcept(false)
 {
     token_response = download_response;
     picojson::value val;
-    std::string parse_error = picojson::parse(val, token_response);
+    std::string parse_error;
+    try {
+        parse_error = picojson::parse(val, token_response);
+    } catch (std::runtime_error& e) {
+        std::string tmp = std::string(ERR_PICOJSON) + " " + e.what();
+        throw AuthException(tmp, ERR_PICOJSON_CODE);
+    }
 
     std::string access_token;
     if (!parse_error.empty()) {
-        return;
+        throw AuthException(ERR_PICOJSON_PARSE, ERR_PICOJSON_PARSE_CODE);
     }
 
     access_token = val.get("access_token").get<std::string>();
