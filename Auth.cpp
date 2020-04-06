@@ -253,6 +253,9 @@ void EVEAuth::Auth::send_jwt_request() noexcept
         curl_easy_setopt(curl, CURLOPT_URL, jwt_keys_url.c_str());
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_memory_callback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*) &chu);
+#ifdef WIN
+        curl_easy_setopt(curl, CURLOPT_CAINFO, cacert_path.c_str());
+#endif
 
         res = curl_easy_perform(curl);
         if (res != CURLE_OK) {
@@ -305,6 +308,9 @@ void EVEAuth::Auth::send_token_request() noexcept(false)
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, EVEAuth::write_memory_callback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*) &chu);
         curl_easy_setopt(curl, CURLOPT_USERAGENT, curl_agent.c_str());
+#ifdef WIN
+        curl_easy_setopt(curl, CURLOPT_CAINFO, cacert_path.c_str());
+#endif
 
         res = curl_easy_perform(curl);
         if (res != CURLE_OK) {
@@ -357,7 +363,7 @@ void EVEAuth::Auth::parse_token_request() noexcept(false)
     }
 }
 
-EVEAuth::Token* EVEAuth::Auth::start() noexcept
+EVEAuth::Token* EVEAuth::Auth::start() noexcept(false)
 {
     // If there is not code value set, return nullptr
     if (code_val.empty()) {
@@ -632,4 +638,14 @@ const std::string& EVEAuth::Auth::get_grant_type_val() const noexcept
 void EVEAuth::Auth::set_grant_type_val(const std::string& m_grant_type_val) noexcept
 {
     grant_type_val = m_grant_type_val;
+}
+
+const std::string& EVEAuth::Auth::get_cacert_path() const noexcept
+{
+    return cacert_path;
+}
+
+void EVEAuth::Auth::set_cacert_path(const std::string& m_cacert_path) noexcept
+{
+    cacert_path = m_cacert_path;
 }

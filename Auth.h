@@ -103,7 +103,7 @@ namespace EVEAuth {
          * Starts the token request and validation
          * @return If successful, returns the token for authentication
          */
-        EVEAuth::Token* start() noexcept;
+        EVEAuth::Token* start() noexcept(false);
 
     private:
 
@@ -233,6 +233,9 @@ namespace EVEAuth {
         const std::string& get_grant_type_val() const noexcept;
         void set_grant_type_val(const std::string& m_grant_type_val) noexcept;
 
+        const std::string& get_cacert_path() const noexcept;
+        void set_cacert_path(const std::string& m_cacert_path) noexcept;
+
         /* Predefined query parameter and values for login */
     private:
         std::string host = "login.eveonline.com";
@@ -259,6 +262,7 @@ namespace EVEAuth {
         std::string response_type_val = "code";
         std::string grant_type_val = "authorization_code";
 
+        std::string cacert_path = "cacert.pem";
     };
 
     /**
