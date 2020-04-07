@@ -22,25 +22,33 @@
  */
 #define PEM_BUFF_SIZE 4096
 
-/* Base64 Exception Range from 00100 - 00199 */
-#define ERR_HASH_CTX "Could not create hash context!"
-#define ERR_HASH_CTX_CODE 00100
-#define ERR_HASH_INIT "Could not initialize hash!"
-#define ERR_HASH_INIT_CODE 00101
-#define ERR_HASH_UPDATE "Could not update hash!"
-#define ERR_HASH_UPDATE_CODE 00102
-#define ERR_HASH_FINAL "Final hash failed!"
-#define ERR_HASH_FINAL_CODE 00103
+/* Base64 Exception Range from 100 - 199 */
+#define ERR_HASH_CTX "Auth: generate_hash: Could not create hash context!"
+#define ERR_HASH_CTX_CODE 100
+#define ERR_HASH_INIT "Auth: generate_hash: Could not initialize hash!"
+#define ERR_HASH_INIT_CODE 101
+#define ERR_HASH_UPDATE "Auth: generate_hash: Could not update hash!"
+#define ERR_HASH_UPDATE_CODE 102
+#define ERR_HASH_FINAL "Auth: generate_hash: Final hash failed!"
+#define ERR_HASH_FINAL_CODE 103
 
-#define ERR_CEP_TOKEN_REQ "curl_easy_perform() failed!"
-#define ERR_CEP_TOKEN_REQ_CODE 00104
-#define ERR_CEP_TOKEN_REQ_RSP "curl response was not 200!"
-#define ERR_CEP_TOKEN_REQ_RSP_CODE 00105
+#define ERR_CEP_TOKEN_REQ "Auth: send_token_request: curl_easy_perform() failed!"
+#define ERR_CEP_TOKEN_REQ_CODE 104
+#define ERR_CEP_TOKEN_REQ_RSP "Auth: send_token_request: curl response was not 200!"
+#define ERR_CEP_TOKEN_REQ_RSP_CODE 105
 
-#define ERR_PICOJSON "picojson:"
-#define ERR_PICOJSON_CODE 00106
-#define ERR_PICOJSON_PARSE "picojson: parse error!"
-#define ERR_PICOJSON_PARSE_CODE 00107
+#define ERR_PTR_PICOJSON "Auth: parse_token_request: picojson:"
+#define ERR_PTR_PICOJSON_CODE 106
+#define ERR_PTR_PICOJSON_PARSE "Auth: parse_token_request: picojson: parse error!"
+#define ERR_PTR_PICOJSON_PARSE_CODE 107
+
+#define ERR_CEP_JWT_REQ "Auth: send_jwt_request: curl_easy_perform() failed!"
+#define ERR_CEP_JWT_REQ_CODE 108
+#define ERR_CEP_JWT_REQ_RSP "Auth: send_jwt_request: curl response was not 200!"
+#define ERR_CEP_JWT_REQ_RSP_CODE 109
+
+#define ERR_VFT_PICOJSON_PARSE "Auth: verify_token: picojson: parse error!"
+#define ERR_VFT_PICOJSON_PARSE_CODE 110
 
 namespace EVEAuth {
 
@@ -125,7 +133,7 @@ namespace EVEAuth {
         /**
          * Verifies the current token
          */
-        void verify_token() noexcept;
+        void verify_token() noexcept(false);
 
         /**
          * Parse the last download_response and set the data to the token object
@@ -135,7 +143,7 @@ namespace EVEAuth {
         /**
          * Sends the jwt request
          */
-        void send_jwt_request() noexcept;
+        void send_jwt_request() noexcept(false);
 
     private:
 

@@ -177,14 +177,14 @@ std::string EVEAuth::generate_pem_key(const std::string &n, const std::string &e
     return std::string(buffer);
 }
 
-void EVEAuth::Auth::verify_token() noexcept
+void EVEAuth::Auth::verify_token() noexcept(false)
 {
     send_jwt_request();
     std::string jwt_keys_response = download_response;
     picojson::value val;
     std::string parse_error = picojson::parse(val, jwt_keys_response);
     if (!parse_error.empty()) {
-        return;
+        throw AuthException(ERR_VFT_PICOJSON_PARSE, ERR_VFT_PICOJSON_PARSE_CODE);
     }
 
     // We want the EVEAuth::Token::algorithm and its related values
@@ -208,12 +208,12 @@ void EVEAuth::Auth::verify_token() noexcept
     picojson::value header_val;
     std::string header_parse_error = picojson::parse(header_val, token->get_header());
     if (!header_parse_error.empty()) {
-        return;
+        throw AuthException(ERR_VFT_PICOJSON_PARSE, ERR_VFT_PICOJSON_PARSE_CODE);
     }
 
     // Check if the decoded token header algorithm matches EVEAuth::Token::algorithm
     if (header_val.get("alg").get<std::string>() != EVEAuth::Token::algorithm) {
-        return;
+        throw AuthException(ERR_VFT_PICOJSON_PARSE, ERR_VFT_PICOJSON_PARSE_CODE);
     }
 
     // Generate public key in pem format
@@ -224,7 +224,7 @@ void EVEAuth::Auth::verify_token() noexcept
     verifier.verify(jwt_decoded);
 }
 
-void EVEAuth::Auth::send_jwt_request() noexcept
+void EVEAuth::Auth::send_jwt_request() noexcept(false)
 {
     CURL* curl;
     CURLcode res;
@@ -247,14 +247,15 @@ void EVEAuth::Auth::send_jwt_request() noexcept
 
         res = curl_easy_perform(curl);
         if (res != CURLE_OK) {
-            curl_response = false;
-            fprintf(stderr, "curl_easy_perform() failed: %s \n", curl_easy_strerror(res));
+            std::string tmp = std::string(ERR_CEP_JWT_REQ) + " " + curl_easy_strerror(res);
+            throw AuthException(tmp, ERR_CEP_JWT_REQ_CODE);
         } else {
             long responseCode;
             curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
             if (responseCode == 200) {
-                curl_response = true;
                 download_response = std::string(chu.memory);
+            } else {
+                throw AuthException(ERR_CEP_JWT_REQ_RSP, ERR_CEP_JWT_REQ_RSP_CODE);
             }
         }
         curl_easy_cleanup(curl);
@@ -329,13 +330,13 @@ void EVEAuth::Auth::parse_token_request() noexcept(false)
     try {
         parse_error = picojson::parse(val, token_response);
     } catch (std::runtime_error& e) {
-        std::string tmp = std::string(ERR_PICOJSON) + " " + e.what();
-        throw AuthException(tmp, ERR_PICOJSON_CODE);
+        std::string tmp = std::string(ERR_PTR_PICOJSON) + " " + e.what();
+        throw AuthException(tmp, ERR_PTR_PICOJSON_CODE);
     }
 
     std::string access_token;
     if (!parse_error.empty()) {
-        throw AuthException(ERR_PICOJSON_PARSE, ERR_PICOJSON_PARSE_CODE);
+        throw AuthException(ERR_PTR_PICOJSON_PARSE, ERR_PTR_PICOJSON_PARSE_CODE);
     }
 
     access_token = val.get("access_token").get<std::string>();

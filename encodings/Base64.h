@@ -8,13 +8,13 @@
 
 #include "../shared.h"
 
-/* Base64 Exception Range from 00010 - 00099 */
-#define ERR_TOO_MANY_FILLS "The given string has to many fills!"
-#define ERR_TOO_MANY_FILLS_CODE 00010
-#define ERR_WRONG_LENGTH "The given string has a wrong length! Maybe not Base64?"
-#define ERR_WRONG_LENGTH_CODE 00011
-#define ERR_NO_BASE_CHAR_FOUND "No Base64 char for the given char found!"
-#define ERR_NO_BASE_CHAR_FOUND_CODE 00012
+/* Base64 Exception Range from 10 - 99 */
+#define ERR_TOO_MANY_FILLS "Base64: decode: The given string has to many fills!"
+#define ERR_TOO_MANY_FILLS_CODE 10
+#define ERR_WRONG_LENGTH "Base64: decode: The given string has a wrong length! Maybe not Base64?"
+#define ERR_WRONG_LENGTH_CODE 11
+#define ERR_NO_BASE_CHAR_FOUND "Base64: find_base_char: No Base64 char for the given char found!"
+#define ERR_NO_BASE_CHAR_FOUND_CODE 12
 
 namespace EVEAuth {
 
