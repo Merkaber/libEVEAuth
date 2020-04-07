@@ -154,22 +154,10 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept(false)
 
 std::string EVEAuth::generate_pem_key(const std::string &n, const std::string &e) noexcept
 {
-    auto fix_padding = [] (std::string& s) {
-        switch (s.size() % 4u) {
-            case 1:
-                s += EVEAuth::Base64::base64_url_safe_fill;
-            case 2:
-                s += EVEAuth::Base64::base64_url_safe_fill;
-            case 3:
-                s += EVEAuth::Base64::base64_url_safe_fill;
-            default:
-                break;
-        }
-    };
     std::string tmp_n = n;
     std::string tmp_e = e;
-    fix_padding(tmp_n);
-    fix_padding(tmp_e);
+    EVEAuth::fix_padding(tmp_n);
+    EVEAuth::fix_padding(tmp_e);
 
     std::string dec_modulus = EVEAuth::Base64(tmp_n).decode_url_safe();
     std::string dec_exponent = EVEAuth::Base64(tmp_e).decode_url_safe();

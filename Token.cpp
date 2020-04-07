@@ -27,22 +27,10 @@ void EVEAuth::Token::decode_access_token() noexcept
     std::string header_enc = access_token.substr(0, header_end);
     std::string payload_enc = access_token.substr(header_end + 1, payload_end - header_end - 1);
     std::string signature_enc = access_token.substr(payload_end + 1);
-
-    auto fix_padding = [] (std::string& s) {
-        switch (s.size() % 4u) {
-            case 1:
-                s += EVEAuth::Base64::base64_url_safe_fill;
-            case 2:
-                s += EVEAuth::Base64::base64_url_safe_fill;
-            case 3:
-                s += EVEAuth::Base64::base64_url_safe_fill;
-            default:
-                break;
-        }
-    };
-    fix_padding(header_enc);
-    fix_padding(payload_enc);
-    fix_padding(signature_enc);
+    
+    EVEAuth::fix_padding(header_enc);
+    EVEAuth::fix_padding(payload_enc);
+    EVEAuth::fix_padding(signature_enc);
 
     header = EVEAuth::Base64(header_enc).decode_url_safe();
     payload = EVEAuth::Base64(payload_enc).decode_url_safe();
