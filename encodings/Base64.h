@@ -143,4 +143,10 @@ namespace EVEAuth {
         /// The input string which has been set when the Base64 object was created
         const std::string input_str;
     };
+
+    /**
+     * Fixes the size of the given string in order to make it padded base64
+     * @param s The string which is unpadded base64
+     */
+    void fix_padding(std::string& s) noexcept;
 }

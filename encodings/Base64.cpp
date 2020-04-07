@@ -231,3 +231,17 @@ std::size_t EVEAuth::Base64::find_base_char(const char &c) noexcept(false)
 }
 
 EVEAuth::Base64::~Base64() noexcept = default;
+
+void EVEAuth::fix_padding(std::string &s) noexcept
+{
+    switch (s.size() % 4u) {
+        case 1:
+            s += EVEAuth::Base64::base64_url_safe_fill;
+        case 2:
+            s += EVEAuth::Base64::base64_url_safe_fill;
+        case 3:
+            s += EVEAuth::Base64::base64_url_safe_fill;
+        default:
+            break;
+    }
+}
