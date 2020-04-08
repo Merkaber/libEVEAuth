@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.15)
 project(EVEAuth)
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+project(libEVEAuth VERSION 1.0.0)
 
 if(WIN32)
     add_definitions(-DCURL_STATICLIB)
@@ -19,3 +22,7 @@ find_package(Threads REQUIRED)
 add_library(${PROJECT_NAME} ${SRC_FILES})
 
 target_link_libraries(${PROJECT_NAME} curl OpenSSL::Crypto Threads::Threads dl)
+
+if(WIN32)
+    target_link_libraries(${PROJECT_NAME} curl OpenSSL::Crypto Threads::Threads dl wldap32 ws2_32)
+endif(WIN32)
