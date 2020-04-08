@@ -356,6 +356,76 @@ void EVEAuth::Auth::parse_token_request() noexcept(false)
     }
 }
 
+void EVEAuth::Auth::refresh_token() noexcept(false)
+{
+    try {
+        send_token_request();
+        parse_token_request();
+    } catch (AuthException& e) {
+        throw AuthException(e.what(), e.get_error_code());
+    }
+
+    token->decode_access_token();
+    verify_token();
+}
+
+void EVEAuth::Auth::send_refresh_request() noexcept(false)
+{
+    CURL* curl;
+    CURLcode res;
+
+    struct MemoryStruct chu;
+    chu.memory = (char*) malloc(1);
+    chu.size = 0;
+
+    // Make post value string
+    std::stringstream ss;
+    ss << grant_type_param << grant_type_refresh_val;
+    ss << "&" << refresh_token_param << token->get_refresh_token();
+    ss << "&" << client_id_param << client_id;
+    std::string request_str = ss.str();
+
+    // Handle winsock stuff
+    curl_global_init(CURL_GLOBAL_ALL);
+
+    curl = curl_easy_init();
+    if (curl) {
+        struct curl_slist* chunk = nullptr;
+        std::string h_str = "Host: " + host;
+        std::string c_type_str = "Content-Type: " + content_type;
+        chunk = curl_slist_append(chunk, c_type_str.c_str());
+        chunk = curl_slist_append(chunk, h_str.c_str());
+
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
+        curl_easy_setopt(curl, CURLOPT_URL, request_url.c_str());
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, request_str.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, EVEAuth::write_memory_callback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*) &chu);
+        curl_easy_setopt(curl, CURLOPT_USERAGENT, curl_agent.c_str());
+#ifdef WIN
+        curl_easy_setopt(curl, CURLOPT_CAINFO, cacert_path.c_str());
+#endif
+
+        res = curl_easy_perform(curl);
+        if (res != CURLE_OK) {
+            std::string tmp = std::string(ERR_CEP_TOKEN_REQ) + " " + curl_easy_strerror(res);
+            throw AuthException(tmp, ERR_CEP_TOKEN_REQ_CODE);
+        } else {
+            long responseCode;
+            curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
+            if (responseCode == 200) {
+                download_response = std::string(chu.memory);
+            } else {
+                throw AuthException(ERR_CEP_TOKEN_REQ_RSP, ERR_CEP_TOKEN_REQ_RSP_CODE);
+            }
+        }
+
+        curl_easy_cleanup(curl);
+        curl_slist_free_all(chunk);
+    }
+    curl_global_cleanup();
+}
+
 EVEAuth::Token* EVEAuth::Auth::start() noexcept(false)
 {
     // If there is not code value set, return nullptr

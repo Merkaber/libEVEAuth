@@ -148,6 +148,16 @@ namespace EVEAuth {
          */
         void send_jwt_request() noexcept(false);
 
+        /**
+         * Refresh the current token
+         */
+        void refresh_token() noexcept(false);
+
+        /**
+         * Sends the refresh token request
+         */
+        void send_refresh_request() noexcept(false);
+
     private:
 
         /// The client_id which is necessary for identifying the application
@@ -267,6 +277,8 @@ namespace EVEAuth {
         std::string redirect_url_val = "https%3A%2F%2Flocalhost%2Fcallback%2F";
         std::string response_type_val = "code";
         std::string grant_type_val = "authorization_code";
+        std::string grant_type_refresh_val = "refresh_token";
+        std::string refresh_token_param = "refresh_token";
 
         std::string cacert_path = "cacert.pem";
     };
