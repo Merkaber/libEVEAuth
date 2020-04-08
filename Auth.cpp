@@ -309,7 +309,6 @@ void EVEAuth::Auth::send_token_request() noexcept(false)
             long responseCode;
             curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
             if (responseCode == 200) {
-                curl_response = true;
                 download_response = std::string(chu.memory);
             } else {
                 throw AuthException(ERR_CEP_TOKEN_REQ_RSP, ERR_CEP_TOKEN_REQ_RSP_CODE);

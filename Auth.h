@@ -165,9 +165,6 @@ namespace EVEAuth {
         /// The scope defines which data can be accessed through authentication
         const std::string scope_val;
 
-        /// Specifies if the last curl execution was successful or not
-        bool curl_response = false;
-
         /// The last download response
         std::string download_response = "";
 
