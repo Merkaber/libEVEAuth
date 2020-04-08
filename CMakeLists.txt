@@ -10,7 +10,7 @@ if(WIN32)
     add_definitions(-DCURL_STATICLIB)
 endif(WIN32)
 
-set(SRC_FILES encodings/Base64.cpp encodings/Base64.h shared.h Auth.cpp Auth.h Token.cpp Token.h utils/picojson.h utils/jwt.h)
+set(SRC_FILES encodings/Base64.cpp encodings/Base64.h shared.h Auth.cpp Auth.h Token.cpp Token.h utils/picojson.h utils/jwt.h utils/CallBackTimer.cpp utils/CallBackTimer.h)
 
 find_package(CURL REQUIRED)
 
