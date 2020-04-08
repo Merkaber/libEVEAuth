@@ -50,6 +50,9 @@
 #define ERR_VFT_PICOJSON_PARSE "Auth: verify_token: picojson: parse error!"
 #define ERR_VFT_PICOJSON_PARSE_CODE 110
 
+#define ERR_VFT_VRF "Auth: verify_token: token verification failed!"
+#define ERR_VFT_VRF_CODE 111
+
 namespace EVEAuth {
 
     /**
@@ -167,8 +170,6 @@ namespace EVEAuth {
 
         /// The last download response
         std::string download_response = "";
-
-        std::string token_response = "";
 
         /// The token which will hold the information for authentication
         EVEAuth::Token* token = nullptr;

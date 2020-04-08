@@ -152,7 +152,7 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept(false)
     return ss.str();
 }
 
-std::string EVEAuth::generate_pem_key(const std::string &n, const std::string &e) noexcept
+std::string EVEAuth::generate_pem_key(const std::string& n, const std::string& e) noexcept
 {
     std::string tmp_n = n;
     std::string tmp_e = e;
@@ -221,7 +221,12 @@ void EVEAuth::Auth::verify_token() noexcept(false)
 
     auto jwt_decoded = jwt::decode(token->get_access_token());
     auto verifier = jwt::verify().allow_algorithm(jwt::algorithm::rs256(pem_key, "", "", "")).with_issuer(host);
-    verifier.verify(jwt_decoded);
+    try {
+        verifier.verify(jwt_decoded);
+    } catch (jwt::token_verification_exception& e) {
+        std::string tmp = std::string(ERR_VFT_VRF) + " " + e.what();
+        throw EVEAuth::AuthException(tmp, ERR_VFT_VRF_CODE);
+    }
 }
 
 void EVEAuth::Auth::send_jwt_request() noexcept(false)
@@ -323,7 +328,7 @@ void EVEAuth::Auth::send_token_request() noexcept(false)
 
 void EVEAuth::Auth::parse_token_request() noexcept(false)
 {
-    token_response = download_response;
+    std::string token_response = download_response;
     picojson::value val;
     std::string parse_error;
     try {
