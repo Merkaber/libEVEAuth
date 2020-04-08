@@ -249,6 +249,12 @@ namespace EVEAuth {
         const std::string& get_grant_type_val() const noexcept;
         void set_grant_type_val(const std::string& m_grant_type_val) noexcept;
 
+        const std::string& get_grant_type_refresh_val() const noexcept;
+        void set_grant_type_refresh_val(const std::string& m_grant_type_refresh_val) noexcept;
+
+        const std::string& get_refresh_token_param() const noexcept;
+        void set_refresh_token_param(const std::string& m_refresh_token_param) noexcept;
+
         const std::string& get_cacert_path() const noexcept;
         void set_cacert_path(const std::string& m_cacert_path) noexcept;
 

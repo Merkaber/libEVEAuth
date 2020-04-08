@@ -709,6 +709,26 @@ void EVEAuth::Auth::set_grant_type_val(const std::string& m_grant_type_val) noex
     grant_type_val = m_grant_type_val;
 }
 
+const std::string& EVEAuth::Auth::get_grant_type_refresh_val() const noexcept
+{
+    return grant_type_refresh_val;
+}
+
+void EVEAuth::Auth::set_grant_type_refresh_val(const std::string& m_grant_type_refresh_val) noexcept
+{
+    grant_type_refresh_val = m_grant_type_refresh_val;
+}
+
+const std::string& EVEAuth::Auth::get_refresh_token_param() const noexcept
+{
+    return refresh_token_param;
+}
+
+void EVEAuth::Auth::set_refresh_token_param(const std::string& m_refresh_token_param) noexcept
+{
+    refresh_token_param = m_refresh_token_param;
+}
+
 const std::string& EVEAuth::Auth::get_cacert_path() const noexcept
 {
     return cacert_path;
