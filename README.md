@@ -6,8 +6,6 @@ libEVEAuth is a simple library for authentication handling with the
 If you want to make a native C++ application... this library is for you.\
 If you want to make a native C application... this library is **not** for you.
 
-Target for now is Linux.
-
 #### First Milestone - reached:
 The first milestone will be the implementation of the 
 [standard authentication](https://github.com/esi/esi-docs/blob/master/docs/sso/native_sso_flow.md) 
@@ -40,4 +38,29 @@ Checking for windows support.
 #### Third party libraries used:
 - [picojson](https://github.com/kazuho/picojson) by Cybozu Labs, Inc. / Kazuho Oku
 - [jwt-cpp](https://github.com/Thalhammer/jwt-cpp) by Thalhammer
+
+#### Building
+I recommend using cmake but it is not necessary.
+
+#### Linking
+Since the library depends on [OpenSSL](https://www.openssl.org/) and [libcurl](https://curl.haxx.se/libcurl/) you need
+to link against them properly. Linking on Linux is easy compared to windows.
+
+##### Linux
+
+On Linux you have to link against libcurl and openssl.
+
+```sh
+-EVEAuth -curl -OpenSSL::Crypto -Threads::Threads dl
+```
+
+##### Windows
+
+On Windows you have to link against wldap32 ws2_32 too.
+
+```sh
+-EVEAuth -curl -OpenSSL::Crypto -Threads::Threads dl -wldap32 -ws2_32
+```
+
+
 
