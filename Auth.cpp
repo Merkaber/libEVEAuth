@@ -27,7 +27,8 @@
 
 EVEAuth::AuthException::AuthException(std::string message, int error_code) noexcept : message(std::move(message)), error_code(error_code)
 {
-
+    // Handle winsock stuff
+    curl_global_init(CURL_GLOBAL_ALL);
 }
 
 const char* EVEAuth::AuthException::what() const noexcept
@@ -47,6 +48,7 @@ EVEAuth::Auth::Auth(std::string &client_id, std::string& scope_val) noexcept : c
 
 EVEAuth::Auth::~Auth() noexcept
 {
+    curl_global_cleanup();
     delete token;
 }
 
@@ -238,14 +240,19 @@ void EVEAuth::Auth::send_jwt_request() noexcept(false)
     chu.memory = (char*) malloc(1);
     chu.size = 0;
 
-    // Handle winsock stuff
-    curl_global_init(CURL_GLOBAL_ALL);
-
     curl = curl_easy_init();
     if (curl) {
+        struct curl_slist* chunk = nullptr;
+        std::string h_str = "Host: " + host;
+        std::string c_type_str = "Content-Type: " + content_type;
+        chunk = curl_slist_append(chunk, c_type_str.c_str());
+        chunk = curl_slist_append(chunk, h_str.c_str());
+
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
         curl_easy_setopt(curl, CURLOPT_URL, jwt_keys_url.c_str());
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_memory_callback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*) &chu);
+        curl_easy_setopt(curl, CURLOPT_USERAGENT, curl_agent.c_str());
 #ifdef WIN
         curl_easy_setopt(curl, CURLOPT_CAINFO, cacert_path.c_str());
 #endif
@@ -265,7 +272,6 @@ void EVEAuth::Auth::send_jwt_request() noexcept(false)
         }
         curl_easy_cleanup(curl);
     }
-    curl_global_cleanup();
 }
 
 void EVEAuth::Auth::send_token_request() noexcept(false)
@@ -284,9 +290,6 @@ void EVEAuth::Auth::send_token_request() noexcept(false)
     ss << "&" << code_param << code_val;
     ss << "&" << code_verifier_param << code_verifier;
     std::string request_str = ss.str();
-
-    // Handle winsock stuff
-    curl_global_init(CURL_GLOBAL_ALL);
 
     curl = curl_easy_init();
     if (curl) {
@@ -323,7 +326,6 @@ void EVEAuth::Auth::send_token_request() noexcept(false)
         curl_easy_cleanup(curl);
         curl_slist_free_all(chunk);
     }
-    curl_global_cleanup();
 }
 
 void EVEAuth::Auth::parse_token_request() noexcept(false)
@@ -389,9 +391,6 @@ void EVEAuth::Auth::send_refresh_request() noexcept(false)
     ss << "&" << client_id_param << client_id;
     std::string request_str = ss.str();
 
-    // Handle winsock stuff
-    curl_global_init(CURL_GLOBAL_ALL);
-
     curl = curl_easy_init();
     if (curl) {
         struct curl_slist* chunk = nullptr;
@@ -427,7 +426,6 @@ void EVEAuth::Auth::send_refresh_request() noexcept(false)
         curl_easy_cleanup(curl);
         curl_slist_free_all(chunk);
     }
-    curl_global_cleanup();
 }
 
 EVEAuth::Token* EVEAuth::Auth::start() noexcept(false)
