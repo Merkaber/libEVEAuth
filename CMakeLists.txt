@@ -4,7 +4,7 @@ project(EVEAuth)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-project(libEVEAuth VERSION 1.0.0)
+project(EVEAuth VERSION 1.0.0)
 
 if(WIN32)
     add_definitions(-DCURL_STATICLIB)

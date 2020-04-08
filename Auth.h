@@ -280,7 +280,7 @@ namespace EVEAuth {
         std::string grant_type_refresh_val = "refresh_token";
         std::string refresh_token_param = "refresh_token";
 
-        std::string cacert_path = "cacert.pem";
+        std::string cacert_path = "C:\\Users\\Merkaber\\Documents\\dev\\libEVEAuth\\cacert.pem";
     };
 
     /**
