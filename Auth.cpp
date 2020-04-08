@@ -366,7 +366,11 @@ void EVEAuth::Auth::refresh_token() noexcept(false)
     }
 
     token->decode_access_token();
-    verify_token();
+    try {
+        verify_token();
+    } catch (AuthException& e) {
+        throw AuthException(e.what(), e.get_error_code());
+    }
 }
 
 void EVEAuth::Auth::send_refresh_request() noexcept(false)
@@ -440,7 +444,11 @@ EVEAuth::Token* EVEAuth::Auth::start() noexcept(false)
         throw AuthException(e.what(), e.get_error_code());
     }
     token->decode_access_token();
-    verify_token();
+    try {
+        verify_token();
+    } catch (AuthException& e) {
+        throw AuthException(e.what(), e.get_error_code());
+    }
     return token;
 }
 
