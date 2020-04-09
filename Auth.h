@@ -53,6 +53,11 @@
 #define ERR_VFT_VRF "Auth: verify_token: token verification failed!"
 #define ERR_VFT_VRF_CODE 111
 
+#define ERR_RET_TOKEN_REQ "Auth: refresh_token_request: curl_easy_perform() failed!"
+#define ERR_RET_TOKEN_REQ_CODE 112
+#define ERR_RET_TOKEN_RSP "Auth: refresh_token_request: curl response was not 200!"
+#define ERR_RET_TOKEN_RSP_CODE 113
+
 namespace EVEAuth {
 
     /**
@@ -284,7 +289,7 @@ namespace EVEAuth {
         std::string response_type_val = "code";
         std::string grant_type_val = "authorization_code";
         std::string grant_type_refresh_val = "refresh_token";
-        std::string refresh_token_param = "refresh_token";
+        std::string refresh_token_param = "refresh_token=";
 
         std::string cacert_path = "C:\\Users\\Merkaber\\Documents\\dev\\libEVEAuth\\cacert.pem";
     };

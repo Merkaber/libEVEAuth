@@ -267,10 +267,12 @@ void EVEAuth::Auth::send_jwt_request() noexcept(false)
             if (responseCode == 200) {
                 download_response = std::string(chu.memory);
             } else {
-                throw AuthException(ERR_CEP_JWT_REQ_RSP, ERR_CEP_JWT_REQ_RSP_CODE);
+                std::string tmp = std::string(ERR_CEP_JWT_REQ_RSP) + " Code: " + std::to_string(responseCode);
+                throw AuthException(tmp, ERR_CEP_JWT_REQ_RSP_CODE);
             }
         }
         curl_easy_cleanup(curl);
+        curl_slist_free_all(chunk);
     }
 }
 
@@ -319,7 +321,8 @@ void EVEAuth::Auth::send_token_request() noexcept(false)
             if (responseCode == 200) {
                 download_response = std::string(chu.memory);
             } else {
-                throw AuthException(ERR_CEP_TOKEN_REQ_RSP, ERR_CEP_TOKEN_REQ_RSP_CODE);
+                std::string tmp = std::string(ERR_CEP_TOKEN_REQ_RSP) + " Code: " + std::to_string(responseCode);
+                throw AuthException(tmp, ERR_CEP_TOKEN_REQ_RSP_CODE);
             }
         }
 
@@ -361,7 +364,7 @@ void EVEAuth::Auth::parse_token_request() noexcept(false)
 void EVEAuth::Auth::refresh_token() noexcept(false)
 {
     try {
-        send_token_request();
+        send_refresh_request();
         parse_token_request();
     } catch (AuthException& e) {
         throw AuthException(e.what(), e.get_error_code());
@@ -411,15 +414,16 @@ void EVEAuth::Auth::send_refresh_request() noexcept(false)
 
         res = curl_easy_perform(curl);
         if (res != CURLE_OK) {
-            std::string tmp = std::string(ERR_CEP_TOKEN_REQ) + " " + curl_easy_strerror(res);
-            throw AuthException(tmp, ERR_CEP_TOKEN_REQ_CODE);
+            std::string tmp = std::string(ERR_RET_TOKEN_REQ) + " " + curl_easy_strerror(res);
+            throw AuthException(tmp, ERR_RET_TOKEN_REQ_CODE);
         } else {
             long responseCode;
             curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
             if (responseCode == 200) {
                 download_response = std::string(chu.memory);
             } else {
-                throw AuthException(ERR_CEP_TOKEN_REQ_RSP, ERR_CEP_TOKEN_REQ_RSP_CODE);
+                std::string tmp = std::string(ERR_RET_TOKEN_RSP) + " Code: " + std::to_string(responseCode);
+                throw AuthException(tmp, ERR_RET_TOKEN_RSP_CODE);
             }
         }
 
