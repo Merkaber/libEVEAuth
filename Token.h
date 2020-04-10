@@ -8,12 +8,21 @@
 
 #include "shared.h"
 
+/* Base64 Exception Range from 200 - 299 */
+#define F_DAT_NAME "decode_access_token(): "
+#define F_PC_NAME "parse_claims(): "
+#define ERR_PC_PICOJSON "picojson: "
+#define ERR_PC_PICOJSON_CODE 200
+
 namespace EVEAuth {
     class Token {
     public:
         Token() noexcept(false);
 
-        void decode_access_token() noexcept;
+        void decode_access_token() noexcept(false);
+
+    private:
+        void parse_claims() noexcept(false);
 
     /* Getter and setter for private fields */
     public:

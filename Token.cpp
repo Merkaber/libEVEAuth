@@ -7,12 +7,14 @@
 #include <iostream>
 #include "Token.h"
 #include "encodings/Base64.h"
+#include "utils/picojson.h"
+#include "Auth.h"
 
 const std::string EVEAuth::Token::algorithm = "RS256";
 
 EVEAuth::Token::Token() noexcept(false) = default;
 
-void EVEAuth::Token::decode_access_token() noexcept
+void EVEAuth::Token::decode_access_token() noexcept(false)
 {
     int header_end = access_token.find('.');
     if (header_end == std::string::npos) {
@@ -35,6 +37,32 @@ void EVEAuth::Token::decode_access_token() noexcept
     header = EVEAuth::Base64(header_enc).decode_url_safe();
     payload = EVEAuth::Base64(payload_enc).decode_url_safe();
     signature = EVEAuth::Base64(signature_enc).decode_url_safe();
+
+    try {
+        parse_claims();
+    } catch (EVEAuth::AuthException& e) {
+        throw EVEAuth::AuthException{make_err_msg({F_DAT_NAME, e.what()}), e.get_error_code()};
+    }
+}
+
+void EVEAuth::Token::parse_claims() noexcept(false)
+{
+    picojson::value val;
+    std::string parse_error;
+    try {
+        parse_error = picojson::parse(val, payload);
+    } catch (EVEAuth::AuthException& e) {
+        throw EVEAuth::AuthException{make_err_msg({F_PC_NAME, ERR_PC_PICOJSON, e.what()}), ERR_PC_PICOJSON_CODE};
+    }
+
+    if (!parse_error.empty()) {
+        throw EVEAuth::AuthException{make_err_msg({F_PC_NAME, ERR_PC_PICOJSON, parse_error}), ERR_PC_PICOJSON_CODE};
+    }
+
+    character_name = val.get("name").get<std::string>();
+    std::string sub = val.get("sub").get<std::string>();
+    std::vector<std::string> v = split_by_delimiter(sub, ":");
+    character_id = v[2];
 }
 
 const std::string& EVEAuth::Token::get_header() const noexcept

@@ -311,7 +311,11 @@ void EVEAuth::Auth::parse_token_request() noexcept(false)
         token->set_expires_in(expires_in);
     }
 
-    token->decode_access_token();
+    try {
+        token->decode_access_token();
+    } catch (EVEAuth::AuthException& e) {
+        throw EVEAuth::AuthException{make_err_msg({F_PTR_NAME, e.what()}), e.get_error_code()};
+    }
 }
 
 void EVEAuth::Auth::refresh_token() noexcept(false)
