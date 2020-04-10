@@ -28,8 +28,8 @@ void EVEAuth::CallBackTimer::start(int interval, std::function<void(void)> funct
     thread = std::thread([this, interval, function]()
         {
             while (execute.load(std::memory_order_acquire)) {
-                function();
                 std::this_thread::sleep_for(std::chrono::seconds(interval));
+                function();
             }
         }
     );
