@@ -28,6 +28,9 @@
 #define F_GAU_NAME "generate_auth_url(): "
 #define F_CR_NAME "curl_request(): "
 
+#define F_STR_NAME "send_token_request(): "
+#define ERR_STR_CODE 104
+
 #define ERR_CR_REQ "curl_easy_perform(): failed! "
 #define ERR_CR_REQ_CODE 114
 #define ERR_CR_RSP "curl response was not 200! "
@@ -41,11 +44,6 @@
 #define ERR_HASH_UPDATE_CODE 102
 #define ERR_HASH_FINAL "Final hash failed! "
 #define ERR_HASH_FINAL_CODE 103
-
-#define ERR_CEP_TOKEN_REQ "send_token_request(): curl_easy_perform() failed!"
-#define ERR_CEP_TOKEN_REQ_CODE 104
-#define ERR_CEP_TOKEN_REQ_RSP "send_token_request(): curl response was not 200!"
-#define ERR_CEP_TOKEN_REQ_RSP_CODE 105
 
 #define ERR_PTR_PICOJSON "parse_token_request(): picojson:"
 #define ERR_PTR_PICOJSON_CODE 106
