@@ -509,6 +509,30 @@ static size_t EVEAuth::write_memory_callback(void *contents, size_t size, size_t
     return real_size;
 }
 
+std::string EVEAuth::make_err_msg(std::initializer_list<std::string> list) noexcept
+{
+    std::stringstream ss;
+    for (auto& s : list) {
+        ss << s;
+    }
+    return ss.str();
+}
+
+std::vector<std::string> EVEAuth::split_by_delimiter(std::string& s, const std::string& d) noexcept
+{
+    std::vector<std::string> vec;
+    size_t pos = 0;
+    std::string token;
+    while ((pos = s.find(d)) != std::string::npos) {
+        token = s.substr(0, pos);
+        vec.push_back(token);
+        s.erase(0, pos + d.length());
+    }
+    vec.push_back(s);
+
+    return vec;
+}
+
 const std::string& EVEAuth::Auth::get_scope_val() const noexcept
 {
     return scope_val;

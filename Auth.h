@@ -380,4 +380,19 @@ namespace EVEAuth {
      * @return The public RSA key in pem format as std::string if successful
      */
     std::string generate_pem_key(const std::string& n, const std::string& e) noexcept;
+
+    /**
+     * Creates an error message by the given list of strings
+     * @param list The list of strings
+     * @return A string which consists out of the appended given strings from the list
+     */
+    std::string make_err_msg(std::initializer_list<std::string> list) noexcept;
+
+    /**
+     * Splits the given string by the given delimiter and saves the tokens within a vector
+     * @param s The string which will be split
+     * @param d The delimiter
+     * @return The vector with the tokens
+     */
+    std::vector<std::string> split_by_delimiter(std::string& s, const std::string& d) noexcept;
 }
