@@ -164,13 +164,21 @@ std::string EVEAuth::generate_pem_key(const std::string& n, const std::string& e
     std::string dec_modulus = EVEAuth::Base64(tmp_n).decode_url_safe();
     std::string dec_exponent = EVEAuth::Base64(tmp_e).decode_url_safe();
 
+    // Cast modulus and exponent to BIGNUM*
     BIGNUM* modulus = BN_bin2bn(reinterpret_cast<const unsigned char*>(dec_modulus.data()), dec_modulus.size(), nullptr);
     BIGNUM* exponent = BN_bin2bn(reinterpret_cast<const unsigned char*>(dec_exponent.data()), dec_exponent.size(), nullptr);
+
+    // Make RSA key
     RSA* rr = RSA_new();
     RSA_set0_key(rr, modulus, exponent, nullptr);
+
+    // Create stream in memory
     BIO* mem = BIO_new(BIO_s_mem());
+
+    // Write key to memory stream
     PEM_write_bio_RSA_PUBKEY(mem, rr);
 
+    // Reads key out of memory
     char buffer[PEM_BUFF_SIZE];
     memset(buffer, 0, PEM_BUFF_SIZE);
     BIO_read(mem, buffer, PEM_BUFF_SIZE - 1);
