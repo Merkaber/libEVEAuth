@@ -306,6 +306,8 @@ void EVEAuth::Auth::parse_token_request() noexcept(false)
         token->set_refresh_token(refresh_token);
         token->set_expires_in(expires_in);
     }
+
+    token->decode_access_token();
 }
 
 void EVEAuth::Auth::refresh_token() noexcept(false)
@@ -317,7 +319,6 @@ void EVEAuth::Auth::refresh_token() noexcept(false)
         throw EVEAuth::AuthException{make_err_msg({F_RT_NAME, e.what()}), e.get_error_code()};
     }
 
-    token->decode_access_token();
     try {
         verify_token();
     } catch (EVEAuth::AuthException& e) {
@@ -354,12 +355,22 @@ void EVEAuth::Auth::start() noexcept(false)
     } catch (EVEAuth::AuthException& e) {
         throw EVEAuth::AuthException{make_err_msg({LIBRARY_NAME, F_SA_NAME, e.what()}), e.get_error_code()};
     }
-    token->decode_access_token();
+
     try {
         verify_token();
     } catch (EVEAuth::AuthException& e) {
         throw EVEAuth::AuthException{make_err_msg({LIBRARY_NAME, F_SA_NAME, e.what()}), e.get_error_code()};
     }
+}
+
+void EVEAuth::Auth::start_refresh_token() noexcept(false)
+{
+
+}
+
+void EVEAuth::Auth::stop_refresh_token() noexcept
+{
+    
 }
 
 void EVEAuth::Auth::curl_request(const std::string& url, const std::string& post_fields) noexcept(false)

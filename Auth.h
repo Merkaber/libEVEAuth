@@ -133,18 +133,6 @@ namespace EVEAuth {
          */
         void start() noexcept(false);
 
-    private:
-
-        /**
-         * Generates the code challenge and code verifier
-         */
-        void generate_code_challenge() noexcept(false);
-
-        /**
-         * Generates the authentication url if none is given
-         */
-        void put_url_together() noexcept;
-
         /**
          * Sends the token request
          */
@@ -161,6 +149,27 @@ namespace EVEAuth {
         void parse_token_request() noexcept(false);
 
         /**
+         * Sends the refresh token request
+         */
+        void send_refresh_request() noexcept(false);
+
+        void start_refresh_token() noexcept(false);
+
+        void stop_refresh_token() noexcept;
+
+    private:
+
+        /**
+         * Generates the code challenge and code verifier
+         */
+        void generate_code_challenge() noexcept(false);
+
+        /**
+         * Generates the authentication url if none is given
+         */
+        void put_url_together() noexcept;
+
+        /**
          * Sends the jwt request
          */
         void send_jwt_request() noexcept(false);
@@ -169,11 +178,6 @@ namespace EVEAuth {
          * Refresh the current token
          */
         void refresh_token() noexcept(false);
-
-        /**
-         * Sends the refresh token request
-         */
-        void send_refresh_request() noexcept(false);
 
         /**
          * Makes a curl request with the given post fields appended to the request_url
