@@ -188,12 +188,23 @@ std::string EVEAuth::generate_pem_key(const std::string& n, const std::string& e
 
 void EVEAuth::Auth::verify_token() noexcept(false)
 {
-    send_jwt_request();
+    try {
+        send_jwt_request();
+    } catch (EVEAuth::AuthException& e) {
+        throw EVEAuth::AuthException{make_err_msg({F_VFT_NAME, e.what()}), e.get_error_code()};
+    }
+
     std::string jwt_keys_response = download_response;
     picojson::value val;
-    std::string parse_error = picojson::parse(val, jwt_keys_response);
+    std::string parse_error;
+    try {
+        parse_error = picojson::parse(val, jwt_keys_response);
+    } catch (std::runtime_error& e) {
+        throw EVEAuth::AuthException{make_err_msg({F_VFT_NAME, ERR_PARSE_PICOJSON, e.what()}), ERR_PARSE_PICOJSON_CODE};
+    }
+
     if (!parse_error.empty()) {
-        throw AuthException(ERR_VFT_PICOJSON_PARSE, ERR_VFT_PICOJSON_PARSE_CODE);
+        throw AuthException{make_err_msg({F_VFT_NAME, ERR_PARSE_PICOJSON, parse_error}), ERR_PARSE_PICOJSON_CODE};
     }
 
     // We want the EVEAuth::Token::algorithm and its related values
@@ -215,14 +226,19 @@ void EVEAuth::Auth::verify_token() noexcept(false)
 
     // Parse tokens decoded header
     picojson::value header_val;
-    std::string header_parse_error = picojson::parse(header_val, token->get_header());
+    std::string header_parse_error;
+    try {
+        header_parse_error = picojson::parse(header_val, token->get_header());
+    } catch (std::runtime_error& e) {
+        throw EVEAuth::AuthException{make_err_msg({F_VFT_NAME, ERR_PARSE_PICOJSON, e.what()}), ERR_PARSE_PICOJSON_CODE};
+    }
     if (!header_parse_error.empty()) {
-        throw AuthException(ERR_VFT_PICOJSON_PARSE, ERR_VFT_PICOJSON_PARSE_CODE);
+        throw AuthException{make_err_msg({F_VFT_NAME, ERR_PARSE_PICOJSON, parse_error}), ERR_PARSE_PICOJSON_CODE};
     }
 
     // Check if the decoded token header algorithm matches EVEAuth::Token::algorithm
     if (header_val.get("alg").get<std::string>() != EVEAuth::Token::algorithm) {
-        throw AuthException(ERR_VFT_PICOJSON_PARSE, ERR_VFT_PICOJSON_PARSE_CODE);
+        throw AuthException{make_err_msg({F_VFT_NAME, ERR_VFT_ALG}), ERR_VFT_ALG_CODE};
     }
 
     // Generate public key in pem format
@@ -233,8 +249,7 @@ void EVEAuth::Auth::verify_token() noexcept(false)
     try {
         verifier.verify(jwt_decoded);
     } catch (jwt::token_verification_exception& e) {
-        std::string tmp = std::string(ERR_VFT_VRF) + " " + e.what();
-        throw EVEAuth::AuthException(tmp, ERR_VFT_VRF_CODE);
+        throw EVEAuth::AuthException{make_err_msg({F_VFT_NAME, ERR_VFT_VRF, e.what()}), ERR_VFT_VRF_CODE};
     }
 }
 
@@ -272,12 +287,12 @@ void EVEAuth::Auth::parse_token_request() noexcept(false)
     try {
         parse_error = picojson::parse(val, token_response);
     } catch (std::runtime_error& e) {
-        throw AuthException(make_err_msg({F_PTR_NAME, ERR_PARSE_PICOJSON, e.what()}), ERR_PARSE_PICOJSON_CODE);
+        throw AuthException{make_err_msg({F_PTR_NAME, ERR_PARSE_PICOJSON, e.what()}), ERR_PARSE_PICOJSON_CODE};
     }
 
     std::string access_token;
     if (!parse_error.empty()) {
-        throw AuthException(make_err_msg({F_PTR_NAME, ERR_PARSE_PICOJSON, parse_error}), ERR_PARSE_PICOJSON_CODE);
+        throw AuthException{make_err_msg({F_PTR_NAME, ERR_PARSE_PICOJSON, parse_error}), ERR_PARSE_PICOJSON_CODE};
     }
 
     access_token = val.get("access_token").get<std::string>();

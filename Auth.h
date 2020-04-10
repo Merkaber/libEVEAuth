@@ -29,20 +29,21 @@
 #define F_CR_NAME "curl_request(): "
 
 #define F_STR_NAME "send_token_request(): "
-#define ERR_STR_CODE 104
+#define ERR_STR_CODE 106
 
 #define F_SJWTR_NAME "send_jwt_request(): "
-#define ERR_SJWTR_CODE 108
+#define ERR_SJWTR_CODE 107
 
 #define F_SRR_NAME "send_refresh_request(): "
-#define ERR_SRR_CODE 112
+#define ERR_SRR_CODE 111
 
 #define F_PTR_NAME "parse_token_request(): "
+#define F_VFT_NAME "verify_token(): "
 
 #define ERR_CR_REQ "curl_easy_perform(): failed! "
-#define ERR_CR_REQ_CODE 114
+#define ERR_CR_REQ_CODE 104
 #define ERR_CR_RSP "curl response was not 200! "
-#define ERR_CR_RSP_CODE 115
+#define ERR_CR_RSP_CODE 105
 
 #define ERR_HASH_CTX "Could not create hash context! "
 #define ERR_HASH_CTX_CODE 100
@@ -54,13 +55,13 @@
 #define ERR_HASH_FINAL_CODE 103
 
 #define ERR_PARSE_PICOJSON "picojson: "
-#define ERR_PARSE_PICOJSON_CODE 106
+#define ERR_PARSE_PICOJSON_CODE 108
 
-#define ERR_VFT_PICOJSON_PARSE "verify_token(): picojson: parse error!"
-#define ERR_VFT_PICOJSON_PARSE_CODE 110
+#define ERR_VFT_ALG "The header algorithm does not match the token algorithm! "
+#define ERR_VFT_ALG_CODE 109
 
-#define ERR_VFT_VRF "verify_token(): token verification failed!"
-#define ERR_VFT_VRF_CODE 111
+#define ERR_VFT_VRF "Token verification failed! "
+#define ERR_VFT_VRF_CODE 110
 
 namespace EVEAuth {
 
