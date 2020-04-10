@@ -313,15 +313,15 @@ void EVEAuth::Auth::refresh_token() noexcept(false)
     try {
         send_refresh_request();
         parse_token_request();
-    } catch (AuthException& e) {
-        throw AuthException(e.what(), e.get_error_code());
+    } catch (EVEAuth::AuthException& e) {
+        throw EVEAuth::AuthException{make_err_msg({F_RT_NAME, e.what()}), e.get_error_code()};
     }
 
     token->decode_access_token();
     try {
         verify_token();
-    } catch (AuthException& e) {
-        throw AuthException(e.what(), e.get_error_code());
+    } catch (EVEAuth::AuthException& e) {
+        throw EVEAuth::AuthException{{F_RT_NAME, e.what()}, e.get_error_code()};
     }
 }
 

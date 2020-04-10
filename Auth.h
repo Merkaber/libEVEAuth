@@ -44,6 +44,8 @@
 #define ERR_SA_NO_CV "No code value was set! Set code value and call start() again! "
 #define ERR_SA_NO_CV_CODE 112
 
+#define F_RT_NAME "refresh_token(): "
+
 #define ERR_CR_REQ "curl_easy_perform(): failed! "
 #define ERR_CR_REQ_CODE 104
 #define ERR_CR_RSP "curl response was not 200! "
