@@ -272,13 +272,12 @@ void EVEAuth::Auth::parse_token_request() noexcept(false)
     try {
         parse_error = picojson::parse(val, token_response);
     } catch (std::runtime_error& e) {
-        std::string tmp = std::string(ERR_PTR_PICOJSON) + " " + e.what();
-        throw AuthException(tmp, ERR_PTR_PICOJSON_CODE);
+        throw AuthException(make_err_msg({F_PTR_NAME, ERR_PARSE_PICOJSON, e.what()}), ERR_PARSE_PICOJSON_CODE);
     }
 
     std::string access_token;
     if (!parse_error.empty()) {
-        throw AuthException(ERR_PTR_PICOJSON_PARSE, ERR_PTR_PICOJSON_PARSE_CODE);
+        throw AuthException(make_err_msg({F_PTR_NAME, ERR_PARSE_PICOJSON, parse_error}), ERR_PARSE_PICOJSON_CODE);
     }
 
     access_token = val.get("access_token").get<std::string>();

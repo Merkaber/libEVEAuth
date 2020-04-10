@@ -37,6 +37,8 @@
 #define F_SRR_NAME "send_refresh_request(): "
 #define ERR_SRR_CODE 112
 
+#define F_PTR_NAME "parse_token_request(): "
+
 #define ERR_CR_REQ "curl_easy_perform(): failed! "
 #define ERR_CR_REQ_CODE 114
 #define ERR_CR_RSP "curl response was not 200! "
@@ -51,10 +53,8 @@
 #define ERR_HASH_FINAL "Final hash failed! "
 #define ERR_HASH_FINAL_CODE 103
 
-#define ERR_PTR_PICOJSON "parse_token_request(): picojson:"
-#define ERR_PTR_PICOJSON_CODE 106
-#define ERR_PTR_PICOJSON_PARSE "parse_token_request(): picojson: parse error!"
-#define ERR_PTR_PICOJSON_PARSE_CODE 107
+#define ERR_PARSE_PICOJSON "picojson: "
+#define ERR_PARSE_PICOJSON_CODE 106
 
 #define ERR_VFT_PICOJSON_PARSE "verify_token(): picojson: parse error!"
 #define ERR_VFT_PICOJSON_PARSE_CODE 110
