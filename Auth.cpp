@@ -341,26 +341,25 @@ void EVEAuth::Auth::send_refresh_request() noexcept(false)
     }
 }
 
-EVEAuth::Token* EVEAuth::Auth::start() noexcept(false)
+void EVEAuth::Auth::start() noexcept(false)
 {
     // If there is not code value set, return nullptr
     if (code_val.empty()) {
-        return nullptr;
+        throw EVEAuth::AuthException{make_err_msg({LIBRARY_NAME, F_SA_NAME, ERR_SA_NO_CV}), ERR_SA_NO_CV_CODE};
     }
 
     try {
         send_token_request();
         parse_token_request();
-    } catch (AuthException& e) {
-        throw AuthException(e.what(), e.get_error_code());
+    } catch (EVEAuth::AuthException& e) {
+        throw AuthException{make_err_msg({LIBRARY_NAME, F_SA_NAME, e.what()}), e.get_error_code()};
     }
     token->decode_access_token();
     try {
         verify_token();
-    } catch (AuthException& e) {
-        throw AuthException(e.what(), e.get_error_code());
+    } catch (EVEAuth::AuthException& e) {
+        throw AuthException{make_err_msg({LIBRARY_NAME, F_SA_NAME, e.what()}), e.get_error_code()};
     }
-    return token;
 }
 
 void EVEAuth::Auth::curl_request(const std::string& url, const std::string& post_fields) noexcept(false)

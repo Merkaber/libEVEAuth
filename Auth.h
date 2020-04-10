@@ -40,6 +40,10 @@
 #define F_PTR_NAME "parse_token_request(): "
 #define F_VFT_NAME "verify_token(): "
 
+#define F_SA_NAME "start(): "
+#define ERR_SA_NO_CV "No code value was set! Set code value and call start() again! "
+#define ERR_SA_NO_CV_CODE 112
+
 #define ERR_CR_REQ "curl_easy_perform(): failed! "
 #define ERR_CR_REQ_CODE 104
 #define ERR_CR_RSP "curl response was not 200! "
@@ -121,10 +125,11 @@ namespace EVEAuth {
         const std::string& generate_auth_url() noexcept(false);
 
         /**
-         * Starts the token request and validation
-         * @return If successful, returns the token for authentication
+         * Starts the whole authentication process by its own
+         * If an exception is thrown you may create a new Auth object and
+         * generate another url to start the authentication process again
          */
-        EVEAuth::Token* start() noexcept(false);
+        void start() noexcept(false);
 
     private:
 
