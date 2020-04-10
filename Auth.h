@@ -23,39 +23,43 @@
 #define PEM_BUFF_SIZE 4096
 
 /* Base64 Exception Range from 100 - 199 */
-#define ERR_HASH_CTX "Auth: generate_hash: Could not create hash context!"
+#define F_GCC_NAME "generate_code_challenge(): "
+#define F_GH_NAME "generate_hash(): "
+#define F_GAU_NAME "generate_auth_url(): "
+
+#define ERR_HASH_CTX "Could not create hash context! "
 #define ERR_HASH_CTX_CODE 100
-#define ERR_HASH_INIT "Auth: generate_hash: Could not initialize hash!"
+#define ERR_HASH_INIT "Could not initialize hash! "
 #define ERR_HASH_INIT_CODE 101
-#define ERR_HASH_UPDATE "Auth: generate_hash: Could not update hash!"
+#define ERR_HASH_UPDATE "Could not update hash! "
 #define ERR_HASH_UPDATE_CODE 102
-#define ERR_HASH_FINAL "Auth: generate_hash: Final hash failed!"
+#define ERR_HASH_FINAL "Final hash failed! "
 #define ERR_HASH_FINAL_CODE 103
 
-#define ERR_CEP_TOKEN_REQ "Auth: send_token_request: curl_easy_perform() failed!"
+#define ERR_CEP_TOKEN_REQ "send_token_request(): curl_easy_perform() failed!"
 #define ERR_CEP_TOKEN_REQ_CODE 104
-#define ERR_CEP_TOKEN_REQ_RSP "Auth: send_token_request: curl response was not 200!"
+#define ERR_CEP_TOKEN_REQ_RSP "send_token_request(): curl response was not 200!"
 #define ERR_CEP_TOKEN_REQ_RSP_CODE 105
 
-#define ERR_PTR_PICOJSON "Auth: parse_token_request: picojson:"
+#define ERR_PTR_PICOJSON "parse_token_request(): picojson:"
 #define ERR_PTR_PICOJSON_CODE 106
-#define ERR_PTR_PICOJSON_PARSE "Auth: parse_token_request: picojson: parse error!"
+#define ERR_PTR_PICOJSON_PARSE "parse_token_request(): picojson: parse error!"
 #define ERR_PTR_PICOJSON_PARSE_CODE 107
 
-#define ERR_CEP_JWT_REQ "Auth: send_jwt_request: curl_easy_perform() failed!"
+#define ERR_CEP_JWT_REQ "send_jwt_request(): curl_easy_perform() failed!"
 #define ERR_CEP_JWT_REQ_CODE 108
-#define ERR_CEP_JWT_REQ_RSP "Auth: send_jwt_request: curl response was not 200!"
+#define ERR_CEP_JWT_REQ_RSP "send_jwt_request(): curl response was not 200!"
 #define ERR_CEP_JWT_REQ_RSP_CODE 109
 
-#define ERR_VFT_PICOJSON_PARSE "Auth: verify_token: picojson: parse error!"
+#define ERR_VFT_PICOJSON_PARSE "verify_token(): picojson: parse error!"
 #define ERR_VFT_PICOJSON_PARSE_CODE 110
 
-#define ERR_VFT_VRF "Auth: verify_token: token verification failed!"
+#define ERR_VFT_VRF "verify_token(): token verification failed!"
 #define ERR_VFT_VRF_CODE 111
 
-#define ERR_RET_TOKEN_REQ "Auth: refresh_token_request: curl_easy_perform() failed!"
+#define ERR_RET_TOKEN_REQ "refresh_token_request(): curl_easy_perform() failed!"
 #define ERR_RET_TOKEN_REQ_CODE 112
-#define ERR_RET_TOKEN_RSP "Auth: refresh_token_request: curl response was not 200!"
+#define ERR_RET_TOKEN_RSP "refresh_token_request(): curl response was not 200!"
 #define ERR_RET_TOKEN_RSP_CODE 113
 
 namespace EVEAuth {
@@ -111,9 +115,9 @@ namespace EVEAuth {
 
         /**
          * Generates the authentication url for the web-login
-         * @return The authentication url
+         * @return The authentication url which will lead to a web-login
          */
-        std::string& generate_auth_url() noexcept(false);
+        const std::string& generate_auth_url() noexcept(false);
 
         /**
          * Starts the token request and validation

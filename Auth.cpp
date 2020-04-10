@@ -52,12 +52,12 @@ EVEAuth::Auth::~Auth() noexcept
     delete token;
 }
 
-std::string& EVEAuth::Auth::generate_auth_url() noexcept (false)
+const std::string& EVEAuth::Auth::generate_auth_url() noexcept (false)
 {
     try {
         generate_code_challenge();
     } catch (AuthException& e) {
-        throw AuthException(e.what(), e.get_error_code());
+        throw AuthException(make_err_msg({LIBRARY_NAME, F_GAU_NAME, e.what()}), e.get_error_code());
     }
 
     if (authentication_url.empty()) {
@@ -88,8 +88,7 @@ void EVEAuth::Auth::generate_code_challenge() noexcept(false)
     // Generate PKCE_BYTE_NUM of random bytes
     std::random_device random_device;
     std::vector<unsigned char> random_data(PKCE_BYTE_NUM);
-    for (unsigned char& i : random_data)
-    {
+    for (unsigned char& i : random_data) {
         i = static_cast<unsigned char>(random_device());
     }
 
@@ -102,14 +101,14 @@ void EVEAuth::Auth::generate_code_challenge() noexcept(false)
     try {
         hashed_enc_rand_bytes = EVEAuth::generate_hash(encoded_random_bytes);
     } catch (AuthException& e) {
-        throw AuthException(e.what(), e.get_error_code());
+        throw AuthException(make_err_msg({F_GCC_NAME, e.what()}), e.get_error_code());
     }
 
     // Encode hashed code challenge
     EVEAuth::Base64 hashed_bade64(hashed_enc_rand_bytes);
     std::string enc_hashed_bytes = hashed_bade64.encode_url_safe();
 
-    enc_hashed_bytes.erase(std::remove(enc_hashed_bytes.begin(),enc_hashed_bytes.end(), '='), enc_hashed_bytes.end());
+    enc_hashed_bytes.erase(std::remove(enc_hashed_bytes.begin(), enc_hashed_bytes.end(), '='), enc_hashed_bytes.end());
     code_challenge = enc_hashed_bytes;
     code_verifier = encoded_random_bytes;
 }
@@ -120,34 +119,34 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept(false)
 
     // Allocates and returns a digest context
     EVP_MD_CTX* context = EVP_MD_CTX_new();
-
-    if (context == nullptr) throw AuthException(ERR_HASH_CTX, ERR_HASH_CTX_CODE);
+    if (context == nullptr) {
+        throw AuthException(make_err_msg({F_GH_NAME, ERR_HASH_CTX}), ERR_HASH_CTX_CODE);
+    }
 
     // Sets up digest context ctx to use a digest type and its standard implementation (nullptr)
     int check_init = EVP_DigestInit_ex(context, EVP_sha256(), nullptr);
-
-    // check_init 1 is success, 0 is failure
-    if (check_init == 0) throw AuthException(ERR_HASH_INIT, ERR_HASH_INIT_CODE);
+    if (check_init == 0) {
+        throw AuthException(make_err_msg({F_GH_NAME, ERR_HASH_INIT}), ERR_HASH_INIT_CODE);
+    }
 
     // Hashes s.length() bytes of data at s.c_str() into the digest context
     int check_update = EVP_DigestUpdate(context, s.c_str(), s.length());
-
-    // check_update 1 is success, 0 is failure
-    if (check_update == 0) throw AuthException(ERR_HASH_UPDATE, ERR_HASH_UPDATE_CODE);
+    if (check_update == 0) {
+        throw AuthException(make_err_msg({F_GH_NAME, ERR_HASH_UPDATE}), ERR_HASH_UPDATE_CODE);
+    }
 
     unsigned char hash[EVP_MAX_MD_SIZE];
     unsigned int length_of_hash = 0;
 
-    /* Retrieves the digest value from context and places it in hash
-     * Writes the number of bytes written into length_of_hash */
+    // Retrieves the digest value from context and places it in hash
+    // Writes the number of bytes written into length_of_hash
     int check_final = EVP_DigestFinal_ex(context, hash, &length_of_hash);
-
-    // check_final 1 is success, 0 is failure
-    if (check_final == 0) throw AuthException(ERR_HASH_FINAL, ERR_HASH_FINAL_CODE);
+    if (check_final == 0) {
+        throw AuthException(make_err_msg({F_GH_NAME, ERR_HASH_FINAL}), ERR_HASH_FINAL_CODE);
+    }
 
     std::stringstream ss;
-    for(unsigned int i = 0; i < length_of_hash; ++i)
-    {
+    for (unsigned int i = 0; i < length_of_hash; ++i) {
         ss << hash[i];
     }
 
