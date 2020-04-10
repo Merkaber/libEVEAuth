@@ -5,6 +5,8 @@
  */
 
 #include "Auth.h"
+#include "Token.h"
+#include "utils/CallBackTimer.h"
 
 /* Includes for sha256 generation */
 #include "iomanip"
@@ -44,12 +46,14 @@ EVEAuth::Auth::Auth(std::string &client_id, std::string& scope_val) noexcept : c
     // Handle winsock stuff
     curl_global_init(CURL_GLOBAL_ALL);
     token = new EVEAuth::Token{};
+    cba = new EVEAuth::CallBackTimer{};
 }
 
 EVEAuth::Auth::~Auth() noexcept
 {
     curl_global_cleanup();
     delete token;
+    delete cba;
 }
 
 const std::string& EVEAuth::Auth::generate_auth_url() noexcept (false)
@@ -361,16 +365,22 @@ void EVEAuth::Auth::start() noexcept(false)
     } catch (EVEAuth::AuthException& e) {
         throw EVEAuth::AuthException{make_err_msg({LIBRARY_NAME, F_SA_NAME, e.what()}), e.get_error_code()};
     }
+
+    start_refresh_token();
 }
 
 void EVEAuth::Auth::start_refresh_token() noexcept(false)
 {
-
+    try {
+        cba->start(refresh_interval, std::bind(&EVEAuth::Auth::refresh_token, this));
+    } catch (EVEAuth::AuthException& e) {
+        throw EVEAuth::AuthException{make_err_msg({F_SRT_NAME, e.what()}), e.get_error_code()};
+    }
 }
 
 void EVEAuth::Auth::stop_refresh_token() noexcept
 {
-    
+    cba->stop();
 }
 
 void EVEAuth::Auth::curl_request(const std::string& url, const std::string& post_fields) noexcept(false)
@@ -707,4 +717,14 @@ const std::string& EVEAuth::Auth::get_cacert_path() const noexcept
 void EVEAuth::Auth::set_cacert_path(const std::string& m_cacert_path) noexcept
 {
     cacert_path = m_cacert_path;
+}
+
+const int& EVEAuth::Auth::get_refresh_interval() const noexcept
+{
+    return refresh_interval;
+}
+
+void EVEAuth::Auth::set_refresh_interval(const int& m_refresh_interval) noexcept
+{
+    refresh_interval = m_refresh_interval;
 }

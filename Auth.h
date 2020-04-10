@@ -7,7 +7,6 @@
 #pragma once
 
 #include "shared.h"
-#include "Token.h"
 
 /*
  * The number of bytes which is necessary for the PKCE protocol
@@ -45,6 +44,7 @@
 #define ERR_SA_NO_CV_CODE 112
 
 #define F_RT_NAME "refresh_token(): "
+#define F_SRT_NAME "start_refresh_token(): "
 
 #define ERR_CR_REQ "curl_easy_perform(): failed! "
 #define ERR_CR_REQ_CODE 104
@@ -70,6 +70,9 @@
 #define ERR_VFT_VRF_CODE 110
 
 namespace EVEAuth {
+
+    class CallBackTimer;
+    class Token;
 
     /**
      * Exception class for authentication
@@ -212,6 +215,9 @@ namespace EVEAuth {
         /// The token which will hold the information for authentication
         EVEAuth::Token* token = nullptr;
 
+        /// The callback timer for refreshing the token
+        EVEAuth::CallBackTimer* cba = nullptr;
+
         /* Getter and setter for predefined query parameters and values */
     public:
         const std::string& get_host() const noexcept;
@@ -286,6 +292,9 @@ namespace EVEAuth {
         const std::string& get_cacert_path() const noexcept;
         void set_cacert_path(const std::string& m_cacert_path) noexcept;
 
+        const int& get_refresh_interval() const noexcept;
+        void set_refresh_interval(const int& m_refresh_interval) noexcept;
+
         /* Predefined query parameter and values for login */
     private:
         std::string host = "login.eveonline.com";
@@ -315,6 +324,7 @@ namespace EVEAuth {
         std::string refresh_token_param = "refresh_token=";
 
         std::string cacert_path = "C:\\Users\\Merkaber\\Documents\\dev\\libEVEAuth\\cacert.pem";
+        int refresh_interval = 900;
     };
 
     /**

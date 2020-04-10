@@ -12,6 +12,8 @@
 #include <atomic>
 #include <functional>
 
+#define F_CBT_NAME "CallBackTimer: "
+
 namespace EVEAuth {
     class CallBackTimer {
     public:
@@ -19,7 +21,7 @@ namespace EVEAuth {
 
         ~CallBackTimer() noexcept;
 
-        void start(int interval, std::function<void(void)> function) noexcept;
+        void start(int interval, const std::function<void(void)>& function) noexcept(false);
 
         void stop() noexcept;
 
