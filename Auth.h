@@ -26,6 +26,12 @@
 #define F_GCC_NAME "generate_code_challenge(): "
 #define F_GH_NAME "generate_hash(): "
 #define F_GAU_NAME "generate_auth_url(): "
+#define F_CR_NAME "curl_request(): "
+
+#define ERR_CR_REQ "curl_easy_perform(): failed! "
+#define ERR_CR_REQ_CODE 114
+#define ERR_CR_RSP "curl response was not 200! "
+#define ERR_CR_RSP_CODE 115
 
 #define ERR_HASH_CTX "Could not create hash context! "
 #define ERR_HASH_CTX_CODE 100
@@ -166,6 +172,13 @@ namespace EVEAuth {
          * Sends the refresh token request
          */
         void send_refresh_request() noexcept(false);
+
+        /**
+         * Makes a curl request with the given post fields appended to the request_url
+         * @param url The url to which the request will be made
+         * @param post_fields The post fields for the request
+         */
+        void curl_request(const std::string& url, const std::string& post_fields) noexcept(false);
 
     private:
 
