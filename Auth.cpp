@@ -387,6 +387,58 @@ void EVEAuth::Auth::stop_refresh_token() noexcept
     }
 }
 
+std::string EVEAuth::Auth::query(const std::string& query_val) const noexcept(false)
+{
+    CURL* curl;
+    CURLcode res;
+
+    struct MemoryStruct chu;
+    chu.memory = (char*) malloc(1);
+    chu.size = 0;
+
+    std::string final_url = query_url + query_val;
+    std::string final_response;
+
+    curl = curl_easy_init();
+    if (curl) {
+        struct curl_slist* chunk = nullptr;
+        std::string h_str = "Host: " + host;
+        std::string c_type_str = "Content-Type: " + content_type;
+        std::string auth_str = "Authorization: Bearer " + token->get_access_token();
+        chunk = curl_slist_append(chunk, c_type_str.c_str());
+        chunk = curl_slist_append(chunk, h_str.c_str());
+        chunk = curl_slist_append(chunk, auth_str.c_str());
+
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
+        curl_easy_setopt(curl, CURLOPT_URL, final_url.c_str());
+        curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, EVEAuth::write_memory_callback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*) &chu);
+        curl_easy_setopt(curl, CURLOPT_USERAGENT, curl_agent.c_str());
+#ifdef WIN
+        curl_easy_setopt(curl, CURLOPT_CAINFO, cacert_path.c_str());
+#endif
+
+        res = curl_easy_perform(curl);
+        if (res != CURLE_OK) {
+            throw EVEAuth::AuthException{make_err_msg({F_Q_NAME, ERR_QC_REQ, curl_easy_strerror(res)}), ERR_QC_REQ_CODE};
+        } else {
+            long response_code;
+            curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
+            if (response_code == 200) {
+                final_response = std::string(chu.memory);
+            } else {
+                throw EVEAuth::AuthException{make_err_msg({F_Q_NAME, ERR_QC_RSP, "Code: ", std::to_string(response_code)}), ERR_QC_RSP_CODE};
+            }
+        }
+
+        curl_easy_cleanup(curl);
+        curl_slist_free_all(chunk);
+    }
+
+    return final_response;
+}
+
 void EVEAuth::Auth::curl_request(const std::string& url, const std::string& post_fields) noexcept(false)
 {
     CURL* curl;
@@ -483,6 +535,16 @@ void EVEAuth::Auth::set_authentication_url(const std::string& m_authentication_u
     authentication_url = m_authentication_url;
 }
 
+const std::string& EVEAuth::Auth::get_character_id() const noexcept
+{
+    return token->get_character_id();
+}
+
+const std::string& EVEAuth::Auth::get_character_name() const noexcept
+{
+    return token->get_character_name();
+}
+
 const std::string& EVEAuth::Auth::get_host() const noexcept
 {
     return host;
@@ -541,6 +603,16 @@ const std::string& EVEAuth::Auth::get_curl_agent() const noexcept
 void EVEAuth::Auth::set_curl_agent(const std::string& m_curl_agent) noexcept
 {
     curl_agent = m_curl_agent;
+}
+
+const std::string& EVEAuth::Auth::get_query_url() const noexcept
+{
+    return query_url;
+}
+
+void EVEAuth::Auth::set_query_url(const std::string &m_query_url) noexcept
+{
+    query_url = m_query_url;
 }
 
 const std::string& EVEAuth::Auth::get_response_type_param() const noexcept

@@ -46,6 +46,12 @@
 #define F_RT_NAME "refresh_token(): "
 #define F_SRT_NAME "start_refresh_token(): "
 
+#define F_Q_NAME "query(): "
+#define ERR_QC_REQ "curl_easy_perform(): failed! "
+#define ERR_QC_REQ_CODE 113
+#define ERR_QC_RSP "curl response was not 200! "
+#define ERR_QC_RSP_CODE 114
+
 #define ERR_CR_REQ "curl_easy_perform(): failed! "
 #define ERR_CR_REQ_CODE 104
 #define ERR_CR_RSP "curl response was not 200! "
@@ -123,6 +129,9 @@ namespace EVEAuth {
         const std::string& get_code_val() const noexcept;
         void set_code_val(const std::string& m_code_val) noexcept;
 
+        const std::string& get_character_id() const noexcept;
+        const std::string& get_character_name() const noexcept;
+
         /**
          * Generates the authentication url for the web-login
          * @return The authentication url which will lead to a web-login
@@ -159,6 +168,8 @@ namespace EVEAuth {
         void start_refresh_token() noexcept(false);
 
         void stop_refresh_token() noexcept;
+
+        std::string query(const std::string& query_val) const noexcept(false);
 
     private:
 
@@ -238,6 +249,9 @@ namespace EVEAuth {
         const std::string& get_curl_agent() const noexcept;
         void set_curl_agent(const std::string& m_curl_agent) noexcept;
 
+        const std::string& get_query_url() const noexcept;
+        void set_query_url(const std::string& m_query_url) noexcept;
+
         const std::string& get_response_type_param() const noexcept;
         void set_response_type_param(const std::string& m_response_type_param) noexcept;
 
@@ -303,6 +317,7 @@ namespace EVEAuth {
         std::string request_url = "https://login.eveonline.com/v2/oauth/token";
         std::string jwt_keys_url = "https://login.eveonline.com/oauth/jwks";
         std::string curl_agent = "libcurl-agent/1.0";
+        std::string query_url = "https://esi.evetech.net/latest/";
 
         std::string response_type_param = "response_type=";
         std::string redirect_url_param = "redirect_uri=";
