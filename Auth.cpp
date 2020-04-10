@@ -371,6 +371,8 @@ void EVEAuth::Auth::start() noexcept(false)
 
 void EVEAuth::Auth::start_refresh_token() noexcept(false)
 {
+    if (cba->is_running()) return;
+
     try {
         cba->start(refresh_interval, std::bind(&EVEAuth::Auth::refresh_token, this));
     } catch (EVEAuth::AuthException& e) {
@@ -380,7 +382,9 @@ void EVEAuth::Auth::start_refresh_token() noexcept(false)
 
 void EVEAuth::Auth::stop_refresh_token() noexcept
 {
-    cba->stop();
+    if (cba->is_running()) {
+        cba->stop();
+    }
 }
 
 void EVEAuth::Auth::curl_request(const std::string& url, const std::string& post_fields) noexcept(false)
