@@ -165,10 +165,21 @@ namespace EVEAuth {
          */
         void send_refresh_request() noexcept(false);
 
+        /**
+         * Starts the refreshing callback thread
+         */
         void start_refresh_token() noexcept(false);
 
+        /**
+         * Stops the refreshing callback thread
+         */
         void stop_refresh_token() noexcept;
 
+        /**
+         * Sends a GET request with the given query string
+         * @param query_val The query string i.e. https://esi.evetech.net/latest/query_val"
+         * @return The query response
+         */
         std::string query(const std::string& query_val) const noexcept(false);
 
     private:
