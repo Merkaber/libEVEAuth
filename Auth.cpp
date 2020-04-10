@@ -240,46 +240,10 @@ void EVEAuth::Auth::verify_token() noexcept(false)
 
 void EVEAuth::Auth::send_jwt_request() noexcept(false)
 {
-    CURL* curl;
-    CURLcode res;
-
-    struct MemoryStruct chu;
-    chu.memory = (char*) malloc(1);
-    chu.size = 0;
-
-    curl = curl_easy_init();
-    if (curl) {
-        struct curl_slist* chunk = nullptr;
-        std::string h_str = "Host: " + host;
-        std::string c_type_str = "Content-Type: " + content_type;
-        chunk = curl_slist_append(chunk, c_type_str.c_str());
-        chunk = curl_slist_append(chunk, h_str.c_str());
-
-        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
-        curl_easy_setopt(curl, CURLOPT_URL, jwt_keys_url.c_str());
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_memory_callback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*) &chu);
-        curl_easy_setopt(curl, CURLOPT_USERAGENT, curl_agent.c_str());
-#ifdef WIN
-        curl_easy_setopt(curl, CURLOPT_CAINFO, cacert_path.c_str());
-#endif
-
-        res = curl_easy_perform(curl);
-        if (res != CURLE_OK) {
-            std::string tmp = std::string(ERR_CEP_JWT_REQ) + " " + curl_easy_strerror(res);
-            throw AuthException(tmp, ERR_CEP_JWT_REQ_CODE);
-        } else {
-            long responseCode;
-            curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
-            if (responseCode == 200) {
-                download_response = std::string(chu.memory);
-            } else {
-                std::string tmp = std::string(ERR_CEP_JWT_REQ_RSP) + " Code: " + std::to_string(responseCode);
-                throw AuthException(tmp, ERR_CEP_JWT_REQ_RSP_CODE);
-            }
-        }
-        curl_easy_cleanup(curl);
-        curl_slist_free_all(chunk);
+    try {
+        curl_request(jwt_keys_url, "");
+    } catch (EVEAuth::AuthException& e){
+        throw EVEAuth::AuthException{make_err_msg({F_SJWTR_NAME, e.what()}), ERR_SJWRTR_CODE};
     }
 }
 
@@ -442,7 +406,9 @@ void EVEAuth::Auth::curl_request(const std::string& url, const std::string& post
 
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, post_fields.c_str());
+        if (!post_fields.empty()) {
+            curl_easy_setopt(curl, CURLOPT_POSTFIELDS, post_fields.c_str());
+        }
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, EVEAuth::write_memory_callback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*) &chu);
         curl_easy_setopt(curl, CURLOPT_USERAGENT, curl_agent.c_str());

@@ -31,6 +31,9 @@
 #define F_STR_NAME "send_token_request(): "
 #define ERR_STR_CODE 104
 
+#define F_SJWTR_NAME "send_jwt_request(): "
+#define ERR_SJWRTR_CODE 108
+
 #define ERR_CR_REQ "curl_easy_perform(): failed! "
 #define ERR_CR_REQ_CODE 114
 #define ERR_CR_RSP "curl response was not 200! "
@@ -49,11 +52,6 @@
 #define ERR_PTR_PICOJSON_CODE 106
 #define ERR_PTR_PICOJSON_PARSE "parse_token_request(): picojson: parse error!"
 #define ERR_PTR_PICOJSON_PARSE_CODE 107
-
-#define ERR_CEP_JWT_REQ "send_jwt_request(): curl_easy_perform() failed!"
-#define ERR_CEP_JWT_REQ_CODE 108
-#define ERR_CEP_JWT_REQ_RSP "send_jwt_request(): curl response was not 200!"
-#define ERR_CEP_JWT_REQ_RSP_CODE 109
 
 #define ERR_VFT_PICOJSON_PARSE "verify_token(): picojson: parse error!"
 #define ERR_VFT_PICOJSON_PARSE_CODE 110
