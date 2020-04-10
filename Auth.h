@@ -32,7 +32,10 @@
 #define ERR_STR_CODE 104
 
 #define F_SJWTR_NAME "send_jwt_request(): "
-#define ERR_SJWRTR_CODE 108
+#define ERR_SJWTR_CODE 108
+
+#define F_SRR_NAME "send_refresh_request(): "
+#define ERR_SRR_CODE 112
 
 #define ERR_CR_REQ "curl_easy_perform(): failed! "
 #define ERR_CR_REQ_CODE 114
@@ -58,11 +61,6 @@
 
 #define ERR_VFT_VRF "verify_token(): token verification failed!"
 #define ERR_VFT_VRF_CODE 111
-
-#define ERR_RET_TOKEN_REQ "refresh_token_request(): curl_easy_perform() failed!"
-#define ERR_RET_TOKEN_REQ_CODE 112
-#define ERR_RET_TOKEN_RSP "refresh_token_request(): curl response was not 200!"
-#define ERR_RET_TOKEN_RSP_CODE 113
 
 namespace EVEAuth {
 
