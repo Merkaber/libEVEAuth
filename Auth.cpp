@@ -43,7 +43,7 @@ EVEAuth::Auth::Auth(std::string &client_id, std::string& scope_val) noexcept : c
 {
     // Handle winsock stuff
     curl_global_init(CURL_GLOBAL_ALL);
-    token = new EVEAuth::Token();
+    token = new EVEAuth::Token{};
 }
 
 EVEAuth::Auth::~Auth() noexcept
@@ -56,8 +56,8 @@ const std::string& EVEAuth::Auth::generate_auth_url() noexcept (false)
 {
     try {
         generate_code_challenge();
-    } catch (AuthException& e) {
-        throw AuthException(make_err_msg({LIBRARY_NAME, F_GAU_NAME, e.what()}), e.get_error_code());
+    } catch (EVEAuth::AuthException& e) {
+        throw EVEAuth::AuthException{make_err_msg({LIBRARY_NAME, F_GAU_NAME, e.what()}), e.get_error_code()};
     }
 
     if (authentication_url.empty()) {
@@ -87,25 +87,25 @@ void EVEAuth::Auth::generate_code_challenge() noexcept(false)
 {
     // Generate PKCE_BYTE_NUM of random bytes
     std::random_device random_device;
-    std::vector<unsigned char> random_data(PKCE_BYTE_NUM);
+    std::vector<unsigned char> random_data{PKCE_BYTE_NUM};
     for (unsigned char& i : random_data) {
         i = static_cast<unsigned char>(random_device());
     }
 
     // Encode the raw random bytes to base64-url-safe
-    EVEAuth::Base64 base64(reinterpret_cast<char*> (random_data.data()));
+    EVEAuth::Base64 base64{reinterpret_cast<char*> (random_data.data())};
     std::string encoded_random_bytes = base64.encode_url_safe();
 
     // Hash the given code challenge with sha256
     std::string hashed_enc_rand_bytes;
     try {
         hashed_enc_rand_bytes = EVEAuth::generate_hash(encoded_random_bytes);
-    } catch (AuthException& e) {
-        throw AuthException(make_err_msg({F_GCC_NAME, e.what()}), e.get_error_code());
+    } catch (EVEAuth::AuthException& e) {
+        throw EVEAuth::AuthException{make_err_msg({F_GCC_NAME, e.what()}), e.get_error_code()};
     }
 
     // Encode hashed code challenge
-    EVEAuth::Base64 hashed_bade64(hashed_enc_rand_bytes);
+    EVEAuth::Base64 hashed_bade64{hashed_enc_rand_bytes};
     std::string enc_hashed_bytes = hashed_bade64.encode_url_safe();
 
     enc_hashed_bytes.erase(std::remove(enc_hashed_bytes.begin(), enc_hashed_bytes.end(), '='), enc_hashed_bytes.end());
@@ -120,19 +120,19 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept(false)
     // Allocates and returns a digest context
     EVP_MD_CTX* context = EVP_MD_CTX_new();
     if (context == nullptr) {
-        throw AuthException(make_err_msg({F_GH_NAME, ERR_HASH_CTX}), ERR_HASH_CTX_CODE);
+        throw EVEAuth::AuthException{make_err_msg({F_GH_NAME, ERR_HASH_CTX}), ERR_HASH_CTX_CODE};
     }
 
     // Sets up digest context ctx to use a digest type and its standard implementation (nullptr)
     int check_init = EVP_DigestInit_ex(context, EVP_sha256(), nullptr);
     if (check_init == 0) {
-        throw AuthException(make_err_msg({F_GH_NAME, ERR_HASH_INIT}), ERR_HASH_INIT_CODE);
+        throw EVEAuth::AuthException{make_err_msg({F_GH_NAME, ERR_HASH_INIT}), ERR_HASH_INIT_CODE};
     }
 
     // Hashes s.length() bytes of data at s.c_str() into the digest context
     int check_update = EVP_DigestUpdate(context, s.c_str(), s.length());
     if (check_update == 0) {
-        throw AuthException(make_err_msg({F_GH_NAME, ERR_HASH_UPDATE}), ERR_HASH_UPDATE_CODE);
+        throw EVEAuth::AuthException{make_err_msg({F_GH_NAME, ERR_HASH_UPDATE}), ERR_HASH_UPDATE_CODE};
     }
 
     unsigned char hash[EVP_MAX_MD_SIZE];
@@ -142,7 +142,7 @@ std::string EVEAuth::generate_hash(const std::string& s) noexcept(false)
     // Writes the number of bytes written into length_of_hash
     int check_final = EVP_DigestFinal_ex(context, hash, &length_of_hash);
     if (check_final == 0) {
-        throw AuthException(make_err_msg({F_GH_NAME, ERR_HASH_FINAL}), ERR_HASH_FINAL_CODE);
+        throw EVEAuth::AuthException{make_err_msg({F_GH_NAME, ERR_HASH_FINAL}), ERR_HASH_FINAL_CODE};
     }
 
     std::stringstream ss;
@@ -160,8 +160,8 @@ std::string EVEAuth::generate_pem_key(const std::string& n, const std::string& e
     EVEAuth::fix_padding(tmp_n);
     EVEAuth::fix_padding(tmp_e);
 
-    std::string dec_modulus = EVEAuth::Base64(tmp_n).decode_url_safe();
-    std::string dec_exponent = EVEAuth::Base64(tmp_e).decode_url_safe();
+    std::string dec_modulus = EVEAuth::Base64{tmp_n}.decode_url_safe();
+    std::string dec_exponent = EVEAuth::Base64{tmp_e}.decode_url_safe();
 
     // Cast modulus and exponent to BIGNUM*
     BIGNUM* modulus = BN_bin2bn(reinterpret_cast<const unsigned char*>(dec_modulus.data()), dec_modulus.size(), nullptr);
@@ -204,7 +204,7 @@ void EVEAuth::Auth::verify_token() noexcept(false)
     }
 
     if (!parse_error.empty()) {
-        throw AuthException{make_err_msg({F_VFT_NAME, ERR_PARSE_PICOJSON, parse_error}), ERR_PARSE_PICOJSON_CODE};
+        throw EVEAuth::AuthException{make_err_msg({F_VFT_NAME, ERR_PARSE_PICOJSON, parse_error}), ERR_PARSE_PICOJSON_CODE};
     }
 
     // We want the EVEAuth::Token::algorithm and its related values
@@ -233,12 +233,12 @@ void EVEAuth::Auth::verify_token() noexcept(false)
         throw EVEAuth::AuthException{make_err_msg({F_VFT_NAME, ERR_PARSE_PICOJSON, e.what()}), ERR_PARSE_PICOJSON_CODE};
     }
     if (!header_parse_error.empty()) {
-        throw AuthException{make_err_msg({F_VFT_NAME, ERR_PARSE_PICOJSON, parse_error}), ERR_PARSE_PICOJSON_CODE};
+        throw EVEAuth::AuthException{make_err_msg({F_VFT_NAME, ERR_PARSE_PICOJSON, parse_error}), ERR_PARSE_PICOJSON_CODE};
     }
 
     // Check if the decoded token header algorithm matches EVEAuth::Token::algorithm
     if (header_val.get("alg").get<std::string>() != EVEAuth::Token::algorithm) {
-        throw AuthException{make_err_msg({F_VFT_NAME, ERR_VFT_ALG}), ERR_VFT_ALG_CODE};
+        throw EVEAuth::AuthException{make_err_msg({F_VFT_NAME, ERR_VFT_ALG}), ERR_VFT_ALG_CODE};
     }
 
     // Generate public key in pem format
@@ -287,12 +287,12 @@ void EVEAuth::Auth::parse_token_request() noexcept(false)
     try {
         parse_error = picojson::parse(val, token_response);
     } catch (std::runtime_error& e) {
-        throw AuthException{make_err_msg({F_PTR_NAME, ERR_PARSE_PICOJSON, e.what()}), ERR_PARSE_PICOJSON_CODE};
+        throw EVEAuth::AuthException{make_err_msg({F_PTR_NAME, ERR_PARSE_PICOJSON, e.what()}), ERR_PARSE_PICOJSON_CODE};
     }
 
     std::string access_token;
     if (!parse_error.empty()) {
-        throw AuthException{make_err_msg({F_PTR_NAME, ERR_PARSE_PICOJSON, parse_error}), ERR_PARSE_PICOJSON_CODE};
+        throw EVEAuth::AuthException{make_err_msg({F_PTR_NAME, ERR_PARSE_PICOJSON, parse_error}), ERR_PARSE_PICOJSON_CODE};
     }
 
     access_token = val.get("access_token").get<std::string>();
@@ -337,7 +337,7 @@ void EVEAuth::Auth::send_refresh_request() noexcept(false)
     try {
         curl_request(request_url, post_field_str);
     } catch (EVEAuth::AuthException& e) {
-        throw EVEAuth::AuthException(make_err_msg({F_SRR_NAME, e.what()}), ERR_SRR_CODE);
+        throw EVEAuth::AuthException{make_err_msg({F_SRR_NAME, e.what()}), ERR_SRR_CODE};
     }
 }
 
@@ -352,13 +352,13 @@ void EVEAuth::Auth::start() noexcept(false)
         send_token_request();
         parse_token_request();
     } catch (EVEAuth::AuthException& e) {
-        throw AuthException{make_err_msg({LIBRARY_NAME, F_SA_NAME, e.what()}), e.get_error_code()};
+        throw EVEAuth::AuthException{make_err_msg({LIBRARY_NAME, F_SA_NAME, e.what()}), e.get_error_code()};
     }
     token->decode_access_token();
     try {
         verify_token();
     } catch (EVEAuth::AuthException& e) {
-        throw AuthException{make_err_msg({LIBRARY_NAME, F_SA_NAME, e.what()}), e.get_error_code()};
+        throw EVEAuth::AuthException{make_err_msg({LIBRARY_NAME, F_SA_NAME, e.what()}), e.get_error_code()};
     }
 }
 
@@ -393,14 +393,14 @@ void EVEAuth::Auth::curl_request(const std::string& url, const std::string& post
 
         res = curl_easy_perform(curl);
         if (res != CURLE_OK) {
-            throw AuthException(make_err_msg({F_CR_NAME, ERR_CR_REQ, curl_easy_strerror(res)}), ERR_CR_REQ_CODE);
+            throw EVEAuth::AuthException{make_err_msg({F_CR_NAME, ERR_CR_REQ, curl_easy_strerror(res)}), ERR_CR_REQ_CODE};
         } else {
             long response_code;
             curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
             if (response_code == 200) {
                 download_response = std::string(chu.memory);
             } else {
-                throw AuthException(make_err_msg({F_CR_NAME, ERR_CR_RSP, "Code: ", std::to_string(response_code)}), ERR_CR_RSP_CODE);
+                throw EVEAuth::AuthException{make_err_msg({F_CR_NAME, ERR_CR_RSP, "Code: ", std::to_string(response_code)}), ERR_CR_RSP_CODE};
             }
         }
 
