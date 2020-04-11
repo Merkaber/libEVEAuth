@@ -1,34 +1,51 @@
 # libEVEAuth
-## Still in progress... not working yet
+
 libEVEAuth is a simple library for authentication handling with the 
 [EVE swagger interface](https://github.com/esi/esi-docs) 'ESI' for a native C++ application.
 
 If you want to make a native C++ application... this library is for you.\
 If you want to make a native C application... this library is **not** for you.
 
-#### First Milestone - reached:
-The first milestone will be the implementation of the 
-[standard authentication](https://github.com/esi/esi-docs/blob/master/docs/sso/native_sso_flow.md) 
-for native applications as shown in the [python example](https://github.com/esi/esi-docs/tree/master/examples/python/sso). 
-Therefore, after reaching this milestone you will be able to access
-data which need an access token (authentication) with this library.
+## I am currently working on...
+... a proper build support. You have to get all 7 header files and the static library after building in order to link properly.
 
-This milestone is reached. You can now access your data which need authentication with this library. 
+## How to use
 
-#### ~~Second Milestone:~~
-~~The next step is then to implement the handling of the refresh token and targeting windows too.~~
+If you want to know how the authentication flow works, read the [docs](https://github.com/esi/esi-docs).
 
-#### Second Milestone - in progress:
-Cleaning up the code. Write a introduction for building and usage. 
+After creating an ```EVEAuth::Auth``` object with the applications client_id and the related scope, the user
+have to log into his account through the received url from ```auth.generate_auth_url();```. After login, the user will
+be redirected to the localhost by default and the code value is received. You then have to retrieve the code value from the user
+and set it to the auth object by calling ```auth.set_code_val(code_val);```. Now you can start the authorization flow
+by calling ```auth.start();```. The authorization token will be refreshed every 900 seconds by default.
 
-#### Third Milestone - outstanding:
-Handle token refreshing.
+```c++
+#include "Auth.h"
 
-#### Fourth Milestone - outstanding:
-Checking for proper third party library insertion.
+...
 
-#### Fifth Milestone - outstanding:
-Checking for windows support.
+std::string client_id = "03e...168";
+std::string scope = "esi-characters.read_blueprints.v1";
+
+EVEAuth::Auth auth(client_id, scope);
+
+std::cout << auth.generate_auth_url() << std::endl;
+
+std::string code_val;
+
+if (std::cin >> code_val) {
+    auth.set_code_val(code_val);
+    try {
+        auth.start();
+    } catch (EVEAuth::AuthException& e) {
+        std::cout << e.get_error_code() << ": " << e.what() << std::endl;
+    }
+}
+
+std::string q = "characters/" + auth.get_character_id() + "/blueprints/";
+
+std::cout << auth.query(q) << std::endl;
+```
 
 #### Dependencies:
 - c++11<
@@ -51,15 +68,15 @@ to link against them properly. Linking on Linux is easy compared to windows.
 On Linux you have to link against libcurl and openssl.
 
 ```sh
--EVEAuth -curl -OpenSSL::Crypto -Threads::Threads dl
+-EVEAuth -curl -OpenSSL::Crypto -Threads::Threads -dl
 ```
 
 ##### Windows
 
-On Windows you have to link against wldap32 ws2_32 too.
+On Windows you also have to link against wldap32 ws2_32.
 
 ```sh
--EVEAuth -curl -OpenSSL::Crypto -Threads::Threads dl -wldap32 -ws2_32
+-EVEAuth -curl -OpenSSL::Crypto -Threads::Threads -dl -wldap32 -ws2_32
 ```
 
 
