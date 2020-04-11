@@ -91,7 +91,7 @@ void EVEAuth::Auth::generate_code_challenge() noexcept(false)
 {
     // Generate PKCE_BYTE_NUM of random bytes
     std::random_device random_device;
-    std::vector<unsigned char> random_data{PKCE_BYTE_NUM};
+    std::vector<unsigned char> random_data(PKCE_BYTE_NUM);
     for (unsigned char& i : random_data) {
         i = static_cast<unsigned char>(random_device());
     }
@@ -406,16 +406,11 @@ std::string EVEAuth::Auth::query(const std::string& query_val) const noexcept(fa
     curl = curl_easy_init();
     if (curl) {
         struct curl_slist* chunk = nullptr;
-        std::string h_str = "Host: " + host;
-        std::string c_type_str = "Content-Type: " + content_type;
         std::string auth_str = "Authorization: Bearer " + token->get_access_token();
-        chunk = curl_slist_append(chunk, c_type_str.c_str());
-        chunk = curl_slist_append(chunk, h_str.c_str());
         chunk = curl_slist_append(chunk, auth_str.c_str());
 
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
         curl_easy_setopt(curl, CURLOPT_URL, final_url.c_str());
-        curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, EVEAuth::write_memory_callback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*) &chu);
         curl_easy_setopt(curl, CURLOPT_USERAGENT, curl_agent.c_str());

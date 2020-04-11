@@ -327,7 +327,7 @@ namespace EVEAuth {
         std::string base_url = "https://login.eveonline.com/v2/oauth/authorize/";
         std::string request_url = "https://login.eveonline.com/v2/oauth/token";
         std::string jwt_keys_url = "https://login.eveonline.com/oauth/jwks";
-        std::string curl_agent = "libcurl-agent/1.0";
+        std::string curl_agent = "libcurl/7.69.0";
         std::string query_url = "https://esi.evetech.net/latest/";
 
         std::string response_type_param = "response_type=";
