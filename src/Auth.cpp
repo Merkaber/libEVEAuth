@@ -4,6 +4,8 @@
  * Copyright (c) 2019 Simon Piorecki
  */
 
+#include <string>
+#include <functional>
 #include "Auth.h"
 #include "Token.h"
 #include "utils/CallBackTimer.h"
@@ -414,7 +416,7 @@ std::string EVEAuth::Auth::query(const std::string& query_val) const noexcept(fa
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, EVEAuth::write_memory_callback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*) &chu);
         curl_easy_setopt(curl, CURLOPT_USERAGENT, curl_agent.c_str());
-#ifdef WIN
+#ifdef WIN32
         curl_easy_setopt(curl, CURLOPT_CAINFO, cacert_path.c_str());
 #endif
 
@@ -463,7 +465,7 @@ void EVEAuth::Auth::curl_request(const std::string& url, const std::string& post
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, EVEAuth::write_memory_callback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*) &chu);
         curl_easy_setopt(curl, CURLOPT_USERAGENT, curl_agent.c_str());
-#ifdef WIN
+#ifdef WIN32
         curl_easy_setopt(curl, CURLOPT_CAINFO, cacert_path.c_str());
 #endif
 

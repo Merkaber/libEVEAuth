@@ -6,11 +6,8 @@
 
 #pragma once
 
-
-#include "../shared.h"
-#include <thread>
 #include <atomic>
-#include <functional>
+#include <thread>
 
 #define F_CBT_NAME "CallBackTimer: "
 

@@ -4,8 +4,9 @@
  * Copyright (c) 2019 Simon Piorecki
  */
 
-#include "CallBackTimer.h"
-#include "../Auth.h"
+#include <functional>
+#include "utils/CallBackTimer.h"
+#include "Auth.h"
 
 EVEAuth::CallBackTimer::CallBackTimer() noexcept : execute(false)
 {

@@ -6,7 +6,12 @@
 
 #pragma once
 
-#include "shared.h"
+#include <vector>
+
+#ifdef WIN32
+#include <winsock2.h>
+#include <windows.h>
+#endif
 
 /*
  * The number of bytes which is necessary for the PKCE protocol

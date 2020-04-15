@@ -4,8 +4,11 @@
  * Copyright (c) 2019 Simon Piorecki
  */
 
-#include "Base64.h"
+#include <string>
 #include <algorithm>
+#include <sstream>
+#include <vector>
+#include "encodings/Base64.h"
 
 constexpr std::array<char, 64> EVEAuth::Base64::base64_chars;
 constexpr std::array<char, 4> EVEAuth::Base64::base64_url_safe_chars;

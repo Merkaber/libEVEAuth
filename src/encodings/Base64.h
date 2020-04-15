@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "../shared.h"
+#include <array>
 
 /* Base64 Exception Range from 10 - 99 */
 #define ERR_TOO_MANY_FILLS "Base64: decode: The given string has to many fills!"

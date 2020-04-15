@@ -6,8 +6,6 @@
 
 #pragma once
 
-#include "shared.h"
-
 /* Base64 Exception Range from 200 - 299 */
 #define F_DAT_NAME "decode_access_token(): "
 #define F_PC_NAME "parse_claims(): "
