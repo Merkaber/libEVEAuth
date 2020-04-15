@@ -20,7 +20,7 @@ and set it to the auth object by calling ```auth.set_code_val(code_val);```. Now
 by calling ```auth.start();```. The authorization token will be refreshed every 900 seconds by default.
 
 ```c++
-#include "Auth.h"
+#include "EVEAuth/Auth.h"
 
 ...
 
