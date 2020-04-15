@@ -19,6 +19,8 @@ project(EVEAuth VERSION 1.0.0 DESCRIPTION "A authentication library for the ESI"
 
 add_compile_definitions(LIBRARY_NAME="${PROJECT_NAME}: ")
 
+configure_file("${PROJECT_NAME}.pc.in" "${PROJECT_NAME}.pc" @ONLY)
+
 set(SRC_FILES src/encodings/Base64.cpp src/encodings/Base64.h src/Auth.cpp include/Auth.h src/Token.cpp src/Token.h src/utils/picojson.h
         src/utils/jwt.h src/utils/CallBackTimer.cpp src/utils/CallBackTimer.h)
 
@@ -54,5 +56,7 @@ install(TARGETS ${PROJECT_NAME} EXPORT EVEAuthConfig
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME})
 
 install(EXPORT EVEAuthConfig DESTINATION share/EVEAuth/cmake)
+
+install(FILES "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc" DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig)
 
 export(TARGETS ${PROJECT_NAME} FILE EVEAuthConfig.cmake)
