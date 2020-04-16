@@ -8,7 +8,8 @@ If you want to make a native C application... this library is **not** for you.
 
 ## How to use
 
-If you want to know how the authorization flow works, read the [docs](https://github.com/esi/esi-docs).
+If you want to know how the authorization flow works, read the [docs](https://github.com/esi/esi-docs).  
+For doxygen documentation open ```/../../libEVEAuth/docs/html/index.php```
 
 After creating an ```EVEAuth::Auth``` object with the applications client_id and the related scope, the user
 have to log into his account through the received url from ```auth.generate_auth_url();```. After login, the user will
