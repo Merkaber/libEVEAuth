@@ -44,9 +44,18 @@ if (std::cin >> code_val) {
 
 std::string q = "characters/" + auth.get_character_id() + "/blueprints/";
 
-std::cout << auth.query(q) << std::endl;
+try {
+    std::cout << auth.query(q) << std::endl;
+} catch (EVEAuth::AuthException& e) {
+    std::cout << e.get_error_code() << ": " << e.what() << std::endl;
+}
 
 ...
+```
+
+On Windows you have to set the path to the cacert.pem file before starting authorization since Windows may lack the ssl certificates.
+```c++
+auth.set_cacert_path(path);
 ```
 
 ### Dependencies:
