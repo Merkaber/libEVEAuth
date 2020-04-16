@@ -1,13 +1,10 @@
-# libEVEAuth
+# libEVEAuth 1.0.0
 
 libEVEAuth is a simple library for authorization handling with the 
 [EVE swagger interface](https://github.com/esi/esi-docs) 'ESI' for a native C++ application.
 
-If you want to make a native C++ application... this library is for you.\
+If you want to make a native C++ application... this library is for you.  
 If you want to make a native C application... this library is **not** for you.
-
-First Version 1.0.0 available.  
-I am currently working on the doxygen documentation.
 
 ## How to use
 

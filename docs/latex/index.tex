@@ -1,0 +1,120 @@
+\label{index_md_README}%
+\Hypertarget{index_md_README}%
+ lib\+E\+V\+E\+Auth is a simple library for authorization handling with the \href{https://github.com/esi/esi-docs}{\texttt{ E\+VE swagger interface}} \textquotesingle{}E\+SI\textquotesingle{} for a native C++ application.
+
+If you want to make a native C++ application... this library is for you. ~\newline
+ If you want to make a native C application... this library is {\bfseries{not}} for you.\hypertarget{index_autotoc_md1}{}\doxysection{How to use}\label{index_autotoc_md1}
+If you want to know how the authorization flow works, read the \href{https://github.com/esi/esi-docs}{\texttt{ docs}}.
+
+After creating an {\ttfamily \mbox{\hyperlink{class_e_v_e_auth_1_1_auth}{E\+V\+E\+Auth\+::\+Auth}}} object with the applications client\+\_\+id and the related scope, the user have to log into his account through the received url from {\ttfamily auth.\+generate\+\_\+auth\+\_\+url();}. After login, the user will be redirected to the localhost by default and the code value is received. You then have to retrieve the code value from the redirect url and set it to the auth object by calling {\ttfamily auth.\+set\+\_\+code\+\_\+val(code\+\_\+val);}. Now you can start the authorization flow by calling {\ttfamily auth.\+start();}. The authorization token will be refreshed every 900 seconds by default.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{\#include "EVEAuth/Auth.h"}
+\DoxyCodeLine{}
+\DoxyCodeLine{...}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::string client\_id = "03e...168";}
+\DoxyCodeLine{std::string scope = "esi-\/characters.read\_blueprints.v1";}
+\DoxyCodeLine{}
+\DoxyCodeLine{EVEAuth::Auth auth(client\_id, scope);}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::cout << auth.generate\_auth\_url() << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::string code\_val;}
+\DoxyCodeLine{}
+\DoxyCodeLine{if (std::cin >> code\_val) \{}
+\DoxyCodeLine{    auth.set\_code\_val(code\_val);}
+\DoxyCodeLine{    try \{}
+\DoxyCodeLine{        auth.start();}
+\DoxyCodeLine{    \} catch (EVEAuth::AuthException\& e) \{}
+\DoxyCodeLine{        std::cout << e.get\_error\_code() << ": " << e.what() << std::endl;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::string q = "characters/" + auth.get\_character\_id() + "/blueprints/";}
+\DoxyCodeLine{}
+\DoxyCodeLine{try \{}
+\DoxyCodeLine{    std::cout << auth.query(q) << std::endl;}
+\DoxyCodeLine{\} catch (EVEAuth::AuthException\& e) \{}
+\DoxyCodeLine{    std::cout << e.get\_error\_code() << ": " << e.what() << std::endl;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{...}
+\end{DoxyCode}
+
+
+On Windows you have to set the path to the cacert.\+pem file before starting authorization since Windows may lack the ssl certificates. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{auth.set\_cacert\_path(path);}
+\end{DoxyCode}
+\hypertarget{index_autotoc_md2}{}\doxysubsection{Dependencies\+:}\label{index_autotoc_md2}
+
+\begin{DoxyItemize}
+\item c++11$<$
+\item \href{https://www.openssl.org/}{\texttt{ Open\+S\+SL}}
+\item \href{https://curl.haxx.se/libcurl/}{\texttt{ libcurl}}
+\end{DoxyItemize}\hypertarget{index_autotoc_md3}{}\doxysubsection{Third party libraries used\+:}\label{index_autotoc_md3}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/kazuho/picojson}{\texttt{ picojson}} by Cybozu Labs, Inc. / Kazuho Oku
+\item \href{https://github.com/Thalhammer/jwt-cpp}{\texttt{ jwt-\/cpp}} by Thalhammer
+\end{DoxyItemize}\hypertarget{index_autotoc_md4}{}\doxysubsection{Building on Windows}\label{index_autotoc_md4}
+I recommend using \href{http://mingw-w64.org/doku.php}{\texttt{ Min\+G\+W\+\_\+w64}} and \href{https://cmake.org/}{\texttt{ C\+Make}} for building. ~\newline
+
+
+Read this tutorial for installing with \href{https://www.msys2.org/}{\texttt{ msys2}}.\hypertarget{index_autotoc_md5}{}\doxysubsubsection{Get lib\+Curl and Open\+S\+S\+L for linking}\label{index_autotoc_md5}
+Start the command prompt {\ttfamily C\+:\textbackslash{}msys64\textbackslash{}mingw64.\+exe} and download the necessary files\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{pacman -\/S openssl-\/devel}
+\DoxyCodeLine{pacman -\/S curl}
+\DoxyCodeLine{pacman -\/S libcurl}
+\end{DoxyCode}
+
+
+If the curl dll is missing, I recommend \href{https://curl.haxx.se/download.html}{\texttt{ downloading}} precompiled binaries for Min\+GW. Inside {\ttfamily ../curl-\/x.xx.\+x-\/win64-\/mingw/bin} you will find {\ttfamily libcurl-\/x64.\+dll}. Copy the dll into {\ttfamily C\+:\textbackslash{}Windows\textbackslash{}System32}.\hypertarget{index_autotoc_md6}{}\doxysubsubsection{Build this library with C\+Make}\label{index_autotoc_md6}
+Inside {\ttfamily /../../lib\+E\+V\+E\+Auth}\+:
+
+
+\begin{DoxyEnumerate}
+\item Make a build directory\+: ~\newline
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{```cd buil}
+\end{DoxyCode}
+
+\item Configure files for Min\+GW (don\textquotesingle{}t forget the \textquotesingle{}full stops\textquotesingle{} at the end!)\+: ~\newline
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{3. Build and install:  }
+\DoxyCodeLine{```cmake -\/-\/build . -\/-\/target instal}
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+If you do not want that the library is installed in the predefined system directory, uncomment the C\+M\+A\+K\+E\+\_\+\+I\+N\+S\+T\+A\+L\+L\+\_\+\+P\+R\+E\+F\+IX to install the library into the source directory.\hypertarget{index_autotoc_md7}{}\doxysubsubsection{Linking}\label{index_autotoc_md7}
+Since the library depends on \href{https://www.openssl.org/}{\texttt{ Open\+S\+SL}} and \href{https://curl.haxx.se/libcurl/}{\texttt{ libcurl}} you need to link against them properly. This includes linking with Threads too. Have a look into the C\+Make\+Lists.\+txt of this project to see how you can link using C\+Make.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{...}
+\DoxyCodeLine{}
+\DoxyCodeLine{find\_package(EVEAuth REQUIRED)}
+\DoxyCodeLine{}
+\DoxyCodeLine{target\_link\_libraries(\$\{PROJECT\_NAME\} EVEAuth ... )}
+\DoxyCodeLine{}
+\DoxyCodeLine{...}
+\end{DoxyCode}
+
+
+On Windows you also have to link against wldap32 ws2\+\_\+32\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{target\_link\_libraries(\$\{PROJECT\_NAME\} EVEAuth curl OpenSSL::Crypto Threads::Threads dl wldap32 ws2\_32)}
+\end{DoxyCode}
+ 

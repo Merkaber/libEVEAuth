@@ -1,0 +1,279 @@
+\hypertarget{class_e_v_e_auth_1_1_auth}{}\doxysection{E\+V\+E\+Auth\+::Auth Class Reference}
+\label{class_e_v_e_auth_1_1_auth}\index{EVEAuth::Auth@{EVEAuth::Auth}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a775acc6deed9ba4b40b65d4f4fc576b1}\label{class_e_v_e_auth_1_1_auth_a775acc6deed9ba4b40b65d4f4fc576b1}} 
+{\bfseries Auth} (std\+::string \&client\+\_\+id, std\+::string \&scope\+\_\+val) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a7b58a86c92a90aa3db258f2f18ced2be}\label{class_e_v_e_auth_1_1_auth_a7b58a86c92a90aa3db258f2f18ced2be}} 
+const std\+::string \& {\bfseries get\+\_\+client\+\_\+id} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a30c062c9e43bc8b9ead2fa273f3f7891}\label{class_e_v_e_auth_1_1_auth_a30c062c9e43bc8b9ead2fa273f3f7891}} 
+const std\+::string \& {\bfseries get\+\_\+scope\+\_\+val} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a326bd7d3a3d308ca32c4c84211d092ce}\label{class_e_v_e_auth_1_1_auth_a326bd7d3a3d308ca32c4c84211d092ce}} 
+const std\+::string \& {\bfseries get\+\_\+authentication\+\_\+url} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_af862561aabb90356413b4fc13e78a54e}\label{class_e_v_e_auth_1_1_auth_af862561aabb90356413b4fc13e78a54e}} 
+void {\bfseries set\+\_\+authentication\+\_\+url} (const std\+::string \&m\+\_\+authentication\+\_\+url) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a56b32b447aab3ee936a2c267678daeed}\label{class_e_v_e_auth_1_1_auth_a56b32b447aab3ee936a2c267678daeed}} 
+const std\+::string \& {\bfseries get\+\_\+code\+\_\+val} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a9fb382d2dbcc6f74511a70c90384605f}\label{class_e_v_e_auth_1_1_auth_a9fb382d2dbcc6f74511a70c90384605f}} 
+void {\bfseries set\+\_\+code\+\_\+val} (const std\+::string \&m\+\_\+code\+\_\+val) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_af89ee04bf72ea0562e6b2784454476c7}\label{class_e_v_e_auth_1_1_auth_af89ee04bf72ea0562e6b2784454476c7}} 
+const std\+::string \& {\bfseries get\+\_\+character\+\_\+id} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a9a012fe2a91a929e1d5d660899629d2b}\label{class_e_v_e_auth_1_1_auth_a9a012fe2a91a929e1d5d660899629d2b}} 
+const std\+::string \& {\bfseries get\+\_\+character\+\_\+name} () const noexcept
+\item 
+const std\+::string \& \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_aee01b3819f4f01aeaa6cc763ea756823}{generate\+\_\+auth\+\_\+url}} () noexcept(false)
+\item 
+void \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_a029be30a7a0a283b50a55ee429417603}{start}} () noexcept(false)
+\item 
+void \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_adfae561027ca00a6065cc4d0e22c44be}{send\+\_\+token\+\_\+request}} () noexcept(false)
+\item 
+void \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_a5b748b10a8b7c6db459704a3742e3c05}{verify\+\_\+token}} () noexcept(false)
+\item 
+void \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_a66da5b669cf57b609f80b4843df821ca}{parse\+\_\+token\+\_\+request}} () noexcept(false)
+\item 
+void \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_aa6b4b1e11c472a384324aa6c0245bb49}{send\+\_\+refresh\+\_\+request}} () noexcept(false)
+\item 
+void \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_a63f61d346e50e2face2242d1911b9500}{start\+\_\+refresh\+\_\+token}} () noexcept(false)
+\item 
+void \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_a598bbc2208a24abf54d3e9dc59c0532f}{stop\+\_\+refresh\+\_\+token}} () noexcept
+\item 
+std\+::string \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_a414be7ce775a18e8665ccbd63cea22ad}{query}} (const std\+::string \&query\+\_\+val) const noexcept(false)
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a1da35f1bee7d0eb9686727bfd948a754}\label{class_e_v_e_auth_1_1_auth_a1da35f1bee7d0eb9686727bfd948a754}} 
+const std\+::string \& {\bfseries get\+\_\+host} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a93412a41561cc2757d8712847b71bd69}\label{class_e_v_e_auth_1_1_auth_a93412a41561cc2757d8712847b71bd69}} 
+void {\bfseries set\+\_\+host} (const std\+::string \&m\+\_\+host) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a6d6a217f3a20da8801dea6bca8603457}\label{class_e_v_e_auth_1_1_auth_a6d6a217f3a20da8801dea6bca8603457}} 
+const std\+::string \& {\bfseries get\+\_\+content\+\_\+type} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a319f01fb8eb4184280f826b2ba6fb00b}\label{class_e_v_e_auth_1_1_auth_a319f01fb8eb4184280f826b2ba6fb00b}} 
+void {\bfseries set\+\_\+content\+\_\+type} (const std\+::string \&m\+\_\+content\+\_\+type) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a99cf1805f95d93f4f4ff0b5feeea82b9}\label{class_e_v_e_auth_1_1_auth_a99cf1805f95d93f4f4ff0b5feeea82b9}} 
+const std\+::string \& {\bfseries get\+\_\+base\+\_\+url} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a763abe0953cda08950642a7435378462}\label{class_e_v_e_auth_1_1_auth_a763abe0953cda08950642a7435378462}} 
+void {\bfseries set\+\_\+base\+\_\+url} (const std\+::string \&m\+\_\+base\+\_\+url) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_abe9620e28035ce001bbd635a296be08c}\label{class_e_v_e_auth_1_1_auth_abe9620e28035ce001bbd635a296be08c}} 
+const std\+::string \& {\bfseries get\+\_\+request\+\_\+url} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_ab6c4480fc82282a1b4e36257de9ec978}\label{class_e_v_e_auth_1_1_auth_ab6c4480fc82282a1b4e36257de9ec978}} 
+void {\bfseries set\+\_\+request\+\_\+url} (const std\+::string \&m\+\_\+request\+\_\+url) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a9829c66ae94efcb77eee96bc9c006c82}\label{class_e_v_e_auth_1_1_auth_a9829c66ae94efcb77eee96bc9c006c82}} 
+const std\+::string \& {\bfseries get\+\_\+jwt\+\_\+keys\+\_\+url} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_ac41ee8598034489e98bec75269aaed89}\label{class_e_v_e_auth_1_1_auth_ac41ee8598034489e98bec75269aaed89}} 
+void {\bfseries set\+\_\+jwt\+\_\+keys\+\_\+url} (const std\+::string \&m\+\_\+jwt\+\_\+keys\+\_\+url) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_ad90c39574f94b44f2a36a068877e5d93}\label{class_e_v_e_auth_1_1_auth_ad90c39574f94b44f2a36a068877e5d93}} 
+const std\+::string \& {\bfseries get\+\_\+curl\+\_\+agent} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a2689ac383d7202a1d6f6d32b3d5d9d27}\label{class_e_v_e_auth_1_1_auth_a2689ac383d7202a1d6f6d32b3d5d9d27}} 
+void {\bfseries set\+\_\+curl\+\_\+agent} (const std\+::string \&m\+\_\+curl\+\_\+agent) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_aec434360630ed76d02850d18b5dc2576}\label{class_e_v_e_auth_1_1_auth_aec434360630ed76d02850d18b5dc2576}} 
+const std\+::string \& {\bfseries get\+\_\+query\+\_\+url} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a2ccdd28257b9dad1435d086a81062a94}\label{class_e_v_e_auth_1_1_auth_a2ccdd28257b9dad1435d086a81062a94}} 
+void {\bfseries set\+\_\+query\+\_\+url} (const std\+::string \&m\+\_\+query\+\_\+url) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a25c1de36fd3cda84f7244deb54a49ab0}\label{class_e_v_e_auth_1_1_auth_a25c1de36fd3cda84f7244deb54a49ab0}} 
+const std\+::string \& {\bfseries get\+\_\+response\+\_\+type\+\_\+param} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_ab875ee176beb924e30770c18a9f10068}\label{class_e_v_e_auth_1_1_auth_ab875ee176beb924e30770c18a9f10068}} 
+void {\bfseries set\+\_\+response\+\_\+type\+\_\+param} (const std\+::string \&m\+\_\+response\+\_\+type\+\_\+param) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a64ddf28e59967666e4c62186b721f0c0}\label{class_e_v_e_auth_1_1_auth_a64ddf28e59967666e4c62186b721f0c0}} 
+const std\+::string \& {\bfseries get\+\_\+redirect\+\_\+url\+\_\+param} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a8b5010bc278b5a697efa3291835ec1b7}\label{class_e_v_e_auth_1_1_auth_a8b5010bc278b5a697efa3291835ec1b7}} 
+void {\bfseries set\+\_\+redirect\+\_\+url\+\_\+param} (const std\+::string \&m\+\_\+redirect\+\_\+url\+\_\+param) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a87ca95a98701d834abea4f6ee638526b}\label{class_e_v_e_auth_1_1_auth_a87ca95a98701d834abea4f6ee638526b}} 
+const std\+::string \& {\bfseries get\+\_\+client\+\_\+id\+\_\+param} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_abfc6c3912fe10144e8d64e16fb234cf3}\label{class_e_v_e_auth_1_1_auth_abfc6c3912fe10144e8d64e16fb234cf3}} 
+void {\bfseries set\+\_\+client\+\_\+id\+\_\+param} (const std\+::string \&m\+\_\+client\+\_\+id\+\_\+param) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a5698f5db2ba48d62ce87f9ce5ed03372}\label{class_e_v_e_auth_1_1_auth_a5698f5db2ba48d62ce87f9ce5ed03372}} 
+const std\+::string \& {\bfseries get\+\_\+scope\+\_\+param} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_aeaacf89ad007fb763ad57e172c4562c1}\label{class_e_v_e_auth_1_1_auth_aeaacf89ad007fb763ad57e172c4562c1}} 
+void {\bfseries set\+\_\+scope\+\_\+param} (const std\+::string \&m\+\_\+scope\+\_\+param) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a67853c267110ca1282a09ad8c03f5e05}\label{class_e_v_e_auth_1_1_auth_a67853c267110ca1282a09ad8c03f5e05}} 
+const std\+::string \& {\bfseries get\+\_\+state\+\_\+param} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a9ddbdd9ed6bd8c32e97019a0f0b55273}\label{class_e_v_e_auth_1_1_auth_a9ddbdd9ed6bd8c32e97019a0f0b55273}} 
+void {\bfseries set\+\_\+state\+\_\+param} (const std\+::string \&m\+\_\+state\+\_\+param) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a98bc6e93638d2f00c8897545f36ab593}\label{class_e_v_e_auth_1_1_auth_a98bc6e93638d2f00c8897545f36ab593}} 
+const std\+::string \& {\bfseries get\+\_\+code\+\_\+challenge\+\_\+param} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_aafbe4822b315d3309940972ae1ffaf46}\label{class_e_v_e_auth_1_1_auth_aafbe4822b315d3309940972ae1ffaf46}} 
+void {\bfseries set\+\_\+code\+\_\+challenge\+\_\+param} (const std\+::string \&m\+\_\+code\+\_\+challenge\+\_\+param) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a53ff093af974911805a19847bb65c2cf}\label{class_e_v_e_auth_1_1_auth_a53ff093af974911805a19847bb65c2cf}} 
+const std\+::string \& {\bfseries get\+\_\+code\+\_\+challenge\+\_\+method\+\_\+param} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a99a2648c95a3bbcada2203d374bd9f4c}\label{class_e_v_e_auth_1_1_auth_a99a2648c95a3bbcada2203d374bd9f4c}} 
+void {\bfseries set\+\_\+code\+\_\+challenge\+\_\+method\+\_\+param} (const std\+::string \&m\+\_\+code\+\_\+challenge\+\_\+method\+\_\+param) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a6ecafd8fd04cec0c2c167c4d183d3f68}\label{class_e_v_e_auth_1_1_auth_a6ecafd8fd04cec0c2c167c4d183d3f68}} 
+const std\+::string \& {\bfseries get\+\_\+grant\+\_\+type\+\_\+param} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a2bbf88bdc53d3bdab7a818ee4404c6e8}\label{class_e_v_e_auth_1_1_auth_a2bbf88bdc53d3bdab7a818ee4404c6e8}} 
+void {\bfseries set\+\_\+grant\+\_\+type\+\_\+param} (const std\+::string \&m\+\_\+grant\+\_\+type\+\_\+param) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_aea8d2c6c266e7e89fb30ab02f197b7b4}\label{class_e_v_e_auth_1_1_auth_aea8d2c6c266e7e89fb30ab02f197b7b4}} 
+const std\+::string \& {\bfseries get\+\_\+code\+\_\+param} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_aed96a55efaa307bd1445df4ffdd0cf6c}\label{class_e_v_e_auth_1_1_auth_aed96a55efaa307bd1445df4ffdd0cf6c}} 
+void {\bfseries set\+\_\+code\+\_\+param} (const std\+::string \&m\+\_\+code\+\_\+param) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a60c46e21107f2f1aa59f6a168cd6aa70}\label{class_e_v_e_auth_1_1_auth_a60c46e21107f2f1aa59f6a168cd6aa70}} 
+const std\+::string \& {\bfseries get\+\_\+code\+\_\+verifier\+\_\+param} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a08b5c1364f7824e4a711bd2abf860fc7}\label{class_e_v_e_auth_1_1_auth_a08b5c1364f7824e4a711bd2abf860fc7}} 
+void {\bfseries set\+\_\+code\+\_\+verifier\+\_\+param} (const std\+::string \&m\+\_\+code\+\_\+verifier\+\_\+param) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_af965c8e2b6922e4396892d5686ac9bbc}\label{class_e_v_e_auth_1_1_auth_af965c8e2b6922e4396892d5686ac9bbc}} 
+const std\+::string \& {\bfseries get\+\_\+state\+\_\+val} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_aa2195159eb941a71ea0dbe8227cac204}\label{class_e_v_e_auth_1_1_auth_aa2195159eb941a71ea0dbe8227cac204}} 
+void {\bfseries set\+\_\+state\+\_\+val} (const std\+::string \&m\+\_\+state\+\_\+val) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_af3c10eb3ed07ff5e717d6b6e24899b2c}\label{class_e_v_e_auth_1_1_auth_af3c10eb3ed07ff5e717d6b6e24899b2c}} 
+const std\+::string \& {\bfseries get\+\_\+code\+\_\+challenge\+\_\+method\+\_\+val} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a055dc59fbe94f9f95b4d4e6fd9f09aed}\label{class_e_v_e_auth_1_1_auth_a055dc59fbe94f9f95b4d4e6fd9f09aed}} 
+void {\bfseries set\+\_\+code\+\_\+challenge\+\_\+method\+\_\+val} (const std\+::string \&m\+\_\+code\+\_\+challenge\+\_\+method\+\_\+val) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a3a6ed0e8c873c17af0d241c29c280e2a}\label{class_e_v_e_auth_1_1_auth_a3a6ed0e8c873c17af0d241c29c280e2a}} 
+const std\+::string \& {\bfseries get\+\_\+redirect\+\_\+url\+\_\+val} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a2b238dae00215dd78c6cc84a1a75fff1}\label{class_e_v_e_auth_1_1_auth_a2b238dae00215dd78c6cc84a1a75fff1}} 
+void {\bfseries set\+\_\+redirect\+\_\+url\+\_\+val} (const std\+::string \&m\+\_\+redirect\+\_\+url\+\_\+val) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_aa32a8239c24279b94f012d5a15954199}\label{class_e_v_e_auth_1_1_auth_aa32a8239c24279b94f012d5a15954199}} 
+const std\+::string \& {\bfseries get\+\_\+response\+\_\+type\+\_\+val} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a99ff8312530e9c3e4ddfed49ea2db7c9}\label{class_e_v_e_auth_1_1_auth_a99ff8312530e9c3e4ddfed49ea2db7c9}} 
+void {\bfseries set\+\_\+response\+\_\+type\+\_\+val} (const std\+::string \&m\+\_\+response\+\_\+type\+\_\+val) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_aa8f0aa4beb1ad9da56d0786c64e18af7}\label{class_e_v_e_auth_1_1_auth_aa8f0aa4beb1ad9da56d0786c64e18af7}} 
+const std\+::string \& {\bfseries get\+\_\+grant\+\_\+type\+\_\+val} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a39d1bdf89d183ad478f6c4ed2b04b6bb}\label{class_e_v_e_auth_1_1_auth_a39d1bdf89d183ad478f6c4ed2b04b6bb}} 
+void {\bfseries set\+\_\+grant\+\_\+type\+\_\+val} (const std\+::string \&m\+\_\+grant\+\_\+type\+\_\+val) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a5f2dc59b788c956ceb0508f5fc4b3454}\label{class_e_v_e_auth_1_1_auth_a5f2dc59b788c956ceb0508f5fc4b3454}} 
+const std\+::string \& {\bfseries get\+\_\+grant\+\_\+type\+\_\+refresh\+\_\+val} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a178623ec4e84184e095ca40c19a3e954}\label{class_e_v_e_auth_1_1_auth_a178623ec4e84184e095ca40c19a3e954}} 
+void {\bfseries set\+\_\+grant\+\_\+type\+\_\+refresh\+\_\+val} (const std\+::string \&m\+\_\+grant\+\_\+type\+\_\+refresh\+\_\+val) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a6c2c3fc5d4b44a82070a4d0eaa795ca1}\label{class_e_v_e_auth_1_1_auth_a6c2c3fc5d4b44a82070a4d0eaa795ca1}} 
+const std\+::string \& {\bfseries get\+\_\+refresh\+\_\+token\+\_\+param} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a83bfee2996fc426769c5f3fd65bd3661}\label{class_e_v_e_auth_1_1_auth_a83bfee2996fc426769c5f3fd65bd3661}} 
+void {\bfseries set\+\_\+refresh\+\_\+token\+\_\+param} (const std\+::string \&m\+\_\+refresh\+\_\+token\+\_\+param) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a03181202b30c12cedf278673134bd231}\label{class_e_v_e_auth_1_1_auth_a03181202b30c12cedf278673134bd231}} 
+const std\+::string \& {\bfseries get\+\_\+cacert\+\_\+path} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a5044573a36b6b032a0b4c92395d4aa72}\label{class_e_v_e_auth_1_1_auth_a5044573a36b6b032a0b4c92395d4aa72}} 
+void {\bfseries set\+\_\+cacert\+\_\+path} (const std\+::string \&m\+\_\+cacert\+\_\+path) noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a6fafe8b2b3a9db82f399f7059289f6b6}\label{class_e_v_e_auth_1_1_auth_a6fafe8b2b3a9db82f399f7059289f6b6}} 
+const int \& {\bfseries get\+\_\+refresh\+\_\+interval} () const noexcept
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_ab4b1a81ae62a8f5aa0b5c9b24b6f1e6e}\label{class_e_v_e_auth_1_1_auth_ab4b1a81ae62a8f5aa0b5c9b24b6f1e6e}} 
+void {\bfseries set\+\_\+refresh\+\_\+interval} (const int \&m\+\_\+refresh\+\_\+interval) noexcept
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_aee01b3819f4f01aeaa6cc763ea756823}\label{class_e_v_e_auth_1_1_auth_aee01b3819f4f01aeaa6cc763ea756823}} 
+\index{EVEAuth::Auth@{EVEAuth::Auth}!generate\_auth\_url@{generate\_auth\_url}}
+\index{generate\_auth\_url@{generate\_auth\_url}!EVEAuth::Auth@{EVEAuth::Auth}}
+\doxysubsubsection{\texorpdfstring{generate\_auth\_url()}{generate\_auth\_url()}}
+{\footnotesize\ttfamily const std\+::string\& E\+V\+E\+Auth\+::\+Auth\+::generate\+\_\+auth\+\_\+url (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Generates the authentication url for the web-\/login \begin{DoxyReturn}{Returns}
+The authentication url which will lead to a web-\/login 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a66da5b669cf57b609f80b4843df821ca}\label{class_e_v_e_auth_1_1_auth_a66da5b669cf57b609f80b4843df821ca}} 
+\index{EVEAuth::Auth@{EVEAuth::Auth}!parse\_token\_request@{parse\_token\_request}}
+\index{parse\_token\_request@{parse\_token\_request}!EVEAuth::Auth@{EVEAuth::Auth}}
+\doxysubsubsection{\texorpdfstring{parse\_token\_request()}{parse\_token\_request()}}
+{\footnotesize\ttfamily void E\+V\+E\+Auth\+::\+Auth\+::parse\+\_\+token\+\_\+request (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Parse the last download\+\_\+response and set the data to the token object \mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a414be7ce775a18e8665ccbd63cea22ad}\label{class_e_v_e_auth_1_1_auth_a414be7ce775a18e8665ccbd63cea22ad}} 
+\index{EVEAuth::Auth@{EVEAuth::Auth}!query@{query}}
+\index{query@{query}!EVEAuth::Auth@{EVEAuth::Auth}}
+\doxysubsubsection{\texorpdfstring{query()}{query()}}
+{\footnotesize\ttfamily std\+::string E\+V\+E\+Auth\+::\+Auth\+::query (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{query\+\_\+val }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Sends a G\+ET request with the given query string 
+\begin{DoxyParams}{Parameters}
+{\em query\+\_\+val} & The query string i.\+e. \href{https://esi.evetech.net/latest/query_val}{\texttt{ https\+://esi.\+evetech.\+net/latest/query\+\_\+val}}" \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The query response 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_aa6b4b1e11c472a384324aa6c0245bb49}\label{class_e_v_e_auth_1_1_auth_aa6b4b1e11c472a384324aa6c0245bb49}} 
+\index{EVEAuth::Auth@{EVEAuth::Auth}!send\_refresh\_request@{send\_refresh\_request}}
+\index{send\_refresh\_request@{send\_refresh\_request}!EVEAuth::Auth@{EVEAuth::Auth}}
+\doxysubsubsection{\texorpdfstring{send\_refresh\_request()}{send\_refresh\_request()}}
+{\footnotesize\ttfamily void E\+V\+E\+Auth\+::\+Auth\+::send\+\_\+refresh\+\_\+request (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Sends the refresh token request \mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_adfae561027ca00a6065cc4d0e22c44be}\label{class_e_v_e_auth_1_1_auth_adfae561027ca00a6065cc4d0e22c44be}} 
+\index{EVEAuth::Auth@{EVEAuth::Auth}!send\_token\_request@{send\_token\_request}}
+\index{send\_token\_request@{send\_token\_request}!EVEAuth::Auth@{EVEAuth::Auth}}
+\doxysubsubsection{\texorpdfstring{send\_token\_request()}{send\_token\_request()}}
+{\footnotesize\ttfamily void E\+V\+E\+Auth\+::\+Auth\+::send\+\_\+token\+\_\+request (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Sends the token request \mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a029be30a7a0a283b50a55ee429417603}\label{class_e_v_e_auth_1_1_auth_a029be30a7a0a283b50a55ee429417603}} 
+\index{EVEAuth::Auth@{EVEAuth::Auth}!start@{start}}
+\index{start@{start}!EVEAuth::Auth@{EVEAuth::Auth}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void E\+V\+E\+Auth\+::\+Auth\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Starts the whole authentication process by its own If an exception is thrown you may create a new \mbox{\hyperlink{class_e_v_e_auth_1_1_auth}{Auth}} object and generate another url to start the authentication process again \mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a63f61d346e50e2face2242d1911b9500}\label{class_e_v_e_auth_1_1_auth_a63f61d346e50e2face2242d1911b9500}} 
+\index{EVEAuth::Auth@{EVEAuth::Auth}!start\_refresh\_token@{start\_refresh\_token}}
+\index{start\_refresh\_token@{start\_refresh\_token}!EVEAuth::Auth@{EVEAuth::Auth}}
+\doxysubsubsection{\texorpdfstring{start\_refresh\_token()}{start\_refresh\_token()}}
+{\footnotesize\ttfamily void E\+V\+E\+Auth\+::\+Auth\+::start\+\_\+refresh\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Starts the refreshing callback thread \mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a598bbc2208a24abf54d3e9dc59c0532f}\label{class_e_v_e_auth_1_1_auth_a598bbc2208a24abf54d3e9dc59c0532f}} 
+\index{EVEAuth::Auth@{EVEAuth::Auth}!stop\_refresh\_token@{stop\_refresh\_token}}
+\index{stop\_refresh\_token@{stop\_refresh\_token}!EVEAuth::Auth@{EVEAuth::Auth}}
+\doxysubsubsection{\texorpdfstring{stop\_refresh\_token()}{stop\_refresh\_token()}}
+{\footnotesize\ttfamily void E\+V\+E\+Auth\+::\+Auth\+::stop\+\_\+refresh\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Stops the refreshing callback thread \mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a5b748b10a8b7c6db459704a3742e3c05}\label{class_e_v_e_auth_1_1_auth_a5b748b10a8b7c6db459704a3742e3c05}} 
+\index{EVEAuth::Auth@{EVEAuth::Auth}!verify\_token@{verify\_token}}
+\index{verify\_token@{verify\_token}!EVEAuth::Auth@{EVEAuth::Auth}}
+\doxysubsubsection{\texorpdfstring{verify\_token()}{verify\_token()}}
+{\footnotesize\ttfamily void E\+V\+E\+Auth\+::\+Auth\+::verify\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Verifies the current token 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Auth.\+h\end{DoxyCompactItemize}

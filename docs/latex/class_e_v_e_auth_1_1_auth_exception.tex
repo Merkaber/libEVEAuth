@@ -1,0 +1,68 @@
+\hypertarget{class_e_v_e_auth_1_1_auth_exception}{}\doxysection{E\+V\+E\+Auth\+::Auth\+Exception Class Reference}
+\label{class_e_v_e_auth_1_1_auth_exception}\index{EVEAuth::AuthException@{EVEAuth::AuthException}}
+
+
+{\ttfamily \#include $<$Auth.\+h$>$}
+
+Inheritance diagram for E\+V\+E\+Auth\+::Auth\+Exception\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_e_v_e_auth_1_1_auth_exception}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_e_v_e_auth_1_1_auth_exception_a046abf66cda1ed5356efb16eb00f7b1c}{Auth\+Exception}} (std\+::string message, int error\+\_\+code) noexcept
+\item 
+const char $\ast$ \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_exception_ad31c506b52a00d9e11d8db5b723fff10}{what}} () const noexcept override
+\item 
+const int \& \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_exception_a22fa8adba9f80a59eec98aa89ab408c9}{get\+\_\+error\+\_\+code}} () const noexcept
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Exception class for authentication
+
+The exception thrown will always have an unique exception code 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_exception_a046abf66cda1ed5356efb16eb00f7b1c}\label{class_e_v_e_auth_1_1_auth_exception_a046abf66cda1ed5356efb16eb00f7b1c}} 
+\index{EVEAuth::AuthException@{EVEAuth::AuthException}!AuthException@{AuthException}}
+\index{AuthException@{AuthException}!EVEAuth::AuthException@{EVEAuth::AuthException}}
+\doxysubsubsection{\texorpdfstring{AuthException()}{AuthException()}}
+{\footnotesize\ttfamily E\+V\+E\+Auth\+::\+Auth\+Exception\+::\+Auth\+Exception (\begin{DoxyParamCaption}\item[{std\+::string}]{message,  }\item[{int}]{error\+\_\+code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+This constructor expects the error message and the related error code 
+\begin{DoxyParams}{Parameters}
+{\em message} & The message which will be available when calling \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_exception_ad31c506b52a00d9e11d8db5b723fff10}{what()}} \\
+\hline
+{\em error\+\_\+code} & The unique error code which will be available when calling \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_exception_a22fa8adba9f80a59eec98aa89ab408c9}{get\+\_\+error\+\_\+code()}} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_exception_a22fa8adba9f80a59eec98aa89ab408c9}\label{class_e_v_e_auth_1_1_auth_exception_a22fa8adba9f80a59eec98aa89ab408c9}} 
+\index{EVEAuth::AuthException@{EVEAuth::AuthException}!get\_error\_code@{get\_error\_code}}
+\index{get\_error\_code@{get\_error\_code}!EVEAuth::AuthException@{EVEAuth::AuthException}}
+\doxysubsubsection{\texorpdfstring{get\_error\_code()}{get\_error\_code()}}
+{\footnotesize\ttfamily const int\& E\+V\+E\+Auth\+::\+Auth\+Exception\+::get\+\_\+error\+\_\+code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Returns the error code which has been set when the exception was thrown \begin{DoxyReturn}{Returns}
+The unique error code which specifies what kind of exception has been thrown 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_exception_ad31c506b52a00d9e11d8db5b723fff10}\label{class_e_v_e_auth_1_1_auth_exception_ad31c506b52a00d9e11d8db5b723fff10}} 
+\index{EVEAuth::AuthException@{EVEAuth::AuthException}!what@{what}}
+\index{what@{what}!EVEAuth::AuthException@{EVEAuth::AuthException}}
+\doxysubsubsection{\texorpdfstring{what()}{what()}}
+{\footnotesize\ttfamily const char$\ast$ E\+V\+E\+Auth\+::\+Auth\+Exception\+::what (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [noexcept]}}
+
+Returns the error message as c-\/string which has been set when the exception was thrown \begin{DoxyReturn}{Returns}
+The error message which specifies what kind of exception has been thrown 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Auth.\+h\end{DoxyCompactItemize}
