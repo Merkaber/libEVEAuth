@@ -120,21 +120,77 @@ namespace EVEAuth {
         const int error_code;
     };
 
+    /**
+     * The authorization class which handles everything
+     *
+     * Create an object of this class with the client_id of the application and the scope you will query to
+     */
     class Auth {
     public:
+
+        /**
+         * Create an authorization object with the applications client_id and the scope you will query to
+         * @param client_id The applications client_id which you will find on the developer webpage
+         * @param scope_val The scope of the application
+         */
         Auth(std::string& client_id, std::string& scope_val) noexcept;
+
+        /**
+         * When the object is destroyed, the token will be destroyed and everything related to curl will be cleaned up
+         */
         ~Auth() noexcept;
 
+        /**
+         * Get the current client_id which will be used for authorization
+         * @return The current client_id
+         */
         const std::string& get_client_id() const noexcept;
+
+        /**
+         * Get the currently set scope which is necessary for authorization
+         * @return The current scope
+         */
         const std::string& get_scope_val() const noexcept;
 
+        /**
+         * Get the currently set or generated authentication url which needs to be called for retrieving the code value
+         *
+         * The code value then have to be set to this EVEAuth object
+         * @return The currently set or generated authentication url
+         */
         const std::string& get_authentication_url() const noexcept;
+
+        /**
+         * Set an authentication url for retrieving the code value
+         *
+         * Usually you will use the methods of this EVEAuth object to generate the authentication url
+         * If you manually generate the authentication url, you can set thise url with this method
+         * @param m_authentication_url
+         */
         void set_authentication_url(const std::string& m_authentication_url) noexcept;
 
+        /**
+         * Get the code value which has to be retrieved from the login of the authentication url
+         * @return The currently set code value
+         */
         const std::string& get_code_val() const noexcept;
+
+        /**
+         * Set the code value which has to be retrieved from the login of the authentication url
+         * @param m_code_val The code value from the login
+         */
         void set_code_val(const std::string& m_code_val) noexcept;
 
+        /**
+         * Get the character id from the login with the generated authentication url with this EVEAuth object
+         * @return The character id of the login
+         */
         const std::string& get_character_id() const noexcept;
+
+        /**
+         * Get the character name from the login with the generated authentication url with this EVEAuth object
+         * @return The character name of the login
+         */
         const std::string& get_character_name() const noexcept;
 
         /**
@@ -183,7 +239,7 @@ namespace EVEAuth {
         /**
          * Sends a GET request with the given query string
          * @param query_val The query string i.e. https://esi.evetech.net/latest/query_val"
-         * @return The query response
+         * @return The query response in JSON format
          */
         std::string query(const std::string& query_val) const noexcept(false);
 
@@ -227,7 +283,7 @@ namespace EVEAuth {
         /// The verifier which is necessary for requesting the token
         std::string code_verifier = "";
 
-        /// The whole authentication for requesting the user login
+        /// The whole authentication url for requesting the user login
         std::string authentication_url = "";
 
         /// The code value which needs to be set after user login
@@ -239,7 +295,7 @@ namespace EVEAuth {
         /// The last download response
         std::string download_response = "";
 
-        /// The token which will hold the information for authentication
+        /// The token which will hold the information for authorization
         EVEAuth::Token* token = nullptr;
 
         /// The callback timer for refreshing the token
@@ -247,82 +303,399 @@ namespace EVEAuth {
 
         /* Getter and setter for predefined query parameters and values */
     public:
+
+        /**
+         * Get the current host name which is set to the header of a http request
+         * @return The currently set host
+         */
         const std::string& get_host() const noexcept;
+
+        /**
+         * Set the host which is set to the header of a http request
+         *
+         * Only set this host if this library is not updated or the host has changed
+         * default: login.eveonline.com
+         * @param m_host The host which will be set to all http requests
+         */
         void set_host(const std::string& m_host) noexcept;
 
+        /**
+         * Get the current content type which is set to the header of a http request
+         * @return The currently set host
+         */
         const std::string& get_content_type() const noexcept;
+
+        /**
+         * Set the content type which is set to the header of a http request
+         *
+         * Only set this content type is this library is not updated or the content type has changed
+         * default: application/x-www-form-urlencoded
+         * @param m_content_type The content type which will be set to all http requests
+         */
         void set_content_type(const std::string& m_content_type) noexcept;
 
+        /**
+         * Get the current base url to which all http requests will be made
+         * @return The current base url
+         */
         const std::string& get_base_url() const noexcept;
+
+        /**
+         * Set the base url to which all http requests will be made
+         *
+         * Only set this base url if this library is not updated or the base url has changed
+         * default: https://login.eveonline.com/v2/oauth/authorize/
+         * @param m_base_url
+         */
         void set_base_url(const std::string& m_base_url) noexcept;
 
+        /**
+         * Get the current request url to which all authorization requests will be made
+         * @return The current request url
+         */
         const std::string& get_request_url() const noexcept;
+
+        /**
+         * Set the request url to wich all authorization requests will be made
+         *
+         * Only set this request url if this library is not updated or the request url has changed
+         * default: https://login.eveonline.com/v2/oauth/token
+         * @param m_request_url
+         */
         void set_request_url(const std::string& m_request_url) noexcept;
 
+        /**
+         * Get the current jwt keys url to which the request for the current jwt token will be made
+         * @return The current jwt keys url
+         */
         const std::string& get_jwt_keys_url() const noexcept;
+
+        /**
+         * Set the jwt keys url to which the requests for the current jwt token will be made
+         *
+         * Only set this jwt keys url if this library is not updated or the jwt keys url has changed
+         * default: https://login.eveonline.com/oauth/jwks
+         * @param m_jwt_keys_url
+         */
         void set_jwt_keys_url(const std::string& m_jwt_keys_url) noexcept;
 
+        /**
+         * Get the current curl agent which is set to the header of a http request
+         * @return The current curl agent
+         */
         const std::string& get_curl_agent() const noexcept;
+
+        /**
+         * Set the curl agent which is set to the header of a http request
+         *
+         * You can change it to the current curl version you use but it is not mandatory
+         * default: libcurl/7.69.0
+         * @param m_curl_agent
+         */
         void set_curl_agent(const std::string& m_curl_agent) noexcept;
 
+        /**
+         * Get the current query url to which all querys will be made
+         * @return The current query url
+         */
         const std::string& get_query_url() const noexcept;
+
+        /**
+         * Set the current query url to which all querys will be made
+         *
+         * Only set this query url if this library is not updated or the query url has changed
+         * default: https://esi.evetech.net/latest/
+         * @param m_query_url
+         */
         void set_query_url(const std::string& m_query_url) noexcept;
 
+        /**
+         * Get the current response type parameter which is set in an authorization post request
+         * @return The current response type parameter
+         */
         const std::string& get_response_type_param() const noexcept;
+
+        /**
+         * Set the current response type parameter which is set in an authorization post request
+         *
+         * Only set this response type parameter if this library is not updated or the reponse type parameter has changed
+         * default: response_type=
+         * @param m_response_type_param
+         */
         void set_response_type_param(const std::string& m_response_type_param) noexcept;
 
+        /**
+         * Ge the current redirect url parameter which is set in an authorization post request
+         * @return The current redirect url parameter
+         */
         const std::string& get_redirect_url_param() const noexcept;
+
+        /**
+         * Set the current redirect url parameter which is set in an authorization post request
+         *
+         * Only set this redirect url parameter if this library is not updated or the redirect url parameter has changed
+         * default: redirect_uri=
+         * @param m_redirect_url_param
+         */
         void set_redirect_url_param(const std::string& m_redirect_url_param) noexcept;
 
+        /**
+         * Get the current client_id parameter which is set in an authorization post request
+         * @return The current client_id parameter
+         */
         const std::string& get_client_id_param() const noexcept;
+
+        /**
+         * Set the current client_id parameter which is set in an authorization post request
+         *
+         * Only set this client_id parameter if this library is not updated or the client_id parameter has changed
+         * default: client_id=
+         * @param m_client_id_param
+         */
         void set_client_id_param(const std::string& m_client_id_param) noexcept;
 
+        /**
+         * Get the current scope parameter which is set in an authorization post request
+         * @return The current scope parameter
+         */
         const std::string& get_scope_param() const noexcept;
+
+        /**
+         * Set the current scope parameter which is set in an authorization post request
+         *
+         * Only set this scope parameter if this library is not updated or the scope parameter has changed
+         * default: scope=
+         * @param m_scope_param
+         */
         void set_scope_param(const std::string& m_scope_param) noexcept;
 
+        /**
+         * Get the current state parameter which is set in an authorization post request
+         * @return The current state parameter
+         */
         const std::string& get_state_param() const noexcept;
+
+        /**
+         * Set the current state parameter which is set in an authorization post request
+         *
+         * Only set this state parameter if this library is not updated or the state parameter has changed
+         * default: state=
+         * @param m_state_param
+         */
         void set_state_param(const std::string& m_state_param) noexcept;
 
+        /**
+         * Get the current code challenge parameter which is set in an authorization post request
+         * @return The current code challenge parameter
+         */
         const std::string& get_code_challenge_param() const noexcept;
+
+        /**
+         * Set the current code challenge parameter which is set in an authorization post request
+         *
+         * Only set this code challenge parameter if this library is not updated or the code challenge parameter has changed
+         * default: code_challenge=
+         * @param m_code_challenge_param
+         */
         void set_code_challenge_param(const std::string& m_code_challenge_param) noexcept;
 
+        /**
+         * Get the current code challenge method parameter which is set in an authorization post request
+         * @return The current code challenge method parameter
+         */
         const std::string& get_code_challenge_method_param() const noexcept;
+
+        /**
+         * Set the current code challenge method parameter which is set in an authorization post request
+         *
+         * Only set this code challenge method parameter if this library is not updated or the code challenge method parameter has changed
+         * default: code_challenge_method=
+         * @param m_code_challenge_method_param
+         */
         void set_code_challenge_method_param(const std::string& m_code_challenge_method_param) noexcept;
 
+        /**
+         * Get the current grant type parameter which is set in an authorization post request
+         * @return The current grant type parameter
+         */
         const std::string& get_grant_type_param() const noexcept;
+
+        /**
+         * Set the current grant type parameter which is set in an authorization post request
+         *
+         * Only set this grant type parameter if this library is not updated or the grant type parameter has changed
+         * default: grant_type=
+         * @param m_grant_type_param
+         */
         void set_grant_type_param(const std::string& m_grant_type_param) noexcept;
 
+        /**
+         * Get the current code parameter which is set in an authorization post request
+         * @return The current code parameter
+         */
         const std::string& get_code_param() const noexcept;
+
+        /**
+         * Set the current code parameter which is set in an authorization post request
+         *
+         * Only set this code parameter if this library is not updated or the code parameter has changed
+         * default: code=
+         * @param m_code_param
+         */
         void set_code_param(const std::string& m_code_param) noexcept;
 
+        /**
+         * Get the current code verifier parameter which is set in an authorization post request
+         * @return The current code verifier parameter
+         */
         const std::string& get_code_verifier_param() const noexcept;
+
+        /**
+         * Set the current code verifier parameter which is set in an authorization post request
+         *
+         * Only set this code verifier parameter if this library is not updated or the code verifier parameter has changed
+         * default: code_verifier=
+         * @param m_code_verifier_param
+         */
         void set_code_verifier_param(const std::string& m_code_verifier_param) noexcept;
 
-        const std::string& get_state_val() const noexcept;
-        void set_state_val(const std::string& m_state_val) noexcept;
-
-        const std::string& get_code_challenge_method_val() const noexcept;
-        void set_code_challenge_method_val(const std::string& m_code_challenge_method_val) noexcept;
-
-        const std::string& get_redirect_url_val() const noexcept;
-        void set_redirect_url_val(const std::string& m_redirect_url_val) noexcept;
-
-        const std::string& get_response_type_val() const noexcept;
-        void set_response_type_val(const std::string& m_response_type_val) noexcept;
-
-        const std::string& get_grant_type_val() const noexcept;
-        void set_grant_type_val(const std::string& m_grant_type_val) noexcept;
-
-        const std::string& get_grant_type_refresh_val() const noexcept;
-        void set_grant_type_refresh_val(const std::string& m_grant_type_refresh_val) noexcept;
-
+        /**
+         * Get the current refresh token parameter which is set in an authorization post request
+         * @return The current refresh token parameter
+         */
         const std::string& get_refresh_token_param() const noexcept;
+
+        /**
+         * Set the current refresh token parameter which is set in an authorization post request
+         *
+         * Only set this refresh token parameter if this library is not updated or the refresh token parameter has changed
+         * default: refresh_token=
+         * @param m_refresh_token_param
+         */
         void set_refresh_token_param(const std::string& m_refresh_token_param) noexcept;
 
+        /**
+         * Get the currently set state value which will be set to an authorization post request
+         * @return The current state value
+         */
+        const std::string& get_state_val() const noexcept;
+
+        /**
+         * Set the current state value which will be set to an authorization post request
+         *
+         * Only set this state value if this library is not updated or the state value has changed
+         * default: unique-state
+         * @param m_state_val
+         */
+        void set_state_val(const std::string& m_state_val) noexcept;
+
+        /**
+         * Get the currently set code challenge method value which will be set to an authorization post request
+         * @return The current code challenge method value
+         */
+        const std::string& get_code_challenge_method_val() const noexcept;
+
+        /**
+         * Set the current code challenge method value which will be set to an authorization post request
+         *
+         * Only set this code challenge method value if this library is not updated or the code challenge method value has changed
+         * default: S256
+         * @param m_code_challenge_method_val
+         */
+        void set_code_challenge_method_val(const std::string& m_code_challenge_method_val) noexcept;
+
+        /**
+         * Get the currently set redirect url value which will be set to an authorization post request
+         * @return The current redirect url value
+         */
+        const std::string& get_redirect_url_val() const noexcept;
+
+        /**
+         * Set the current code challenge method value which will be set to an authorization post request
+         *
+         * You may want to set this value in order to change the redirect value to a different value which suits your application
+         * The redirect url has to be url safe
+         * default: https%3A%2F%2Flocalhost%2Fcallback%2F
+         * @param m_redirect_url_val
+         */
+        void set_redirect_url_val(const std::string& m_redirect_url_val) noexcept;
+
+        /**
+         * Get the currently set response type value which will be set to an authorization post request
+         * @return The current response type value
+         */
+        const std::string& get_response_type_val() const noexcept;
+
+        /**
+         * Set the current response type value which will be set to an authorization post request
+         *
+         * Only set this response type value if this library is not updated or the response type value has changed
+         * default: code
+         * @param m_response_type_val
+         */
+        void set_response_type_val(const std::string& m_response_type_val) noexcept;
+
+        /**
+         * Get the currently set grant type value which will be set to an authorization post request
+         * @return The current grant type value
+         */
+        const std::string& get_grant_type_val() const noexcept;
+
+        /**
+         * Set the current code grant type value which will be set to an authorization post request
+         *
+         * Only set this code grant type value if this library is not updated or the code grant type value has changed
+         * default: authorization_code
+         * @param m_grant_type_val
+         */
+        void set_grant_type_val(const std::string& m_grant_type_val) noexcept;
+
+        /**
+         * Get the currently set refresh grant type value which will be set to an authorization post request
+         * @return The current refresh grant type value
+         */
+        const std::string& get_grant_type_refresh_val() const noexcept;
+
+        /**
+         * Set the current refresh grant type value which will be set to an authorization post request
+         *
+         * Only set this refresh grant type value if this library is not updated or the refresh grant type value has changed
+         * default: refresh_token
+         * @param m_grant_type_refresh_val
+         */
+        void set_grant_type_refresh_val(const std::string& m_grant_type_refresh_val) noexcept;
+
+        /**
+         * Get the current cacert path which is necessary to make https requests
+         * @return The current cacert path
+         */
         const std::string& get_cacert_path() const noexcept;
+
+        /**
+         * Set the absolute path to the cacert which is necessary to make https requests
+         *
+         * You have to set the path to the cacert if you are on Windows otherwise the requests will fail and throw
+         * an EVEAuthException
+         * You can use the certificate in the directory of this library or download it from somewhere else
+         * @param m_cacert_path
+         */
         void set_cacert_path(const std::string& m_cacert_path) noexcept;
 
+        /**
+         * Get the current interval which specifies when the token will be refreshed
+         * @return The current refresh interval
+         */
         const int& get_refresh_interval() const noexcept;
+
+        /**
+         * Set the interval which specifies when the token will be refresh
+         *
+         * As for now, the token is valid for 20 Minutes, i.e. 1200 seconds
+         * You may want to change this value to retrieve the refresh token earlier or later
+         * As for now, it is not necessary to change this value
+         * default: 900
+         * @param m_refresh_interval
+         */
         void set_refresh_interval(const int& m_refresh_interval) noexcept;
 
         /* Predefined query parameter and values for login */
@@ -345,6 +718,7 @@ namespace EVEAuth {
         std::string grant_type_param = "grant_type=";
         std::string code_param = "code=";
         std::string code_verifier_param = "code_verifier=";
+        std::string refresh_token_param = "refresh_token=";
 
         std::string state_val = "unique-state";
         std::string code_challenge_method_val = "S256";
@@ -352,9 +726,8 @@ namespace EVEAuth {
         std::string response_type_val = "code";
         std::string grant_type_val = "authorization_code";
         std::string grant_type_refresh_val = "refresh_token";
-        std::string refresh_token_param = "refresh_token=";
 
-        std::string cacert_path = "C:\\Users\\Merkaber\\Documents\\dev\\libEVEAuth\\cacert.pem";
+        std::string cacert_path = "";
         int refresh_interval = 900;
     };
 

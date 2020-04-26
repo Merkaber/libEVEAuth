@@ -4,7 +4,8 @@
 
 If you want to make a native C++ application... this library is for you. ~\newline
  If you want to make a native C application... this library is {\bfseries{not}} for you.\hypertarget{index_autotoc_md1}{}\doxysection{How to use}\label{index_autotoc_md1}
-If you want to know how the authorization flow works, read the \href{https://github.com/esi/esi-docs}{\texttt{ docs}}.
+If you want to know how the authorization flow works, read the \href{https://github.com/esi/esi-docs}{\texttt{ docs}}. ~\newline
+ For doxygen documentation open {\ttfamily /../../lib\+E\+V\+E\+Auth/docs/html/index.php}
 
 After creating an {\ttfamily \mbox{\hyperlink{class_e_v_e_auth_1_1_auth}{E\+V\+E\+Auth\+::\+Auth}}} object with the applications client\+\_\+id and the related scope, the user have to log into his account through the received url from {\ttfamily auth.\+generate\+\_\+auth\+\_\+url();}. After login, the user will be redirected to the localhost by default and the code value is received. You then have to retrieve the code value from the redirect url and set it to the auth object by calling {\ttfamily auth.\+set\+\_\+code\+\_\+val(code\+\_\+val);}. Now you can start the authorization flow by calling {\ttfamily auth.\+start();}. The authorization token will be refreshed every 900 seconds by default.
 

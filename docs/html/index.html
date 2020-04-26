@@ -72,7 +72,8 @@ $(function() {
  If you want to make a native C application... this library is <b>not</b> for you.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 How to use</h1>
-<p>If you want to know how the authorization flow works, read the <a href="https://github.com/esi/esi-docs">docs</a>.</p>
+<p>If you want to know how the authorization flow works, read the <a href="https://github.com/esi/esi-docs">docs</a>. <br  />
+ For doxygen documentation open <code>/../../libEVEAuth/docs/html/index.php</code></p>
 <p>After creating an <code><a class="el" href="class_e_v_e_auth_1_1_auth.html">EVEAuth::Auth</a></code> object with the applications client_id and the related scope, the user have to log into his account through the received url from <code>auth.generate_auth_url();</code>. After login, the user will be redirected to the localhost by default and the code value is received. You then have to retrieve the code value from the redirect url and set it to the auth object by calling <code>auth.set_code_val(code_val);</code>. Now you can start the authorization flow by calling <code>auth.start();</code>. The authorization token will be refreshed every 900 seconds by default.</p>
 <div class="fragment"><div class="line"> {c++}</div>
 <div class="line">#include &quot;EVEAuth/Auth.h&quot;</div>
