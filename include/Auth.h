@@ -51,7 +51,7 @@
 #define F_RT_NAME "refresh_token(): "
 #define F_SRT_NAME "start_refresh_token(): "
 
-#define F_Q_NAME "query(): "
+#define F_Q_NAME "simple_auth_query(): "
 #define ERR_QC_REQ "curl_easy_perform(): failed! "
 #define ERR_QC_REQ_CODE 113
 #define ERR_QC_RSP "curl response was not 200! "
@@ -123,13 +123,13 @@ namespace EVEAuth {
     /**
      * The authorization class which handles everything
      *
-     * Create an object of this class with the client_id of the application and the scope you will query to
+     * Create an object of this class with the client_id of the application and the scope you will simple_auth_query to
      */
     class Auth {
     public:
 
         /**
-         * Create an authorization object with the applications client_id and the scope you will query to
+         * Create an authorization object with the applications client_id and the scope you will simple_auth_query to
          * @param client_id The applications client_id which you will find on the developer webpage
          * @param scope_val The scope of the application
          */
@@ -237,11 +237,11 @@ namespace EVEAuth {
         void stop_refresh_token() noexcept;
 
         /**
-         * Sends a GET request with the given query string
-         * @param query_val The query string i.e. https://esi.evetech.net/latest/query_val"
-         * @return The query response in JSON format
+         * Sends a GET request with the given simple_auth_query string
+         * @param query_val The simple_auth_query string i.e. https://esi.evetech.net/latest/query_val"
+         * @return The simple_auth_query response in JSON format
          */
-        std::string query(const std::string& query_val) const noexcept(false);
+        std::string simple_auth_query(const std::string& query_val) const noexcept(false);
 
     private:
 
@@ -301,7 +301,7 @@ namespace EVEAuth {
         /// The callback timer for refreshing the token
         EVEAuth::CallBackTimer* cba = nullptr;
 
-        /* Getter and setter for predefined query parameters and values */
+        /* Getter and setter for predefined simple_auth_query parameters and values */
     public:
 
         /**
@@ -395,15 +395,15 @@ namespace EVEAuth {
         void set_curl_agent(const std::string& m_curl_agent) noexcept;
 
         /**
-         * Get the current query url to which all querys will be made
-         * @return The current query url
+         * Get the current simple_auth_query url to which all querys will be made
+         * @return The current simple_auth_query url
          */
         const std::string& get_query_url() const noexcept;
 
         /**
-         * Set the current query url to which all querys will be made
+         * Set the current simple_auth_query url to which all querys will be made
          *
-         * Only set this query url if this library is not updated or the query url has changed
+         * Only set this query url if this library is not updated or the simple_auth_query url has changed
          * default: https://esi.evetech.net/latest/
          * @param m_query_url
          */
@@ -698,7 +698,7 @@ namespace EVEAuth {
          */
         void set_refresh_interval(const int& m_refresh_interval) noexcept;
 
-        /* Predefined query parameter and values for login */
+        /* Predefined simple_auth_query parameter and values for login */
     private:
         std::string host = "login.eveonline.com";
         std::string content_type = "application/x-www-form-urlencoded";

@@ -393,7 +393,7 @@ void EVEAuth::Auth::stop_refresh_token() noexcept
     }
 }
 
-std::string EVEAuth::Auth::query(const std::string& query_val) const noexcept(false)
+std::string EVEAuth::Auth::simple_auth_query(const std::string& query_val) const noexcept(false)
 {
     CURL* curl;
     CURLcode res;

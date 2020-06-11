@@ -43,7 +43,7 @@ if (std::cin >> code_val) {
 std::string q = "characters/" + auth.get_character_id() + "/blueprints/";
 
 try {
-    std::cout << auth.query(q) << std::endl;
+    std::cout << auth.simple_auth_query(q) << std::endl;
 } catch (EVEAuth::AuthException& e) {
     std::cout << e.get_error_code() << ": " << e.what() << std::endl;
 }
