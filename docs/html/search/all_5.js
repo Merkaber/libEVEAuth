@@ -30,7 +30,8 @@ var searchData=
   ['set_5fscope_5fparam_69',['set_scope_param',['../class_e_v_e_auth_1_1_auth.html#aeaacf89ad007fb763ad57e172c4562c1',1,'EVEAuth::Auth']]],
   ['set_5fstate_5fparam_70',['set_state_param',['../class_e_v_e_auth_1_1_auth.html#a9ddbdd9ed6bd8c32e97019a0f0b55273',1,'EVEAuth::Auth']]],
   ['set_5fstate_5fval_71',['set_state_val',['../class_e_v_e_auth_1_1_auth.html#aa2195159eb941a71ea0dbe8227cac204',1,'EVEAuth::Auth']]],
-  ['start_72',['start',['../class_e_v_e_auth_1_1_auth.html#a029be30a7a0a283b50a55ee429417603',1,'EVEAuth::Auth']]],
-  ['start_5frefresh_5ftoken_73',['start_refresh_token',['../class_e_v_e_auth_1_1_auth.html#a63f61d346e50e2face2242d1911b9500',1,'EVEAuth::Auth']]],
-  ['stop_5frefresh_5ftoken_74',['stop_refresh_token',['../class_e_v_e_auth_1_1_auth.html#a598bbc2208a24abf54d3e9dc59c0532f',1,'EVEAuth::Auth']]]
+  ['simple_5fquery_72',['simple_query',['../class_e_v_e_auth_1_1_auth.html#aebef787f6b06fd41b8502b7f0d3d1454',1,'EVEAuth::Auth']]],
+  ['start_73',['start',['../class_e_v_e_auth_1_1_auth.html#a029be30a7a0a283b50a55ee429417603',1,'EVEAuth::Auth']]],
+  ['start_5frefresh_5ftoken_74',['start_refresh_token',['../class_e_v_e_auth_1_1_auth.html#a63f61d346e50e2face2242d1911b9500',1,'EVEAuth::Auth']]],
+  ['stop_5frefresh_5ftoken_75',['stop_refresh_token',['../class_e_v_e_auth_1_1_auth.html#a598bbc2208a24abf54d3e9dc59c0532f',1,'EVEAuth::Auth']]]
 ];

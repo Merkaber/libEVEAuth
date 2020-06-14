@@ -69,6 +69,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="class_e_v_e_auth_1_1_auth-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">EVEAuth::Auth Class Reference</div>  </div>
@@ -225,6 +227,17 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6fafe8b2b3a9db82f399f7059289f6b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4b1a81ae62a8f5aa0b5c9b24b6f1e6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_v_e_auth_1_1_auth.html#ab4b1a81ae62a8f5aa0b5c9b24b6f1e6e">set_refresh_interval</a> (const int &amp;m_refresh_interval) noexcept</td></tr>
 <tr class="separator:ab4b1a81ae62a8f5aa0b5c9b24b6f1e6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aebef787f6b06fd41b8502b7f0d3d1454"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_v_e_auth_1_1_auth.html#aebef787f6b06fd41b8502b7f0d3d1454">simple_query</a> (const std::string &amp;query_url, const std::string &amp;cacert_path, const std::vector&lt; std::pair&lt; std::string, std::string &gt;&gt; &amp;post_fields={}) noexcept(false)</td></tr>
+<tr class="separator:aebef787f6b06fd41b8502b7f0d3d1454"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a3ae3591daaac4948858949031d0547f5"><td class="memItemLeft" align="right" valign="top"><a id="a3ae3591daaac4948858949031d0547f5"></a>
+static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><b>CURL_AGENT</b> = &quot;libcurl/7.69.0&quot;</td></tr>
+<tr class="separator:a3ae3591daaac4948858949031d0547f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The authorization class which handles everything</p>
@@ -2261,6 +2274,58 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="aebef787f6b06fd41b8502b7f0d3d1454"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebef787f6b06fd41b8502b7f0d3d1454">&#9670;&nbsp;</a></span>simple_query()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::string EVEAuth::Auth::simple_query </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>query_url</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>cacert_path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; std::pair&lt; std::string, std::string &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>post_fields</em> = <code>{}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Queries form the eve swagger interface without authorization</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query_url</td><td>The full query url </td></tr>
+    <tr><td class="paramname">cacert_path</td><td>The path to the cacert if platform is windows, otherwise set empty string </td></tr>
+    <tr><td class="paramname">post_fields</td><td>Specifies post fields for the query, default is an empty vector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A response string in JSON format if no exception was thrown </dd></dl>
 
 </div>
 </div>

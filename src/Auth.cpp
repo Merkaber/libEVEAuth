@@ -462,6 +462,69 @@ std::string EVEAuth::Auth::auth_query(const std::string& query_val, bool with_au
     return final_response;
 }
 
+std::string EVEAuth::Auth::simple_query(const std::string& query_url, const std::string& cacert_path, const std::vector<std::pair<std::string, std::string>>& post_fields) noexcept(false)
+{
+    CURL* curl;
+    CURLcode res;
+
+    struct MemoryStruct chu;
+    chu.memory = (char*) malloc(1);
+    chu.size = 0;
+
+    std::string final_url = query_url;
+    std::string final_response;
+
+    curl = curl_easy_init();
+    if (curl) {
+        struct curl_slist* chunk = nullptr;
+
+        std::string accept_str = "accept: application/json";
+        chunk = curl_slist_append(chunk, accept_str.c_str());
+
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
+
+        if (!post_fields.empty()) {
+            std::stringstream ss;
+            ss << final_url << "?";
+            for (unsigned int i = 0; i < post_fields.size(); ++i) {
+                if (i == 0) {
+                    ss << post_fields[i].first << "=" << post_fields[i].second;
+                } else {
+                    ss << "&";
+                    ss << post_fields[i].first << "=" << post_fields[i].second;
+                }
+            }
+            final_url = ss.str();
+        }
+
+        curl_easy_setopt(curl, CURLOPT_URL, final_url.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, EVEAuth::write_memory_callback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*) &chu);
+        curl_easy_setopt(curl, CURLOPT_USERAGENT, CURL_AGENT);
+#ifdef WIN32
+        curl_easy_setopt(curl, CURLOPT_CAINFO, cacert_path.c_str());
+#endif
+
+        res = curl_easy_perform(curl);
+        if (res != CURLE_OK) {
+            throw EVEAuth::AuthException{make_err_msg({F_Q_NAME, ERR_QC_REQ, curl_easy_strerror(res)}), ERR_QC_REQ_CODE};
+        } else {
+            long response_code;
+            curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
+            if (response_code == 200) {
+                final_response = std::string(chu.memory);
+            } else {
+                throw EVEAuth::AuthException{make_err_msg({F_Q_NAME, ERR_QC_RSP, "Code: ", std::to_string(response_code)}), ERR_QC_RSP_CODE};
+            }
+        }
+
+        curl_easy_cleanup(curl);
+        curl_slist_free_all(chunk);
+    }
+
+    return final_response;
+}
+
 void EVEAuth::Auth::curl_request(const std::string& url, const std::string& post_fields) noexcept(false)
 {
     CURL* curl;

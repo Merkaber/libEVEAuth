@@ -247,6 +247,16 @@ namespace EVEAuth {
         std::string auth_query(const std::string& query_val, bool with_authorization = false, const std::vector<std::pair<std::string, std::string>>& post_fields = {}) const noexcept(false);
 
         /**
+         * Queries form the eve swagger interface without authorization
+         *
+         * @param query_url The full query url
+         * @param cacert_path The path to the cacert if platform is windows, otherwise set empty string
+         * @param post_fields Specifies post fields for the query, default is an empty vector
+         * @return A response string in JSON format if no exception was thrown
+         */
+        static std::string simple_query(const std::string& query_url, const std::string& cacert_path, const std::vector<std::pair<std::string, std::string>>& post_fields = {}) noexcept(false);
+
+        /**
          * Get the access token which can be used to make a query with authorization
          * @return The current access token
          */
@@ -711,6 +721,10 @@ namespace EVEAuth {
          * @param m_refresh_interval
          */
         void set_refresh_interval(const int& m_refresh_interval) noexcept;
+
+        /* Predefined static parameters */
+    public:
+        static constexpr const char* CURL_AGENT = "libcurl/7.69.0";
 
         /* Predefined auth_query parameter and values for login */
     private:

@@ -153,6 +153,17 @@ const int \& \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_a6fafe8b2b3a9db82f399f70
 \item 
 void \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_ab4b1a81ae62a8f5aa0b5c9b24b6f1e6e}{set\+\_\+refresh\+\_\+interval}} (const int \&m\+\_\+refresh\+\_\+interval) noexcept
 \end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_aebef787f6b06fd41b8502b7f0d3d1454}{simple\+\_\+query}} (const std\+::string \&query\+\_\+url, const std\+::string \&cacert\+\_\+path, const std\+::vector$<$ std\+::pair$<$ std\+::string, std\+::string $>$$>$ \&post\+\_\+fields=\{\}) noexcept(false)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a3ae3591daaac4948858949031d0547f5}\label{class_e_v_e_auth_1_1_auth_a3ae3591daaac4948858949031d0547f5}} 
+static constexpr const char $\ast$ {\bfseries C\+U\+R\+L\+\_\+\+A\+G\+E\+NT} = \char`\"{}libcurl/7.\+69.\+0\char`\"{}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -900,6 +911,26 @@ Only set this state value if this library is not updated or the state value has 
 {\em m\+\_\+state\+\_\+val} & \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_aebef787f6b06fd41b8502b7f0d3d1454}\label{class_e_v_e_auth_1_1_auth_aebef787f6b06fd41b8502b7f0d3d1454}} 
+\index{EVEAuth::Auth@{EVEAuth::Auth}!simple\_query@{simple\_query}}
+\index{simple\_query@{simple\_query}!EVEAuth::Auth@{EVEAuth::Auth}}
+\doxysubsubsection{\texorpdfstring{simple\_query()}{simple\_query()}}
+{\footnotesize\ttfamily static std\+::string E\+V\+E\+Auth\+::\+Auth\+::simple\+\_\+query (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{query\+\_\+url,  }\item[{const std\+::string \&}]{cacert\+\_\+path,  }\item[{const std\+::vector$<$ std\+::pair$<$ std\+::string, std\+::string $>$$>$ \&}]{post\+\_\+fields = {\ttfamily \{\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+
+Queries form the eve swagger interface without authorization
+
+
+\begin{DoxyParams}{Parameters}
+{\em query\+\_\+url} & The full query url \\
+\hline
+{\em cacert\+\_\+path} & The path to the cacert if platform is windows, otherwise set empty string \\
+\hline
+{\em post\+\_\+fields} & Specifies post fields for the query, default is an empty vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A response string in J\+S\+ON format if no exception was thrown 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a029be30a7a0a283b50a55ee429417603}\label{class_e_v_e_auth_1_1_auth_a029be30a7a0a283b50a55ee429417603}} 
 \index{EVEAuth::Auth@{EVEAuth::Auth}!start@{start}}
 \index{start@{start}!EVEAuth::Auth@{EVEAuth::Auth}}
