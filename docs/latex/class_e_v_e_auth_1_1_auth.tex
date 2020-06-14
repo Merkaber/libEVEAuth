@@ -43,7 +43,7 @@ void \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_a63f61d346e50e2face2242d1911b950
 \item 
 void \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_a598bbc2208a24abf54d3e9dc59c0532f}{stop\+\_\+refresh\+\_\+token}} () noexcept
 \item 
-std\+::string \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_ac2a08247dd8d359dace66f3fdb1526d9}{simple\+\_\+auth\+\_\+query}} (const std\+::string \&query\+\_\+val) const noexcept(false)
+std\+::string \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_ac333b362e4892d7ab1c9d100d755b438}{auth\+\_\+query}} (const std\+::string \&query\+\_\+val, bool with\+\_\+authorization=false, const std\+::vector$<$ std\+::pair$<$ std\+::string, std\+::string $>$$>$ \&post\+\_\+fields=\{\}) const noexcept(false)
 \item 
 const std\+::string \& \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_a1da35f1bee7d0eb9686727bfd948a754}{get\+\_\+host}} () const noexcept
 \item 
@@ -154,7 +154,7 @@ void \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_ab4b1a81ae62a8f5aa0b5c9b24b6f1e6
 \doxysubsection{Detailed Description}
 The authorization class which handles everything
 
-Create an object of this class with the client\+\_\+id of the application and the scope you will simple\+\_\+auth\+\_\+query to 
+Create an object of this class with the client\+\_\+id of the application and the scope you will auth\+\_\+query to 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a775acc6deed9ba4b40b65d4f4fc576b1}\label{class_e_v_e_auth_1_1_auth_a775acc6deed9ba4b40b65d4f4fc576b1}} 
@@ -163,7 +163,7 @@ Create an object of this class with the client\+\_\+id of the application and th
 \doxysubsubsection{\texorpdfstring{Auth()}{Auth()}}
 {\footnotesize\ttfamily E\+V\+E\+Auth\+::\+Auth\+::\+Auth (\begin{DoxyParamCaption}\item[{std\+::string \&}]{client\+\_\+id,  }\item[{std\+::string \&}]{scope\+\_\+val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
-Create an authorization object with the applications client\+\_\+id and the scope you will simple\+\_\+auth\+\_\+query to 
+Create an authorization object with the applications client\+\_\+id and the scope you will auth\+\_\+query to 
 \begin{DoxyParams}{Parameters}
 {\em client\+\_\+id} & The applications client\+\_\+id which you will find on the developer webpage \\
 \hline
@@ -179,6 +179,26 @@ Create an authorization object with the applications client\+\_\+id and the scop
 When the object is destroyed, the token will be destroyed and everything related to curl will be cleaned up 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_ac333b362e4892d7ab1c9d100d755b438}\label{class_e_v_e_auth_1_1_auth_ac333b362e4892d7ab1c9d100d755b438}} 
+\index{EVEAuth::Auth@{EVEAuth::Auth}!auth\_query@{auth\_query}}
+\index{auth\_query@{auth\_query}!EVEAuth::Auth@{EVEAuth::Auth}}
+\doxysubsubsection{\texorpdfstring{auth\_query()}{auth\_query()}}
+{\footnotesize\ttfamily std\+::string E\+V\+E\+Auth\+::\+Auth\+::auth\+\_\+query (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{query\+\_\+val,  }\item[{bool}]{with\+\_\+authorization = {\ttfamily false},  }\item[{const std\+::vector$<$ std\+::pair$<$ std\+::string, std\+::string $>$$>$ \&}]{post\+\_\+fields = {\ttfamily \{\}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Queries from the eve swagger interface with the set query url
+
+
+\begin{DoxyParams}{Parameters}
+{\em query\+\_\+val} & The esi related query string without query\+\_\+url i.\+e. \href{https://esi.evetech.net/latest/query_val}{\texttt{ https\+://esi.\+evetech.\+net/latest/query\+\_\+val}} \\
+\hline
+{\em with\+\_\+authorization} & Specifies if an access token is need or not, default is false \\
+\hline
+{\em post\+\_\+fields} & Specifies post fields for the query, default is an empty vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A response string in J\+S\+ON format if no exception was thrown 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_aee01b3819f4f01aeaa6cc763ea756823}\label{class_e_v_e_auth_1_1_auth_aee01b3819f4f01aeaa6cc763ea756823}} 
 \index{EVEAuth::Auth@{EVEAuth::Auth}!generate\_auth\_url@{generate\_auth\_url}}
 \index{generate\_auth\_url@{generate\_auth\_url}!EVEAuth::Auth@{EVEAuth::Auth}}
@@ -376,8 +396,8 @@ The current jwt keys url
 \doxysubsubsection{\texorpdfstring{get\_query\_url()}{get\_query\_url()}}
 {\footnotesize\ttfamily const std\+::string\& E\+V\+E\+Auth\+::\+Auth\+::get\+\_\+query\+\_\+url (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
 
-Get the current simple\+\_\+auth\+\_\+query url to which all querys will be made \begin{DoxyReturn}{Returns}
-The current simple\+\_\+auth\+\_\+query url 
+Get the current auth\+\_\+query url to which all querys will be made \begin{DoxyReturn}{Returns}
+The current auth\+\_\+query url 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a64ddf28e59967666e4c62186b721f0c0}\label{class_e_v_e_auth_1_1_auth_a64ddf28e59967666e4c62186b721f0c0}} 
 \index{EVEAuth::Auth@{EVEAuth::Auth}!get\_redirect\_url\_param@{get\_redirect\_url\_param}}
@@ -721,9 +741,9 @@ Only set this jwt keys url if this library is not updated or the jwt keys url ha
 \doxysubsubsection{\texorpdfstring{set\_query\_url()}{set\_query\_url()}}
 {\footnotesize\ttfamily void E\+V\+E\+Auth\+::\+Auth\+::set\+\_\+query\+\_\+url (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{m\+\_\+query\+\_\+url }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
-Set the current simple\+\_\+auth\+\_\+query url to which all querys will be made
+Set the current auth\+\_\+query url to which all querys will be made
 
-Only set this query url if this library is not updated or the simple\+\_\+auth\+\_\+query url has changed default\+: \href{https://esi.evetech.net/latest/}{\texttt{ https\+://esi.\+evetech.\+net/latest/}} 
+Only set this query url if this library is not updated or the auth\+\_\+query url has changed default\+: \href{https://esi.evetech.net/latest/}{\texttt{ https\+://esi.\+evetech.\+net/latest/}} 
 \begin{DoxyParams}{Parameters}
 {\em m\+\_\+query\+\_\+url} & \\
 \hline
@@ -858,20 +878,6 @@ Only set this state value if this library is not updated or the state value has 
 {\em m\+\_\+state\+\_\+val} & \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_ac2a08247dd8d359dace66f3fdb1526d9}\label{class_e_v_e_auth_1_1_auth_ac2a08247dd8d359dace66f3fdb1526d9}} 
-\index{EVEAuth::Auth@{EVEAuth::Auth}!simple\_auth\_query@{simple\_auth\_query}}
-\index{simple\_auth\_query@{simple\_auth\_query}!EVEAuth::Auth@{EVEAuth::Auth}}
-\doxysubsubsection{\texorpdfstring{simple\_auth\_query()}{simple\_auth\_query()}}
-{\footnotesize\ttfamily std\+::string E\+V\+E\+Auth\+::\+Auth\+::simple\+\_\+auth\+\_\+query (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{query\+\_\+val }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
-
-Sends a G\+ET request with the given simple\+\_\+auth\+\_\+query string 
-\begin{DoxyParams}{Parameters}
-{\em query\+\_\+val} & The simple\+\_\+auth\+\_\+query string i.\+e. \href{https://esi.evetech.net/latest/query_val}{\texttt{ https\+://esi.\+evetech.\+net/latest/query\+\_\+val}}" \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The simple\+\_\+auth\+\_\+query response in J\+S\+ON format 
-\end{DoxyReturn}
 \mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a029be30a7a0a283b50a55ee429417603}\label{class_e_v_e_auth_1_1_auth_a029be30a7a0a283b50a55ee429417603}} 
 \index{EVEAuth::Auth@{EVEAuth::Auth}!start@{start}}
 \index{start@{start}!EVEAuth::Auth@{EVEAuth::Auth}}

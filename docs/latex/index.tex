@@ -37,7 +37,7 @@ After creating an {\ttfamily \mbox{\hyperlink{class_e_v_e_auth_1_1_auth}{E\+V\+E
 \DoxyCodeLine{std::string q = "characters/" + auth.get\_character\_id() + "/blueprints/";}
 \DoxyCodeLine{}
 \DoxyCodeLine{try \{}
-\DoxyCodeLine{    std::cout << auth.simple\_auth\_query(q) << std::endl;}
+\DoxyCodeLine{    std::cout << auth.auth\_query(q, true) << std::endl;}
 \DoxyCodeLine{\} catch (EVEAuth::AuthException\& e) \{}
 \DoxyCodeLine{    std::cout << e.get\_error\_code() << ": " << e.what() << std::endl;}
 \DoxyCodeLine{\}}

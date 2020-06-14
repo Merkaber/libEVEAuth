@@ -115,8 +115,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a63f61d346e50e2face2242d1911b9500"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a598bbc2208a24abf54d3e9dc59c0532f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_v_e_auth_1_1_auth.html#a598bbc2208a24abf54d3e9dc59c0532f">stop_refresh_token</a> () noexcept</td></tr>
 <tr class="separator:a598bbc2208a24abf54d3e9dc59c0532f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2a08247dd8d359dace66f3fdb1526d9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_v_e_auth_1_1_auth.html#ac2a08247dd8d359dace66f3fdb1526d9">simple_auth_query</a> (const std::string &amp;query_val) const noexcept(false)</td></tr>
-<tr class="separator:ac2a08247dd8d359dace66f3fdb1526d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac333b362e4892d7ab1c9d100d755b438"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_v_e_auth_1_1_auth.html#ac333b362e4892d7ab1c9d100d755b438">auth_query</a> (const std::string &amp;query_val, bool with_authorization=false, const std::vector&lt; std::pair&lt; std::string, std::string &gt;&gt; &amp;post_fields={}) const noexcept(false)</td></tr>
+<tr class="separator:ac333b362e4892d7ab1c9d100d755b438"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1da35f1bee7d0eb9686727bfd948a754"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_v_e_auth_1_1_auth.html#a1da35f1bee7d0eb9686727bfd948a754">get_host</a> () const noexcept</td></tr>
 <tr class="separator:a1da35f1bee7d0eb9686727bfd948a754"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93412a41561cc2757d8712847b71bd69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_v_e_auth_1_1_auth.html#a93412a41561cc2757d8712847b71bd69">set_host</a> (const std::string &amp;m_host) noexcept</td></tr>
@@ -224,7 +224,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The authorization class which handles everything</p>
-<p>Create an object of this class with the client_id of the application and the scope you will simple_auth_query to </p>
+<p>Create an object of this class with the client_id of the application and the scope you will auth_query to </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a775acc6deed9ba4b40b65d4f4fc576b1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a775acc6deed9ba4b40b65d4f4fc576b1">&#9670;&nbsp;</a></span>Auth()</h2>
@@ -259,7 +259,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create an authorization object with the applications client_id and the scope you will simple_auth_query to </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Create an authorization object with the applications client_id and the scope you will auth_query to </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">client_id</td><td>The applications client_id which you will find on the developer webpage </td></tr>
     <tr><td class="paramname">scope_val</td><td>The scope of the application </td></tr>
@@ -296,6 +296,58 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac333b362e4892d7ab1c9d100d755b438"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac333b362e4892d7ab1c9d100d755b438">&#9670;&nbsp;</a></span>auth_query()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string EVEAuth::Auth::auth_query </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>query_val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>with_authorization</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; std::pair&lt; std::string, std::string &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>post_fields</em> = <code>{}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Queries from the eve swagger interface with the set query url</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query_val</td><td>The esi related query string without query_url i.e. <a href="https://esi.evetech.net/latest/query_val">https://esi.evetech.net/latest/query_val</a> </td></tr>
+    <tr><td class="paramname">with_authorization</td><td>Specifies if an access token is need or not, default is false </td></tr>
+    <tr><td class="paramname">post_fields</td><td>Specifies post fields for the query, default is an empty vector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A response string in JSON format if no exception was thrown </dd></dl>
+
+</div>
+</div>
 <a id="aee01b3819f4f01aeaa6cc763ea756823"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aee01b3819f4f01aeaa6cc763ea756823">&#9670;&nbsp;</a></span>generate_auth_url()</h2>
 
@@ -865,7 +917,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get the current simple_auth_query url to which all querys will be made </p><dl class="section return"><dt>Returns</dt><dd>The current simple_auth_query url </dd></dl>
+<p>Get the current auth_query url to which all querys will be made </p><dl class="section return"><dt>Returns</dt><dd>The current auth_query url </dd></dl>
 
 </div>
 </div>
@@ -1816,8 +1868,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set the current simple_auth_query url to which all querys will be made</p>
-<p>Only set this query url if this library is not updated or the simple_auth_query url has changed default: <a href="https://esi.evetech.net/latest/">https://esi.evetech.net/latest/</a> </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Set the current auth_query url to which all querys will be made</p>
+<p>Only set this query url if this library is not updated or the auth_query url has changed default: <a href="https://esi.evetech.net/latest/">https://esi.evetech.net/latest/</a> </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">m_query_url</td><td></td></tr>
   </table>
@@ -2153,39 +2205,6 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="ac2a08247dd8d359dace66f3fdb1526d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2a08247dd8d359dace66f3fdb1526d9">&#9670;&nbsp;</a></span>simple_auth_query()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string EVEAuth::Auth::simple_auth_query </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>query_val</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Sends a GET request with the given simple_auth_query string </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">query_val</td><td>The simple_auth_query string i.e. <a href="https://esi.evetech.net/latest/query_val">https://esi.evetech.net/latest/query_val</a>" </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The simple_auth_query response in JSON format </dd></dl>
 
 </div>
 </div>

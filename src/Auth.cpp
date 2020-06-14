@@ -393,7 +393,7 @@ void EVEAuth::Auth::stop_refresh_token() noexcept
     }
 }
 
-std::string EVEAuth::Auth::simple_auth_query(const std::string& query_val) const noexcept(false)
+std::string EVEAuth::Auth::auth_query(const std::string& query_val, bool with_authorization, const std::vector<std::pair<std::string, std::string>>& post_fields) const noexcept(false)
 {
     CURL* curl;
     CURLcode res;
@@ -408,10 +408,32 @@ std::string EVEAuth::Auth::simple_auth_query(const std::string& query_val) const
     curl = curl_easy_init();
     if (curl) {
         struct curl_slist* chunk = nullptr;
-        std::string auth_str = "Authorization: Bearer " + token->get_access_token();
-        chunk = curl_slist_append(chunk, auth_str.c_str());
 
-        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
+        if (with_authorization) {
+            std::string auth_str = "Authorization: Bearer " + token->get_access_token();
+            chunk = curl_slist_append(chunk, auth_str.c_str());
+            curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
+        } else {
+            std::string accept_str = "accept: application/json";
+            chunk = curl_slist_append(chunk, accept_str.c_str());
+
+            curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
+        }
+
+        if (!post_fields.empty()) {
+            std::stringstream ss;
+            ss << final_url << "?";
+            for (unsigned int i = 0; i < post_fields.size(); ++i) {
+                if (i == 0) {
+                    ss << post_fields[i].first << "=" << post_fields[i].second;
+                } else {
+                    ss << "&";
+                    ss << post_fields[i].first << "=" << post_fields[i].second;
+                }
+            }
+            final_url = ss.str();
+        }
+
         curl_easy_setopt(curl, CURLOPT_URL, final_url.c_str());
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, EVEAuth::write_memory_callback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*) &chu);

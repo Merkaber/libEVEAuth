@@ -101,7 +101,7 @@ How to use</h1>
 <div class="line">std::string q = &quot;characters/&quot; + auth.get_character_id() + &quot;/blueprints/&quot;;</div>
 <div class="line"> </div>
 <div class="line">try {</div>
-<div class="line">    std::cout &lt;&lt; auth.simple_auth_query(q) &lt;&lt; std::endl;</div>
+<div class="line">    std::cout &lt;&lt; auth.auth_query(q, true) &lt;&lt; std::endl;</div>
 <div class="line">} catch (EVEAuth::AuthException&amp; e) {</div>
 <div class="line">    std::cout &lt;&lt; e.get_error_code() &lt;&lt; &quot;: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;</div>
 <div class="line">}</div>
