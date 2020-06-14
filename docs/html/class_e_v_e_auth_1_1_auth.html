@@ -117,6 +117,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a598bbc2208a24abf54d3e9dc59c0532f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac333b362e4892d7ab1c9d100d755b438"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_v_e_auth_1_1_auth.html#ac333b362e4892d7ab1c9d100d755b438">auth_query</a> (const std::string &amp;query_val, bool with_authorization=false, const std::vector&lt; std::pair&lt; std::string, std::string &gt;&gt; &amp;post_fields={}) const noexcept(false)</td></tr>
 <tr class="separator:ac333b362e4892d7ab1c9d100d755b438"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a453cdcf4214a529c0816541c4c3091"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_v_e_auth_1_1_auth.html#a7a453cdcf4214a529c0816541c4c3091">get_access_token</a> () const noexcept</td></tr>
+<tr class="separator:a7a453cdcf4214a529c0816541c4c3091"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab375681ba74dd48ba5f06136bdce3157"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_v_e_auth_1_1_auth.html#ab375681ba74dd48ba5f06136bdce3157">get_refresh_token</a> () const noexcept</td></tr>
+<tr class="separator:ab375681ba74dd48ba5f06136bdce3157"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1da35f1bee7d0eb9686727bfd948a754"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_v_e_auth_1_1_auth.html#a1da35f1bee7d0eb9686727bfd948a754">get_host</a> () const noexcept</td></tr>
 <tr class="separator:a1da35f1bee7d0eb9686727bfd948a754"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93412a41561cc2757d8712847b71bd69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_v_e_auth_1_1_auth.html#a93412a41561cc2757d8712847b71bd69">set_host</a> (const std::string &amp;m_host) noexcept</td></tr>
@@ -371,6 +375,32 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Generates the authentication url for the web-login </p><dl class="section return"><dt>Returns</dt><dd>The authentication url which will lead to a web-login </dd></dl>
+
+</div>
+</div>
+<a id="a7a453cdcf4214a529c0816541c4c3091"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a453cdcf4214a529c0816541c4c3091">&#9670;&nbsp;</a></span>get_access_token()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string&amp; EVEAuth::Auth::get_access_token </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the access token which can be used to make a query with authorization </p><dl class="section return"><dt>Returns</dt><dd>The current access token </dd></dl>
 
 </div>
 </div>
@@ -996,6 +1026,32 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Get the current interval which specifies when the token will be refreshed </p><dl class="section return"><dt>Returns</dt><dd>The current refresh interval </dd></dl>
+
+</div>
+</div>
+<a id="ab375681ba74dd48ba5f06136bdce3157"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab375681ba74dd48ba5f06136bdce3157">&#9670;&nbsp;</a></span>get_refresh_token()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string&amp; EVEAuth::Auth::get_refresh_token </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the refresh token which can be used to request a new access token </p><dl class="section return"><dt>Returns</dt><dd>The current refresh token </dd></dl>
 
 </div>
 </div>

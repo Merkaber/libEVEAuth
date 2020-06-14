@@ -214,193 +214,196 @@ $(function() {
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160; </div>
 <div class="line"><a name="l00247"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#ac333b362e4892d7ab1c9d100d755b438">  247</a></span>&#160;        std::<span class="keywordtype">string</span> auth_query(const std::<span class="keywordtype">string</span>&amp; query_val, <span class="keywordtype">bool</span> with_authorization = false, const std::vector&lt;std::pair&lt;std::<span class="keywordtype">string</span>, std::<span class="keywordtype">string</span>&gt;&gt;&amp; post_fields = {}) <span class="keyword">const</span> noexcept(<span class="keyword">false</span>);</div>
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160; </div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160; </div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <span class="keywordtype">void</span> generate_code_challenge() noexcept(false);</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; </div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        <span class="keywordtype">void</span> put_url_together() noexcept;</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160; </div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        <span class="keywordtype">void</span> send_jwt_request() noexcept(false);</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160; </div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <span class="keywordtype">void</span> refresh_token() noexcept(false);</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        <span class="keywordtype">void</span> curl_request(const std::<span class="keywordtype">string</span>&amp; url, const std::<span class="keywordtype">string</span>&amp; post_fields) noexcept(false);</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160; </div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    private:</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160; </div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        const std::<span class="keywordtype">string</span> client_id;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160; </div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        std::<span class="keywordtype">string</span> code_challenge = &quot;&quot;;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160; </div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;        std::<span class="keywordtype">string</span> code_verifier = &quot;&quot;;</div>
+<div class="line"><a name="l00253"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a7a453cdcf4214a529c0816541c4c3091">  253</a></span>&#160;        <span class="keyword">const</span> std::string&amp; <a class="code" href="class_e_v_e_auth_1_1_auth.html#a7a453cdcf4214a529c0816541c4c3091">get_access_token</a>() const noexcept;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; </div>
+<div class="line"><a name="l00259"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#ab375681ba74dd48ba5f06136bdce3157">  259</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_refresh_token() const noexcept;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    private:</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        <span class="keywordtype">void</span> generate_code_challenge() noexcept(false);</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160; </div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        <span class="keywordtype">void</span> put_url_together() noexcept;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160; </div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        <span class="keywordtype">void</span> send_jwt_request() noexcept(false);</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160; </div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        <span class="keywordtype">void</span> refresh_token() noexcept(false);</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; </div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;        <span class="keywordtype">void</span> curl_request(const std::<span class="keywordtype">string</span>&amp; url, const std::<span class="keywordtype">string</span>&amp; post_fields) noexcept(false);</div>
 <div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160; </div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;        std::<span class="keywordtype">string</span> authentication_url = &quot;&quot;;</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160; </div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        std::<span class="keywordtype">string</span> code_val = &quot;&quot;;</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160; </div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        const std::<span class="keywordtype">string</span> scope_val;</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160; </div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        std::<span class="keywordtype">string</span> download_response = &quot;&quot;;</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160; </div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        EVEAuth::Token* token = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160; </div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        EVEAuth::CallBackTimer* cba = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160; </div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        <span class="comment">/* Getter and setter for predefined auth_query parameters and values */</span></div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    public:</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
-<div class="line"><a name="l00314"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a1da35f1bee7d0eb9686727bfd948a754">  314</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_host() const noexcept;</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160; </div>
-<div class="line"><a name="l00323"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a93412a41561cc2757d8712847b71bd69">  323</a></span>&#160;        <span class="keywordtype">void</span> set_host(const std::<span class="keywordtype">string</span>&amp; m_host) noexcept;</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160; </div>
-<div class="line"><a name="l00329"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a6d6a217f3a20da8801dea6bca8603457">  329</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_content_type() const noexcept;</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160; </div>
-<div class="line"><a name="l00338"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a319f01fb8eb4184280f826b2ba6fb00b">  338</a></span>&#160;        <span class="keywordtype">void</span> set_content_type(const std::<span class="keywordtype">string</span>&amp; m_content_type) noexcept;</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160; </div>
-<div class="line"><a name="l00344"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a99cf1805f95d93f4f4ff0b5feeea82b9">  344</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_base_url() const noexcept;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160; </div>
-<div class="line"><a name="l00353"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a763abe0953cda08950642a7435378462">  353</a></span>&#160;        <span class="keywordtype">void</span> set_base_url(const std::<span class="keywordtype">string</span>&amp; m_base_url) noexcept;</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160; </div>
-<div class="line"><a name="l00359"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#abe9620e28035ce001bbd635a296be08c">  359</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_request_url() const noexcept;</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160; </div>
-<div class="line"><a name="l00368"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#ab6c4480fc82282a1b4e36257de9ec978">  368</a></span>&#160;        <span class="keywordtype">void</span> set_request_url(const std::<span class="keywordtype">string</span>&amp; m_request_url) noexcept;</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160; </div>
-<div class="line"><a name="l00374"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a9829c66ae94efcb77eee96bc9c006c82">  374</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_jwt_keys_url() const noexcept;</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160; </div>
-<div class="line"><a name="l00383"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#ac41ee8598034489e98bec75269aaed89">  383</a></span>&#160;        <span class="keywordtype">void</span> set_jwt_keys_url(const std::<span class="keywordtype">string</span>&amp; m_jwt_keys_url) noexcept;</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160; </div>
-<div class="line"><a name="l00389"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#ad90c39574f94b44f2a36a068877e5d93">  389</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_curl_agent() const noexcept;</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160; </div>
-<div class="line"><a name="l00398"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a2689ac383d7202a1d6f6d32b3d5d9d27">  398</a></span>&#160;        <span class="keywordtype">void</span> set_curl_agent(const std::<span class="keywordtype">string</span>&amp; m_curl_agent) noexcept;</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160; </div>
-<div class="line"><a name="l00404"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#aec434360630ed76d02850d18b5dc2576">  404</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_query_url() const noexcept;</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160; </div>
-<div class="line"><a name="l00413"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a2ccdd28257b9dad1435d086a81062a94">  413</a></span>&#160;        <span class="keywordtype">void</span> set_query_url(const std::<span class="keywordtype">string</span>&amp; m_query_url) noexcept;</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160; </div>
-<div class="line"><a name="l00419"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a25c1de36fd3cda84f7244deb54a49ab0">  419</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_response_type_param() const noexcept;</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160; </div>
-<div class="line"><a name="l00428"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#ab875ee176beb924e30770c18a9f10068">  428</a></span>&#160;        <span class="keywordtype">void</span> set_response_type_param(const std::<span class="keywordtype">string</span>&amp; m_response_type_param) noexcept;</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160; </div>
-<div class="line"><a name="l00434"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a64ddf28e59967666e4c62186b721f0c0">  434</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_redirect_url_param() const noexcept;</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160; </div>
-<div class="line"><a name="l00443"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a8b5010bc278b5a697efa3291835ec1b7">  443</a></span>&#160;        <span class="keywordtype">void</span> set_redirect_url_param(const std::<span class="keywordtype">string</span>&amp; m_redirect_url_param) noexcept;</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160; </div>
-<div class="line"><a name="l00449"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a87ca95a98701d834abea4f6ee638526b">  449</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_client_id_param() const noexcept;</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160; </div>
-<div class="line"><a name="l00458"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#abfc6c3912fe10144e8d64e16fb234cf3">  458</a></span>&#160;        <span class="keywordtype">void</span> set_client_id_param(const std::<span class="keywordtype">string</span>&amp; m_client_id_param) noexcept;</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160; </div>
-<div class="line"><a name="l00464"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a5698f5db2ba48d62ce87f9ce5ed03372">  464</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_scope_param() const noexcept;</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160; </div>
-<div class="line"><a name="l00473"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#aeaacf89ad007fb763ad57e172c4562c1">  473</a></span>&#160;        <span class="keywordtype">void</span> set_scope_param(const std::<span class="keywordtype">string</span>&amp; m_scope_param) noexcept;</div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160; </div>
-<div class="line"><a name="l00479"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a67853c267110ca1282a09ad8c03f5e05">  479</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_state_param() const noexcept;</div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160; </div>
-<div class="line"><a name="l00488"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a9ddbdd9ed6bd8c32e97019a0f0b55273">  488</a></span>&#160;        <span class="keywordtype">void</span> set_state_param(const std::<span class="keywordtype">string</span>&amp; m_state_param) noexcept;</div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160; </div>
-<div class="line"><a name="l00494"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a98bc6e93638d2f00c8897545f36ab593">  494</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_code_challenge_param() const noexcept;</div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160; </div>
-<div class="line"><a name="l00503"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#aafbe4822b315d3309940972ae1ffaf46">  503</a></span>&#160;        <span class="keywordtype">void</span> set_code_challenge_param(const std::<span class="keywordtype">string</span>&amp; m_code_challenge_param) noexcept;</div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160; </div>
-<div class="line"><a name="l00509"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a53ff093af974911805a19847bb65c2cf">  509</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_code_challenge_method_param() const noexcept;</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160; </div>
-<div class="line"><a name="l00518"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a99a2648c95a3bbcada2203d374bd9f4c">  518</a></span>&#160;        <span class="keywordtype">void</span> set_code_challenge_method_param(const std::<span class="keywordtype">string</span>&amp; m_code_challenge_method_param) noexcept;</div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160; </div>
-<div class="line"><a name="l00524"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a6ecafd8fd04cec0c2c167c4d183d3f68">  524</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_grant_type_param() const noexcept;</div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160; </div>
-<div class="line"><a name="l00533"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a2bbf88bdc53d3bdab7a818ee4404c6e8">  533</a></span>&#160;        <span class="keywordtype">void</span> set_grant_type_param(const std::<span class="keywordtype">string</span>&amp; m_grant_type_param) noexcept;</div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160; </div>
-<div class="line"><a name="l00539"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#aea8d2c6c266e7e89fb30ab02f197b7b4">  539</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_code_param() const noexcept;</div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160; </div>
-<div class="line"><a name="l00548"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#aed96a55efaa307bd1445df4ffdd0cf6c">  548</a></span>&#160;        <span class="keywordtype">void</span> set_code_param(const std::<span class="keywordtype">string</span>&amp; m_code_param) noexcept;</div>
-<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160; </div>
-<div class="line"><a name="l00554"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a60c46e21107f2f1aa59f6a168cd6aa70">  554</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_code_verifier_param() const noexcept;</div>
-<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160; </div>
-<div class="line"><a name="l00563"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a08b5c1364f7824e4a711bd2abf860fc7">  563</a></span>&#160;        <span class="keywordtype">void</span> set_code_verifier_param(const std::<span class="keywordtype">string</span>&amp; m_code_verifier_param) noexcept;</div>
-<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160; </div>
-<div class="line"><a name="l00569"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a6c2c3fc5d4b44a82070a4d0eaa795ca1">  569</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_refresh_token_param() const noexcept;</div>
-<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160; </div>
-<div class="line"><a name="l00578"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a83bfee2996fc426769c5f3fd65bd3661">  578</a></span>&#160;        <span class="keywordtype">void</span> set_refresh_token_param(const std::<span class="keywordtype">string</span>&amp; m_refresh_token_param) noexcept;</div>
-<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160; </div>
-<div class="line"><a name="l00584"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#af965c8e2b6922e4396892d5686ac9bbc">  584</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_state_val() const noexcept;</div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160; </div>
-<div class="line"><a name="l00593"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#aa2195159eb941a71ea0dbe8227cac204">  593</a></span>&#160;        <span class="keywordtype">void</span> set_state_val(const std::<span class="keywordtype">string</span>&amp; m_state_val) noexcept;</div>
-<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160; </div>
-<div class="line"><a name="l00599"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#af3c10eb3ed07ff5e717d6b6e24899b2c">  599</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_code_challenge_method_val() const noexcept;</div>
-<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160; </div>
-<div class="line"><a name="l00608"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a055dc59fbe94f9f95b4d4e6fd9f09aed">  608</a></span>&#160;        <span class="keywordtype">void</span> set_code_challenge_method_val(const std::<span class="keywordtype">string</span>&amp; m_code_challenge_method_val) noexcept;</div>
-<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160; </div>
-<div class="line"><a name="l00614"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a3a6ed0e8c873c17af0d241c29c280e2a">  614</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_redirect_url_val() const noexcept;</div>
-<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160; </div>
-<div class="line"><a name="l00624"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a2b238dae00215dd78c6cc84a1a75fff1">  624</a></span>&#160;        <span class="keywordtype">void</span> set_redirect_url_val(const std::<span class="keywordtype">string</span>&amp; m_redirect_url_val) noexcept;</div>
-<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160; </div>
-<div class="line"><a name="l00630"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#aa32a8239c24279b94f012d5a15954199">  630</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_response_type_val() const noexcept;</div>
-<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160; </div>
-<div class="line"><a name="l00639"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a99ff8312530e9c3e4ddfed49ea2db7c9">  639</a></span>&#160;        <span class="keywordtype">void</span> set_response_type_val(const std::<span class="keywordtype">string</span>&amp; m_response_type_val) noexcept;</div>
-<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160; </div>
-<div class="line"><a name="l00645"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#aa8f0aa4beb1ad9da56d0786c64e18af7">  645</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_grant_type_val() const noexcept;</div>
-<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160; </div>
-<div class="line"><a name="l00654"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a39d1bdf89d183ad478f6c4ed2b04b6bb">  654</a></span>&#160;        <span class="keywordtype">void</span> set_grant_type_val(const std::<span class="keywordtype">string</span>&amp; m_grant_type_val) noexcept;</div>
-<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160; </div>
-<div class="line"><a name="l00660"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a5f2dc59b788c956ceb0508f5fc4b3454">  660</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_grant_type_refresh_val() const noexcept;</div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160; </div>
-<div class="line"><a name="l00669"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a178623ec4e84184e095ca40c19a3e954">  669</a></span>&#160;        <span class="keywordtype">void</span> set_grant_type_refresh_val(const std::<span class="keywordtype">string</span>&amp; m_grant_type_refresh_val) noexcept;</div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160; </div>
-<div class="line"><a name="l00675"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a03181202b30c12cedf278673134bd231">  675</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_cacert_path() const noexcept;</div>
-<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160; </div>
-<div class="line"><a name="l00685"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a5044573a36b6b032a0b4c92395d4aa72">  685</a></span>&#160;        <span class="keywordtype">void</span> set_cacert_path(const std::<span class="keywordtype">string</span>&amp; m_cacert_path) noexcept;</div>
-<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160; </div>
-<div class="line"><a name="l00691"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a6fafe8b2b3a9db82f399f7059289f6b6">  691</a></span>&#160;        const <span class="keywordtype">int</span>&amp; get_refresh_interval() const noexcept;</div>
-<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160; </div>
-<div class="line"><a name="l00702"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#ab4b1a81ae62a8f5aa0b5c9b24b6f1e6e">  702</a></span>&#160;        <span class="keywordtype">void</span> set_refresh_interval(const <span class="keywordtype">int</span>&amp; m_refresh_interval) noexcept;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    private:</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; </div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;        const std::<span class="keywordtype">string</span> client_id;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160; </div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        std::<span class="keywordtype">string</span> code_challenge = &quot;&quot;;</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160; </div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        std::<span class="keywordtype">string</span> code_verifier = &quot;&quot;;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160; </div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        std::<span class="keywordtype">string</span> authentication_url = &quot;&quot;;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160; </div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        std::<span class="keywordtype">string</span> code_val = &quot;&quot;;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160; </div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        const std::<span class="keywordtype">string</span> scope_val;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160; </div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        std::<span class="keywordtype">string</span> download_response = &quot;&quot;;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160; </div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        EVEAuth::Token* token = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160; </div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;        EVEAuth::CallBackTimer* cba = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160; </div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        <span class="comment">/* Getter and setter for predefined auth_query parameters and values */</span></div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    public:</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160; </div>
+<div class="line"><a name="l00325"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a1da35f1bee7d0eb9686727bfd948a754">  325</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_host() const noexcept;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160; </div>
+<div class="line"><a name="l00334"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a93412a41561cc2757d8712847b71bd69">  334</a></span>&#160;        <span class="keywordtype">void</span> set_host(const std::<span class="keywordtype">string</span>&amp; m_host) noexcept;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160; </div>
+<div class="line"><a name="l00340"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a6d6a217f3a20da8801dea6bca8603457">  340</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_content_type() const noexcept;</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160; </div>
+<div class="line"><a name="l00349"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a319f01fb8eb4184280f826b2ba6fb00b">  349</a></span>&#160;        <span class="keywordtype">void</span> set_content_type(const std::<span class="keywordtype">string</span>&amp; m_content_type) noexcept;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160; </div>
+<div class="line"><a name="l00355"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a99cf1805f95d93f4f4ff0b5feeea82b9">  355</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_base_url() const noexcept;</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160; </div>
+<div class="line"><a name="l00364"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a763abe0953cda08950642a7435378462">  364</a></span>&#160;        <span class="keywordtype">void</span> set_base_url(const std::<span class="keywordtype">string</span>&amp; m_base_url) noexcept;</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160; </div>
+<div class="line"><a name="l00370"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#abe9620e28035ce001bbd635a296be08c">  370</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_request_url() const noexcept;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160; </div>
+<div class="line"><a name="l00379"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#ab6c4480fc82282a1b4e36257de9ec978">  379</a></span>&#160;        <span class="keywordtype">void</span> set_request_url(const std::<span class="keywordtype">string</span>&amp; m_request_url) noexcept;</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160; </div>
+<div class="line"><a name="l00385"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a9829c66ae94efcb77eee96bc9c006c82">  385</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_jwt_keys_url() const noexcept;</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160; </div>
+<div class="line"><a name="l00394"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#ac41ee8598034489e98bec75269aaed89">  394</a></span>&#160;        <span class="keywordtype">void</span> set_jwt_keys_url(const std::<span class="keywordtype">string</span>&amp; m_jwt_keys_url) noexcept;</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160; </div>
+<div class="line"><a name="l00400"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#ad90c39574f94b44f2a36a068877e5d93">  400</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_curl_agent() const noexcept;</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160; </div>
+<div class="line"><a name="l00409"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a2689ac383d7202a1d6f6d32b3d5d9d27">  409</a></span>&#160;        <span class="keywordtype">void</span> set_curl_agent(const std::<span class="keywordtype">string</span>&amp; m_curl_agent) noexcept;</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160; </div>
+<div class="line"><a name="l00415"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#aec434360630ed76d02850d18b5dc2576">  415</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_query_url() const noexcept;</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160; </div>
+<div class="line"><a name="l00424"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a2ccdd28257b9dad1435d086a81062a94">  424</a></span>&#160;        <span class="keywordtype">void</span> set_query_url(const std::<span class="keywordtype">string</span>&amp; m_query_url) noexcept;</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160; </div>
+<div class="line"><a name="l00430"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a25c1de36fd3cda84f7244deb54a49ab0">  430</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_response_type_param() const noexcept;</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160; </div>
+<div class="line"><a name="l00439"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#ab875ee176beb924e30770c18a9f10068">  439</a></span>&#160;        <span class="keywordtype">void</span> set_response_type_param(const std::<span class="keywordtype">string</span>&amp; m_response_type_param) noexcept;</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160; </div>
+<div class="line"><a name="l00445"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a64ddf28e59967666e4c62186b721f0c0">  445</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_redirect_url_param() const noexcept;</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160; </div>
+<div class="line"><a name="l00454"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a8b5010bc278b5a697efa3291835ec1b7">  454</a></span>&#160;        <span class="keywordtype">void</span> set_redirect_url_param(const std::<span class="keywordtype">string</span>&amp; m_redirect_url_param) noexcept;</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160; </div>
+<div class="line"><a name="l00460"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a87ca95a98701d834abea4f6ee638526b">  460</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_client_id_param() const noexcept;</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160; </div>
+<div class="line"><a name="l00469"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#abfc6c3912fe10144e8d64e16fb234cf3">  469</a></span>&#160;        <span class="keywordtype">void</span> set_client_id_param(const std::<span class="keywordtype">string</span>&amp; m_client_id_param) noexcept;</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160; </div>
+<div class="line"><a name="l00475"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a5698f5db2ba48d62ce87f9ce5ed03372">  475</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_scope_param() const noexcept;</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160; </div>
+<div class="line"><a name="l00484"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#aeaacf89ad007fb763ad57e172c4562c1">  484</a></span>&#160;        <span class="keywordtype">void</span> set_scope_param(const std::<span class="keywordtype">string</span>&amp; m_scope_param) noexcept;</div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160; </div>
+<div class="line"><a name="l00490"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a67853c267110ca1282a09ad8c03f5e05">  490</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_state_param() const noexcept;</div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160; </div>
+<div class="line"><a name="l00499"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a9ddbdd9ed6bd8c32e97019a0f0b55273">  499</a></span>&#160;        <span class="keywordtype">void</span> set_state_param(const std::<span class="keywordtype">string</span>&amp; m_state_param) noexcept;</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160; </div>
+<div class="line"><a name="l00505"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a98bc6e93638d2f00c8897545f36ab593">  505</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_code_challenge_param() const noexcept;</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160; </div>
+<div class="line"><a name="l00514"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#aafbe4822b315d3309940972ae1ffaf46">  514</a></span>&#160;        <span class="keywordtype">void</span> set_code_challenge_param(const std::<span class="keywordtype">string</span>&amp; m_code_challenge_param) noexcept;</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160; </div>
+<div class="line"><a name="l00520"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a53ff093af974911805a19847bb65c2cf">  520</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_code_challenge_method_param() const noexcept;</div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160; </div>
+<div class="line"><a name="l00529"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a99a2648c95a3bbcada2203d374bd9f4c">  529</a></span>&#160;        <span class="keywordtype">void</span> set_code_challenge_method_param(const std::<span class="keywordtype">string</span>&amp; m_code_challenge_method_param) noexcept;</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160; </div>
+<div class="line"><a name="l00535"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a6ecafd8fd04cec0c2c167c4d183d3f68">  535</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_grant_type_param() const noexcept;</div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160; </div>
+<div class="line"><a name="l00544"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a2bbf88bdc53d3bdab7a818ee4404c6e8">  544</a></span>&#160;        <span class="keywordtype">void</span> set_grant_type_param(const std::<span class="keywordtype">string</span>&amp; m_grant_type_param) noexcept;</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160; </div>
+<div class="line"><a name="l00550"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#aea8d2c6c266e7e89fb30ab02f197b7b4">  550</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_code_param() const noexcept;</div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160; </div>
+<div class="line"><a name="l00559"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#aed96a55efaa307bd1445df4ffdd0cf6c">  559</a></span>&#160;        <span class="keywordtype">void</span> set_code_param(const std::<span class="keywordtype">string</span>&amp; m_code_param) noexcept;</div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160; </div>
+<div class="line"><a name="l00565"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a60c46e21107f2f1aa59f6a168cd6aa70">  565</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_code_verifier_param() const noexcept;</div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160; </div>
+<div class="line"><a name="l00574"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a08b5c1364f7824e4a711bd2abf860fc7">  574</a></span>&#160;        <span class="keywordtype">void</span> set_code_verifier_param(const std::<span class="keywordtype">string</span>&amp; m_code_verifier_param) noexcept;</div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160; </div>
+<div class="line"><a name="l00580"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a6c2c3fc5d4b44a82070a4d0eaa795ca1">  580</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_refresh_token_param() const noexcept;</div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160; </div>
+<div class="line"><a name="l00589"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a83bfee2996fc426769c5f3fd65bd3661">  589</a></span>&#160;        <span class="keywordtype">void</span> set_refresh_token_param(const std::<span class="keywordtype">string</span>&amp; m_refresh_token_param) noexcept;</div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160; </div>
+<div class="line"><a name="l00595"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#af965c8e2b6922e4396892d5686ac9bbc">  595</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_state_val() const noexcept;</div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160; </div>
+<div class="line"><a name="l00604"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#aa2195159eb941a71ea0dbe8227cac204">  604</a></span>&#160;        <span class="keywordtype">void</span> set_state_val(const std::<span class="keywordtype">string</span>&amp; m_state_val) noexcept;</div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160; </div>
+<div class="line"><a name="l00610"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#af3c10eb3ed07ff5e717d6b6e24899b2c">  610</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_code_challenge_method_val() const noexcept;</div>
+<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160; </div>
+<div class="line"><a name="l00619"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a055dc59fbe94f9f95b4d4e6fd9f09aed">  619</a></span>&#160;        <span class="keywordtype">void</span> set_code_challenge_method_val(const std::<span class="keywordtype">string</span>&amp; m_code_challenge_method_val) noexcept;</div>
+<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160; </div>
+<div class="line"><a name="l00625"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a3a6ed0e8c873c17af0d241c29c280e2a">  625</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_redirect_url_val() const noexcept;</div>
+<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160; </div>
+<div class="line"><a name="l00635"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a2b238dae00215dd78c6cc84a1a75fff1">  635</a></span>&#160;        <span class="keywordtype">void</span> set_redirect_url_val(const std::<span class="keywordtype">string</span>&amp; m_redirect_url_val) noexcept;</div>
+<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160; </div>
+<div class="line"><a name="l00641"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#aa32a8239c24279b94f012d5a15954199">  641</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_response_type_val() const noexcept;</div>
+<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160; </div>
+<div class="line"><a name="l00650"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a99ff8312530e9c3e4ddfed49ea2db7c9">  650</a></span>&#160;        <span class="keywordtype">void</span> set_response_type_val(const std::<span class="keywordtype">string</span>&amp; m_response_type_val) noexcept;</div>
+<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160; </div>
+<div class="line"><a name="l00656"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#aa8f0aa4beb1ad9da56d0786c64e18af7">  656</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_grant_type_val() const noexcept;</div>
+<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160; </div>
+<div class="line"><a name="l00665"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a39d1bdf89d183ad478f6c4ed2b04b6bb">  665</a></span>&#160;        <span class="keywordtype">void</span> set_grant_type_val(const std::<span class="keywordtype">string</span>&amp; m_grant_type_val) noexcept;</div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160; </div>
+<div class="line"><a name="l00671"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a5f2dc59b788c956ceb0508f5fc4b3454">  671</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_grant_type_refresh_val() const noexcept;</div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160; </div>
+<div class="line"><a name="l00680"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a178623ec4e84184e095ca40c19a3e954">  680</a></span>&#160;        <span class="keywordtype">void</span> set_grant_type_refresh_val(const std::<span class="keywordtype">string</span>&amp; m_grant_type_refresh_val) noexcept;</div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160; </div>
+<div class="line"><a name="l00686"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a03181202b30c12cedf278673134bd231">  686</a></span>&#160;        const std::<span class="keywordtype">string</span>&amp; get_cacert_path() const noexcept;</div>
+<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160; </div>
+<div class="line"><a name="l00696"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a5044573a36b6b032a0b4c92395d4aa72">  696</a></span>&#160;        <span class="keywordtype">void</span> set_cacert_path(const std::<span class="keywordtype">string</span>&amp; m_cacert_path) noexcept;</div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160; </div>
+<div class="line"><a name="l00702"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#a6fafe8b2b3a9db82f399f7059289f6b6">  702</a></span>&#160;        const <span class="keywordtype">int</span>&amp; get_refresh_interval() const noexcept;</div>
 <div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160; </div>
-<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;        <span class="comment">/* Predefined auth_query parameter and values for login */</span></div>
-<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;    private:</div>
-<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;        std::<span class="keywordtype">string</span> host = &quot;login.eveonline.com&quot;;</div>
-<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;        std::<span class="keywordtype">string</span> content_type = &quot;application/x-www-form-urlencoded&quot;;</div>
-<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;        std::<span class="keywordtype">string</span> base_url = &quot;https:<span class="comment">//login.eveonline.com/v2/oauth/authorize/&quot;;</span></div>
-<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;        std::<span class="keywordtype">string</span> request_url = &quot;https:<span class="comment">//login.eveonline.com/v2/oauth/token&quot;;</span></div>
-<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;        std::<span class="keywordtype">string</span> jwt_keys_url = &quot;https:<span class="comment">//login.eveonline.com/oauth/jwks&quot;;</span></div>
-<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;        std::<span class="keywordtype">string</span> curl_agent = &quot;libcurl/7.69.0&quot;;</div>
-<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;        std::<span class="keywordtype">string</span> query_url = &quot;https:<span class="comment">//esi.evetech.net/latest/&quot;;</span></div>
-<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160; </div>
-<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;        std::<span class="keywordtype">string</span> response_type_param = &quot;response_type=&quot;;</div>
-<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;        std::<span class="keywordtype">string</span> redirect_url_param = &quot;redirect_uri=&quot;;</div>
-<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;        std::<span class="keywordtype">string</span> client_id_param = &quot;client_id=&quot;;</div>
-<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;        std::<span class="keywordtype">string</span> scope_param = &quot;scope=&quot;;</div>
-<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;        std::<span class="keywordtype">string</span> state_param = &quot;state=&quot;;</div>
-<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;        std::<span class="keywordtype">string</span> code_challenge_param = &quot;code_challenge=&quot;;</div>
-<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;        std::<span class="keywordtype">string</span> code_challenge_method_param = &quot;code_challenge_method=&quot;;</div>
-<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;        std::<span class="keywordtype">string</span> grant_type_param = &quot;grant_type=&quot;;</div>
-<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;        std::<span class="keywordtype">string</span> code_param = &quot;code=&quot;;</div>
-<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;        std::<span class="keywordtype">string</span> code_verifier_param = &quot;code_verifier=&quot;;</div>
-<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;        std::<span class="keywordtype">string</span> refresh_token_param = &quot;refresh_token=&quot;;</div>
-<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160; </div>
-<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;        std::<span class="keywordtype">string</span> state_val = &quot;unique-state&quot;;</div>
-<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;        std::<span class="keywordtype">string</span> code_challenge_method_val = &quot;S256&quot;;</div>
-<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;        std::<span class="keywordtype">string</span> redirect_url_val = &quot;https%3A%2F%2Flocalhost%2Fcallback%2F&quot;;</div>
-<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;        std::<span class="keywordtype">string</span> response_type_val = &quot;code&quot;;</div>
-<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;        std::<span class="keywordtype">string</span> grant_type_val = &quot;authorization_code&quot;;</div>
-<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;        std::<span class="keywordtype">string</span> grant_type_refresh_val = &quot;refresh_token&quot;;</div>
-<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160; </div>
-<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;        std::<span class="keywordtype">string</span> cacert_path = &quot;&quot;;</div>
-<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;        <span class="keywordtype">int</span> refresh_interval = 900;</div>
-<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;    };</div>
+<div class="line"><a name="l00713"></a><span class="lineno"><a class="line" href="class_e_v_e_auth_1_1_auth.html#ab4b1a81ae62a8f5aa0b5c9b24b6f1e6e">  713</a></span>&#160;        <span class="keywordtype">void</span> set_refresh_interval(const <span class="keywordtype">int</span>&amp; m_refresh_interval) noexcept;</div>
+<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160; </div>
+<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;        <span class="comment">/* Predefined auth_query parameter and values for login */</span></div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;    private:</div>
+<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;        std::<span class="keywordtype">string</span> host = &quot;login.eveonline.com&quot;;</div>
+<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;        std::<span class="keywordtype">string</span> content_type = &quot;application/x-www-form-urlencoded&quot;;</div>
+<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;        std::<span class="keywordtype">string</span> base_url = &quot;https:<span class="comment">//login.eveonline.com/v2/oauth/authorize/&quot;;</span></div>
+<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;        std::<span class="keywordtype">string</span> request_url = &quot;https:<span class="comment">//login.eveonline.com/v2/oauth/token&quot;;</span></div>
+<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;        std::<span class="keywordtype">string</span> jwt_keys_url = &quot;https:<span class="comment">//login.eveonline.com/oauth/jwks&quot;;</span></div>
+<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;        std::<span class="keywordtype">string</span> curl_agent = &quot;libcurl/7.69.0&quot;;</div>
+<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;        std::<span class="keywordtype">string</span> query_url = &quot;https:<span class="comment">//esi.evetech.net/latest/&quot;;</span></div>
+<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160; </div>
+<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;        std::<span class="keywordtype">string</span> response_type_param = &quot;response_type=&quot;;</div>
+<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;        std::<span class="keywordtype">string</span> redirect_url_param = &quot;redirect_uri=&quot;;</div>
+<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;        std::<span class="keywordtype">string</span> client_id_param = &quot;client_id=&quot;;</div>
+<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;        std::<span class="keywordtype">string</span> scope_param = &quot;scope=&quot;;</div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;        std::<span class="keywordtype">string</span> state_param = &quot;state=&quot;;</div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;        std::<span class="keywordtype">string</span> code_challenge_param = &quot;code_challenge=&quot;;</div>
+<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;        std::<span class="keywordtype">string</span> code_challenge_method_param = &quot;code_challenge_method=&quot;;</div>
+<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;        std::<span class="keywordtype">string</span> grant_type_param = &quot;grant_type=&quot;;</div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;        std::<span class="keywordtype">string</span> code_param = &quot;code=&quot;;</div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;        std::<span class="keywordtype">string</span> code_verifier_param = &quot;code_verifier=&quot;;</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;        std::<span class="keywordtype">string</span> refresh_token_param = &quot;refresh_token=&quot;;</div>
 <div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160; </div>
-<div class="line"><a name="l00740"></a><span class="lineno"><a class="line" href="struct_e_v_e_auth_1_1_memory_struct.html">  740</a></span>&#160;    struct <a class="code" href="struct_e_v_e_auth_1_1_memory_struct.html">MemoryStruct</a> {</div>
-<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;        <span class="keywordtype">char</span>* memory;</div>
-<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;        <span class="keywordtype">size_t</span> size;</div>
-<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;    };</div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160; </div>
-<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">size_t</span> write_memory_callback(<span class="keywordtype">void</span>* contents, <span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> nmemb, <span class="keywordtype">void</span>* userp);</div>
-<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160; </div>
-<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;    std::string generate_hash(<span class="keyword">const</span> std::string&amp; s) noexcept(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160; </div>
-<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;    std::string generate_pem_key(<span class="keyword">const</span> std::string&amp; n, <span class="keyword">const</span> std::string&amp; e) noexcept;</div>
-<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160; </div>
-<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;    std::string make_err_msg(std::initializer_list&lt;std::string&gt; list) noexcept;</div>
-<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160; </div>
-<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;    std::vector&lt;std::string&gt; split_by_delimiter(std::string&amp; s, <span class="keyword">const</span> std::string&amp; d) noexcept;</div>
-<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;}</div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;        std::<span class="keywordtype">string</span> state_val = &quot;unique-state&quot;;</div>
+<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;        std::<span class="keywordtype">string</span> code_challenge_method_val = &quot;S256&quot;;</div>
+<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;        std::<span class="keywordtype">string</span> redirect_url_val = &quot;https%3A%2F%2Flocalhost%2Fcallback%2F&quot;;</div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;        std::<span class="keywordtype">string</span> response_type_val = &quot;code&quot;;</div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;        std::<span class="keywordtype">string</span> grant_type_val = &quot;authorization_code&quot;;</div>
+<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;        std::<span class="keywordtype">string</span> grant_type_refresh_val = &quot;refresh_token&quot;;</div>
+<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160; </div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;        std::<span class="keywordtype">string</span> cacert_path = &quot;&quot;;</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;        <span class="keywordtype">int</span> refresh_interval = 900;</div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;    };</div>
+<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160; </div>
+<div class="line"><a name="l00751"></a><span class="lineno"><a class="line" href="struct_e_v_e_auth_1_1_memory_struct.html">  751</a></span>&#160;    struct <a class="code" href="struct_e_v_e_auth_1_1_memory_struct.html">MemoryStruct</a> {</div>
+<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;        <span class="keywordtype">char</span>* memory;</div>
+<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;        <span class="keywordtype">size_t</span> size;</div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;    };</div>
+<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160; </div>
+<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">size_t</span> write_memory_callback(<span class="keywordtype">void</span>* contents, <span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> nmemb, <span class="keywordtype">void</span>* userp);</div>
+<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160; </div>
+<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;    std::string generate_hash(<span class="keyword">const</span> std::string&amp; s) noexcept(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160; </div>
+<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;    std::string generate_pem_key(<span class="keyword">const</span> std::string&amp; n, <span class="keyword">const</span> std::string&amp; e) noexcept;</div>
+<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160; </div>
+<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;    std::string make_err_msg(std::initializer_list&lt;std::string&gt; list) noexcept;</div>
+<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160; </div>
+<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;    std::vector&lt;std::string&gt; split_by_delimiter(std::string&amp; s, <span class="keyword">const</span> std::string&amp; d) noexcept;</div>
+<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclass_e_v_e_auth_1_1_auth_html_a9a6ff165a0789508f682d46d5456635f"><div class="ttname"><a href="class_e_v_e_auth_1_1_auth.html#a9a6ff165a0789508f682d46d5456635f">EVEAuth::Auth::~Auth</a></div><div class="ttdeci">~Auth() noexcept</div></div>
 <div class="ttc" id="aclass_e_v_e_auth_1_1_auth_html"><div class="ttname"><a href="class_e_v_e_auth_1_1_auth.html">EVEAuth::Auth</a></div><div class="ttdef"><b>Definition:</b> Auth.h:128</div></div>
@@ -408,7 +411,8 @@ $(function() {
 <div class="ttc" id="aclass_e_v_e_auth_1_1_auth_exception_html_a22fa8adba9f80a59eec98aa89ab408c9"><div class="ttname"><a href="class_e_v_e_auth_1_1_auth_exception.html#a22fa8adba9f80a59eec98aa89ab408c9">EVEAuth::AuthException::get_error_code</a></div><div class="ttdeci">const int &amp; get_error_code() const noexcept</div></div>
 <div class="ttc" id="aclass_e_v_e_auth_1_1_auth_html_a775acc6deed9ba4b40b65d4f4fc576b1"><div class="ttname"><a href="class_e_v_e_auth_1_1_auth.html#a775acc6deed9ba4b40b65d4f4fc576b1">EVEAuth::Auth::Auth</a></div><div class="ttdeci">Auth(std::string &amp;client_id, std::string &amp;scope_val) noexcept</div></div>
 <div class="ttc" id="aclass_e_v_e_auth_1_1_auth_exception_html_a046abf66cda1ed5356efb16eb00f7b1c"><div class="ttname"><a href="class_e_v_e_auth_1_1_auth_exception.html#a046abf66cda1ed5356efb16eb00f7b1c">EVEAuth::AuthException::AuthException</a></div><div class="ttdeci">AuthException(std::string message, int error_code) noexcept</div></div>
-<div class="ttc" id="astruct_e_v_e_auth_1_1_memory_struct_html"><div class="ttname"><a href="struct_e_v_e_auth_1_1_memory_struct.html">EVEAuth::MemoryStruct</a></div><div class="ttdef"><b>Definition:</b> Auth.h:740</div></div>
+<div class="ttc" id="astruct_e_v_e_auth_1_1_memory_struct_html"><div class="ttname"><a href="struct_e_v_e_auth_1_1_memory_struct.html">EVEAuth::MemoryStruct</a></div><div class="ttdef"><b>Definition:</b> Auth.h:751</div></div>
+<div class="ttc" id="aclass_e_v_e_auth_1_1_auth_html_a7a453cdcf4214a529c0816541c4c3091"><div class="ttname"><a href="class_e_v_e_auth_1_1_auth.html#a7a453cdcf4214a529c0816541c4c3091">EVEAuth::Auth::get_access_token</a></div><div class="ttdeci">const std::string &amp; get_access_token() const noexcept</div></div>
 <div class="ttc" id="aclass_e_v_e_auth_1_1_auth_exception_html"><div class="ttname"><a href="class_e_v_e_auth_1_1_auth_exception.html">EVEAuth::AuthException</a></div><div class="ttdef"><b>Definition:</b> Auth.h:93</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

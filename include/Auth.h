@@ -246,6 +246,17 @@ namespace EVEAuth {
          */
         std::string auth_query(const std::string& query_val, bool with_authorization = false, const std::vector<std::pair<std::string, std::string>>& post_fields = {}) const noexcept(false);
 
+        /**
+         * Get the access token which can be used to make a query with authorization
+         * @return The current access token
+         */
+        const std::string& get_access_token() const noexcept;
+
+        /**
+         * Get the refresh token which can be used to request a new access token
+         * @return The current refresh token
+         */
+        const std::string& get_refresh_token() const noexcept;
     private:
 
         /**

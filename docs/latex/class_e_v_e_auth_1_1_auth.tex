@@ -45,6 +45,10 @@ void \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_a598bbc2208a24abf54d3e9dc59c0532
 \item 
 std\+::string \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_ac333b362e4892d7ab1c9d100d755b438}{auth\+\_\+query}} (const std\+::string \&query\+\_\+val, bool with\+\_\+authorization=false, const std\+::vector$<$ std\+::pair$<$ std\+::string, std\+::string $>$$>$ \&post\+\_\+fields=\{\}) const noexcept(false)
 \item 
+const std\+::string \& \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_a7a453cdcf4214a529c0816541c4c3091}{get\+\_\+access\+\_\+token}} () const noexcept
+\item 
+const std\+::string \& \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_ab375681ba74dd48ba5f06136bdce3157}{get\+\_\+refresh\+\_\+token}} () const noexcept
+\item 
 const std\+::string \& \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_a1da35f1bee7d0eb9686727bfd948a754}{get\+\_\+host}} () const noexcept
 \item 
 void \mbox{\hyperlink{class_e_v_e_auth_1_1_auth_a93412a41561cc2757d8712847b71bd69}{set\+\_\+host}} (const std\+::string \&m\+\_\+host) noexcept
@@ -207,6 +211,15 @@ A response string in J\+S\+ON format if no exception was thrown
 
 Generates the authentication url for the web-\/login \begin{DoxyReturn}{Returns}
 The authentication url which will lead to a web-\/login 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a7a453cdcf4214a529c0816541c4c3091}\label{class_e_v_e_auth_1_1_auth_a7a453cdcf4214a529c0816541c4c3091}} 
+\index{EVEAuth::Auth@{EVEAuth::Auth}!get\_access\_token@{get\_access\_token}}
+\index{get\_access\_token@{get\_access\_token}!EVEAuth::Auth@{EVEAuth::Auth}}
+\doxysubsubsection{\texorpdfstring{get\_access\_token()}{get\_access\_token()}}
+{\footnotesize\ttfamily const std\+::string\& E\+V\+E\+Auth\+::\+Auth\+::get\+\_\+access\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Get the access token which can be used to make a query with authorization \begin{DoxyReturn}{Returns}
+The current access token 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a326bd7d3a3d308ca32c4c84211d092ce}\label{class_e_v_e_auth_1_1_auth_a326bd7d3a3d308ca32c4c84211d092ce}} 
 \index{EVEAuth::Auth@{EVEAuth::Auth}!get\_authentication\_url@{get\_authentication\_url}}
@@ -425,6 +438,15 @@ The current redirect url value
 
 Get the current interval which specifies when the token will be refreshed \begin{DoxyReturn}{Returns}
 The current refresh interval 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_ab375681ba74dd48ba5f06136bdce3157}\label{class_e_v_e_auth_1_1_auth_ab375681ba74dd48ba5f06136bdce3157}} 
+\index{EVEAuth::Auth@{EVEAuth::Auth}!get\_refresh\_token@{get\_refresh\_token}}
+\index{get\_refresh\_token@{get\_refresh\_token}!EVEAuth::Auth@{EVEAuth::Auth}}
+\doxysubsubsection{\texorpdfstring{get\_refresh\_token()}{get\_refresh\_token()}}
+{\footnotesize\ttfamily const std\+::string\& E\+V\+E\+Auth\+::\+Auth\+::get\+\_\+refresh\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Get the refresh token which can be used to request a new access token \begin{DoxyReturn}{Returns}
+The current refresh token 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_e_v_e_auth_1_1_auth_a6c2c3fc5d4b44a82070a4d0eaa795ca1}\label{class_e_v_e_auth_1_1_auth_a6c2c3fc5d4b44a82070a4d0eaa795ca1}} 
 \index{EVEAuth::Auth@{EVEAuth::Auth}!get\_refresh\_token\_param@{get\_refresh\_token\_param}}

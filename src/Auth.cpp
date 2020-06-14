@@ -552,6 +552,16 @@ std::vector<std::string> EVEAuth::split_by_delimiter(std::string& s, const std::
     return vec;
 }
 
+const std::string& EVEAuth::Auth::get_access_token() const noexcept
+{
+    return token->get_access_token();
+}
+
+const std::string& EVEAuth::Auth::get_refresh_token() const noexcept
+{
+    return token->get_refresh_token();
+}
+
 const std::string& EVEAuth::Auth::get_scope_val() const noexcept
 {
     return scope_val;
